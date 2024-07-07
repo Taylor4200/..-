@@ -33,7 +33,7 @@ const FancyBanner = ({ style }: any) => {
                   </div>
                   <div className="col-xl-4 col-lg-5 col-md-5 text-center text-md-end">
                      <div className="media-wrapper position-relative z-1 d-inline-block">
-                        <Image width={150} src={fancyImg_1} alt="" className="lazy-img" />
+                        <Image width={240} src={fancyImg_1} alt="" className="lazy-img" />
                         <Image src={fancyShape_2} alt="" className="lazy-img shapes shape_01" />
                      </div>
                   </div>
