@@ -41,7 +41,7 @@ const FaqArea = () => {
                                        {faq.question}
                                     </button>
                                  </h2>
-                                 <div id={`collapse${faq.id}`} className={`accordion-collapse collapse ${faq.id === 3 ? "show" : ""}`}
+                                 <div id={`collapse${faq.id}`} className={`accordion-collapse collapse ${faq.id === 1 ? "show" : ""}`}
                                     data-bs-parent={`#accordion${item.id}`}>
                                     <div className="accordion-body">
                                        <p>{faq.answer}</p>

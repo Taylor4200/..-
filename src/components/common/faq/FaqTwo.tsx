@@ -5,7 +5,9 @@ const FaqTwo = () => {
 
    return (
       <>
-         {faq_data.filter((items) => items.page === "home_2_faq_2").map((item) => (
+         {faq_data
+             // .filter((items) => items.page === "home_2_faq_2")
+             .map((item) => (
             <div key={item.id} className="accordion-item">
                <h2 className="accordion-header">
                   <button className={`accordion-button ${item.id === 3 ? "" : "collapsed"}`} type="button"
@@ -14,7 +16,7 @@ const FaqTwo = () => {
                      {item.question}
                   </button>
                </h2>
-               <div id={`collapse${item.id}`} className={`accordion-collapse collapse ${item.id === 3 ? "show" : ""}`}
+               <div id={`collapse${item.id}`} className={`accordion-collapse collapse ${item.id === 1 ? "show" : ""}`}
                   data-bs-parent="#accordionTwo">
                   <div className="accordion-body">
                      <p>{item.answer}</p>

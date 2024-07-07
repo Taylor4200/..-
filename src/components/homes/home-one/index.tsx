@@ -12,6 +12,8 @@ import BLockFeatureFour from "./BLockFeatureFour"
 import BLockFeatureFive from "./BLockFeatureFive"
 import FancyBannerThree from "./FancyBannerThree"
 import FancyBanner from "@/components/common/FancyBanner"
+import FancyBannerMob from "@/components/homes/home-four/FancyBanner"
+
 
 const HomeOne = () => {
   return (
@@ -25,7 +27,8 @@ const HomeOne = () => {
       <Property />
       <FancyBannerOne style={false} />
       <AgentArea style={false} />
-      <BLockFeatureFour />
+        <FancyBannerMob style={false} />
+      {/*<BLockFeatureFour />*/}
       <BLockFeatureFive style={false} />
       <FancyBanner style={false} />
       <FancyBannerThree />
