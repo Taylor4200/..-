@@ -6,8 +6,10 @@ import footerLogo_1 from "@/assets/images/logo/logo_01.svg"
 import footerLogo_2 from "@/assets/images/logo/logo_03.svg"
 import footerShape_1 from "@/assets/images/shape/shape_32.svg"
 import footerShape_2 from "@/assets/images/shape/shape_33.svg"
+import truckSupportIcon from "@/assets/images/logo//trucksupportIcon.png"
 
-const icon_1: string[] = ["facebook", "twitter", "instagram"]
+
+const icon_1: string[] = ["facebook", "twitter", "instagram", "youtube"]
 
 const FooterOne = ({ style }: any) => {
    return (
@@ -20,7 +22,7 @@ const FooterOne = ({ style }: any) => {
                         <div className="bg-wrapper">
                            <div className="logo mb-20">
                               <Link href="/">
-                                 <Image src={style ? footerLogo_2 : footerLogo_1} alt="" />
+                                 <Image src={style ? truckSupportIcon : footerLogo_1} alt="" />
                               </Link>
                            </div>
                            <p className="mb-60 lg-mb-40 md-mb-20">11910 Clyde Rapid Suite 70, Willyand, Virginia, United States</p>

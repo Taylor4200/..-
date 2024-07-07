@@ -33,11 +33,13 @@ const NavMenu = () => {
         <ul className="navbar-nav align-items-lg-center">
             <li className="d-block d-lg-none"><div className="logo"><Link href="/" className="d-block"><Image src={logo} alt="" /></Link></div></li>
             <li className="nav-item dashboard-menu">
-                <Link className="nav-link" href="/dashboard/dashboard-index" target="_blank">Dashboard</Link>
+                {/*<Link className="nav-link" href="/dashboard/dashboard-index" target="_blank">Dashboard</Link>*/}
+                <Link className="nav-link" href="/">Home</Link>
+
             </li>
             {menu_data.map((menu: any) => (
                 <li key={menu.id} className={`nav-item dropdown ${menu.class_name}`}>
-                    <Link href={menu.link} className={`nav-link dropdown-toggle ${pathname === menu.link ? 'active' : ''}
+                    <Link href={menu.link} className={`nav-link ${menu?.sub_menus ? 'dropdown-toggle' : '' } ${pathname === menu.link ? 'active' : ''}
                      ${navTitle === menu.title ? "show" : ""}`} onClick={() => openMobileMenu(menu.title)}>
                         {menu.title}
                     </Link>

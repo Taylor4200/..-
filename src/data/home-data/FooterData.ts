@@ -17,7 +17,7 @@ const footer_data: DataType[] = [
       page: "home_1",
       widget_class: "xs-mt-50",
       widget_title: "Links",
-      footer_link: [{ link: "/", link_title: "Home" }, { link: "/dashboard/membership", link_title: "Membership" }, { link: "/about_us_01", link_title: "About Company" }, { link: "/blog_01", link_title: "Blog" }, { link: "/blog_02", link_title: "Explore Careers" }, { link: "/pricing_02", link_title: "Pricing" }, { link: "/dashboard/dashboard-index", link_title: "Dashboard" },]
+      footer_link: [{ link: "/", link_title: "Home" }, { link: "/about_us_01", link_title: "About Company" },{ link: "/contact", link_title: "Contact" }, { link: "/", link_title: "Advertising" },]
    },
    {
       id: 2,
@@ -30,8 +30,8 @@ const footer_data: DataType[] = [
       id: 3,
       widget_class: "xs-mt-30",
       page: "home_1",
-      widget_title: "New Listing",
-      footer_link: [{ link: "/listing_01", link_title: "​Buy Apartments" }, { link: "/listing_02", link_title: "Buy Condos" }, { link: "listing_03", link_title: "Rent Houses" }, { link: "listing_04", link_title: "Rent Industrial" }, { link: "/listing_05", link_title: "Buy Villas" }, { link: "/listing_06", link_title: "Rent Office" },]
+      widget_title: "Why choose us",
+      footer_link: [{ link: "/", link_title: "TrustPilot" }, { link: "/", link_title: "Customer Testimonial" }]
    },
 
    // home two

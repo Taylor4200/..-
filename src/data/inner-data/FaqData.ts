@@ -19,131 +19,51 @@ const inner_faq_data:DataType[] = [
       faq: [
          {
             id: 1,
-            question: "How does the free trial work?",
-            answer: "Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+            question: "HOW CAN I FIND THE NEAREST TRUCK STOP USING YOUR DIRECTORY?",
+            answer: "Under the “Search” tab at the top of the page, enter your location, and our directory will locate all the nearest truck stops in your area.",
          },
          {
             id: 2,
-            question: "How do you weigh different criteria in your process?",
-            answer: "Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+            question: "CAN I ACCESS YOUR DIRECTORY THROUGH A MOBILE APP FOR CONVENIENCE ON THE ROAD?",
+            answer: "As of right now you would have to use your preferred search engine. We are currently in development of a mobile app for both iOS and android, we will update you once its’s published.",
          },
          {
             id: 3,
-            question: "What’s the process of selling property?",
-            answer: "Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+            question: "HOW FREQUENTLY IS YOUR DIRECTORY UPDATED WITH NEW INFORMATION?",
+            answer: "Whenever we receive new information from our clients, we advertise for. We will update our search directory with more locations in your area. Stay tuned if there aren’t any locations currently available in your nearby.",
          },
          {
             id: 4,
-            question: "Refund & Frauds",
-            answer: "Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+            question: "HOW CAN I REPORT INACCURACIES OR SUGGEST ADDITIONS TO YOUR DIRECTORY?",
+            answer: "If you encounter any minor issues with either our directory or our website, please contact us at marketing@247trucksupport.com.\n" +
+                "\n" +
+                " \n" +
+                "\n" +
+                "For major issues or inquiries about advertising services from our company, please reach out to us at (720)-877-7184.",
          },
-      ]
-   },
-   {
-      id: 2,
-      id_name: "Renting",
-      title: "RENTING",
-      faq: [
+
          {
             id: 5,
-            question: "Can a home depreciate in value?",
-            answer: "Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+            question: "CAN I SEARCH FOR TRUCK REPAIR SHOPS OR ROADSIDE ASSISTANCE SERVICES THROUGH YOUR DIRECTORY?",
+            answer: "Yes! You can search for both, depending on whether we currently have vendors available in your area.",
          },
          {
             id: 6,
-            question: "Is an older home as good a value as a new home?",
-            answer: "Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+            question: "DO YOU OFFER ANY NAVIGATION OR ROUTING SERVICES SPECIFICALLY TAILORED FOR TRUCK DRIVERS?",
+            answer: "Not at this time",
          },
          {
             id: 7,
-            question: "What is a broker?",
-            answer: "Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+            question: "IS THERE A SUBSCRIPTION FEE OR ANY COSTS ASSOCIATED WITH USING YOUR DIRECTORY?",
+            answer: "No! Our directory is free of charge, unlike other major truck directories!",
          },
          {
             id: 8,
-            question: "Can I pay my own taxes and insurance?",
-            answer: "Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-         },
+            question: "DO YOU PROVIDE RATINGS OR REVIEWS FOR THE SERVICES LISTED IN YOUR DIRECTORY?",
+            answer: "No, but we do provide the Google review page if available. We always make sure to choose highly reputable service providers.",
+         }
       ]
-   },
-   {
-      id: 3,
-      id_name: "Buying",
-      title: "BUYING",
-      faq: [
-         {
-            id: 9,
-            question: "How does the free trial work?",
-            answer: "Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-         },
-         {
-            id: 10,
-            question: "How do you weigh different criteria in your process?",
-            answer: "Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-         },
-         {
-            id: 11,
-            question: "Refund & Frauds",
-            answer: "Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-         },
-      ]
-   },
-   {
-      id: 4,
-      id_name: "Payments",
-      title: "PAYMENTS",
-      faq: [
-         {
-            id: 12,
-            question: "Which payment method is supported?",
-            answer: "Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-         },
-         {
-            id: 13,
-            question: "Is my card is secure here?",
-            answer: "Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-         },
-         {
-            id: 14,
-            question: "Can I provide cheque to my client for payment?",
-            answer: "Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-         },
-      ]
-   },
-   {
-      id: 5,
-      id_name: "Terms",
-      title: "TERMS & CONDITIONS",
-      faq: [
-         {
-            id: 15,
-            question: "How does the free trial work?",
-            answer: "Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-         },
-         {
-            id: 16,
-            question: "How do you weigh different criteria in your process?",
-            answer: "Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-         },
-      ]
-   },
-   {
-      id: 6,
-      id_name: "Account",
-      title: "ACCOUNT",
-      faq: [
-         {
-            id: 17,
-            question: "Can a home depreciate in value?",
-            answer: "Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-         },
-         {
-            id: 18,
-            question: "Is an older home as good a value as a new home?",
-            answer: "Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-         },
-      ]
-   },
+   }
 ]
 
 export default inner_faq_data;

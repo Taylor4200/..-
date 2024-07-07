@@ -8,20 +8,21 @@ import AgentArea from "@/components/homes/home-one/AgentArea"
 import Brand from "./Brand"
 import FooterFour from "@/layouts/footers/FooterFour"
 import FancyBanner from "@/components/common/FancyBanner"
+import FooterOne from "@/layouts/footers/FooterOne";
 
 const AboutUsOne = () => {
    return (
       <>
          <HeaderOne style={true} />
-         <BreadcrumbOne title="About Agency" sub_title="About us" style={false} />
+         <BreadcrumbOne title="About Us" sub_title="About us" style={false} />
          <BLockFeatureOne />
          <VideoBanner />
-         <BLockFeatureFive style={true} />
-         <Feedback style={true} />
-         <AgentArea style={false} />
-         <Brand />
-         <FancyBanner style={false} />
-         <FooterFour />
+         {/*<BLockFeatureFive style={true} />*/}
+         {/*<Feedback style={true} />*/}
+         {/*<AgentArea style={false} />*/}
+         {/*<Brand />*/}
+         {/*<FancyBanner style={false} />*/}
+         <FooterOne style={true}  />
       </>
    )
 }

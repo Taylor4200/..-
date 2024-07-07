@@ -15,7 +15,9 @@ interface ContentType {
 
 const feature_content: ContentType = {
    sub_title: "About us",
-   desc_1: (<>Our founders Dustin Moskovitz and Justin Rosenstein met while leading Engineering .</>),
+   desc_1: (<>Welcome to Truck Support, your ultimate destination for all your truck service needs! We're thrilled to have you here. At TruckSupport, we specialize in connecting truckers with top-notch service providers. Whether you're in need of maintenance, repair, or any other service, we've got you covered. Say goodbye to endless searches, and let us handle the legwork for you. Explore our directory of trusted truck service companies and get back on the road with confidence. Your journey just got a whole lot smoother with 247TruckSupport.com
+
+      .</>),
    title_1: "Who we are?",
    title_2: "Our Mission",
    desc_2: (<>Our founders Dustin Moskovitz & Justin Rosenstein met  leading Engineering teams at Facebook. As operations scaled, they grew frustrated by how difficult coordinate</>),
