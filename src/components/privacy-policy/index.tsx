@@ -362,7 +362,7 @@ const PrivacyPolicy = () => {
 
                 </h2>
                 <p>We may disclose information (including personal information) about you to our Corporate Affiliates.
-                    For purposes of this Privacy Policy, "Corporate Affiliate" means any person or entity which directly
+                    For purposes of this Privacy Policy, Corporate Affiliate means any person or entity which directly
                     or indirectly controls, is controlled by or is under common control with Truck Support, whether by
                     ownership or otherwise. Any information relating to you that we provide to our Corporate Affiliates
                     will be treated by those Corporate Affiliates in accordance with the terms of this Privacy Policy.
@@ -403,7 +403,7 @@ const PrivacyPolicy = () => {
 
                 </h2>
                 <p>We have updated our Privacy Policy to provide you with complete transparency into what is being set
-                    when you visit our site and how it's being used. By using our website, registering an account, or
+                    when you visit our site and how it is being used. By using our website, registering an account, or
                     making a purchase, you hereby consent to our Privacy Policy and agree to its terms.
 
 
@@ -498,7 +498,7 @@ const PrivacyPolicy = () => {
                     you may also lose some saved information (e.g. saved login details, site preferences) if you block
                     cookies on your browser. Different browsers make different controls available to you. Disabling a
                     cookie or category of cookie does not delete the cookie from your browser, you will need to do this
-                    yourself from within your browser, you should visit your browser's help menu for more information.
+                    yourself from within your browser, you should visit your browsers help menu for more information.
 
 
                 </p>
@@ -511,7 +511,7 @@ const PrivacyPolicy = () => {
                 </h2>
                 <p>We use remarketing services. What Is Remarketing? In digital marketing, remarketing (or retargeting)
                     is the practice of serving ads across the internet to people who have already visited your website.
-                    It allows your company to seem like they're “following” people around the internet by serving ads on
+                    It allows your company to seem like they are “following” people around the internet by serving ads on
                     the websites and platforms they use most.
 
 
@@ -578,7 +578,7 @@ const PrivacyPolicy = () => {
                     liability or responsibility to you or any other person or entity for any Third-Party Services.
                 </p>
                 <p>Third-Party Services and links thereto are provided solely as a convenience to you and you access and
-                    use them entirely at your own risk and subject to such third parties' terms and conditions.</p>
+                    use them entirely at your own risk and subject to such third parties terms and conditions.</p>
             </section>
 
             <section className="my-5">
@@ -700,7 +700,7 @@ const PrivacyPolicy = () => {
                 </h2>
                 <p>GDPR adds some new requirements regarding how companies should protect individuals personal data that
                     they collect and process. It also raises the stakes for compliance by increasing enforcement and
-                    imposing greater fines for breach. Beyond these facts it's simply the right thing to do. At Truck
+                    imposing greater fines for breach. Beyond these facts it is simply the right thing to do. At Truck
                     Support we strongly believe that your data privacy is very important and we already have solid
                     security and privacy practices in place that go beyond the requirements of this new regulation.
 
@@ -723,7 +723,7 @@ const PrivacyPolicy = () => {
 
                 </p>
                 <p>We are aware that if you are working with EU customers, you need to be able to provide them with the
-                    ability to access, update, retrieve and remove personal data. We got you! We've been set up as self
+                    ability to access, update, retrieve and remove personal data. We got you! We have been set up as self
                     service from the start and have always given you access to your data and your customers data. Our
                     customer support team is here for you to answer any questions you might have about working with the
                     API.

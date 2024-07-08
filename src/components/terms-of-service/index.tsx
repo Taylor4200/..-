@@ -41,9 +41,9 @@ const TermsService = () => {
 
                 </p>
                 <p>These Terms & Conditions are a contract between you and Truck Support (referred to in these Terms &
-                    Conditions as "Truck Support", "us", "we" or "our"), the provider of the Truck Support website and
+                    Conditions as (Truck Support, us, we or our), the provider of the Truck Support website and
                     the services accessible from the Truck Support website (which are collectively referred to in these
-                    Terms & Conditions as the "Truck Support Service").
+                    Terms & Conditions as the Truck Support Service).
 
                 </p>
             </section>
@@ -77,7 +77,7 @@ const TermsService = () => {
                         partners, and others who provide our content or whose products or services we think may interest
                         you.
                     </li>
-                    <li>Website: Truck Support's site, which can be accessed via this URL:
+                    <li>Website: Truck Supports site, which can be accessed via this URL:
                         https://www.247trucksupport.com/
                     </li>
                     <li>You: a person or entity that is registered with Truck Support to use the Services.
@@ -117,10 +117,10 @@ const TermsService = () => {
                 <p>As with any shopping experience, there are terms and conditions that apply to transactions at Truck
                     Support. We’ll be as brief as our attorneys will allow. The main thing to remember is that by
                     placing an order or making a purchase at Truck Support, you agree to the terms along with Truck
-                    Support's Privacy Policy.
+                    Supports Privacy Policy.
 
                 </p>
-                <p>If, for any reason, You are not completely satisfied with any good or service that we provide, don't
+                <p>If, for any reason, You are not completely satisfied with any good or service that we provide, do not
                     hesitate to contact us and we will discuss any of the issues you are going through with our product.
 
                 </p>
@@ -129,7 +129,7 @@ const TermsService = () => {
                 <h2>YOUR SUGGESTIONS
                 </h2>
                 <p>
-                    Any feedback, comments, ideas, improvements or suggestions (collectively, "Suggestions") provided by
+                    Any feedback, comments, ideas, improvements or suggestions (collectively, Suggestions) provided by
                     you to Truck Support with respect to the website shall remain the sole and exclusive property of
                     Truck Support.
 
@@ -145,8 +145,8 @@ const TermsService = () => {
                 </h2>
                 <p>
 
-                    We've updated our Terms & Conditions to provide you with complete transparency into what is being
-                    set when you visit our site and how it's being used. By using our website, registering an account,
+                    We have updated our Terms & Conditions to provide you with complete transparency into what is being
+                    set when you visit our site and how it is being used. By using our website, registering an account,
                     or making a purchase, you hereby consent to our Terms & Conditions.
 
 
@@ -179,7 +179,7 @@ const TermsService = () => {
                 </h2>
                 <p>
 
-                    Truck Support uses "Cookies" to identify the areas of our website that you have visited. A Cookie is
+                    Truck Support uses Cookies to identify the areas of our website that you have visited. A Cookie is
                     a small piece of data stored on your computer or mobile device by your web browser. We use Cookies
                     to enhance the performance and functionality of our website but are non-essential to their use.
                     However, without these cookies, certain functionality like videos may become unavailable or you
@@ -233,7 +233,7 @@ const TermsService = () => {
                 <p>
                     Truck Support may from time to time provide enhancements or improvements to the features/
                     functionality of the website, which may include patches, bug fixes, updates, upgrades and other
-                    modifications ("Updates").
+                    modifications (Updates).
 
 
                 </p>
@@ -255,7 +255,7 @@ const TermsService = () => {
                 <p>
                     We may display, include or make available third-party content (including data, information,
                     applications and other products services) or provide links to third-party websites or services
-                    ("Third- Party Services").
+                    (Third- Party Services).
 
 
                 </p>
@@ -266,7 +266,7 @@ const TermsService = () => {
 
                 </p>
                 <p>Third-Party Services and links thereto are provided solely as a convenience to you and you access and
-                    use them entirely at your own risk and subject to such third parties' terms and conditions.
+                    use them entirely at your own risk and subject to such third parties terms and conditions.
 
                 </p>
             </section>
@@ -302,7 +302,7 @@ const TermsService = () => {
                     the website from your computer.
 
                 </p>
-                <p>Termination of this Agreement will not limit any of Truck Support's rights or remedies at law or in
+                <p>Termination of this Agreement will not limit any of Truck Supports rights or remedies at law or in
                     equity in case of breach by you (during the term of this Agreement) of any of your obligations under
                     the present Agreement.
 
@@ -335,7 +335,7 @@ const TermsService = () => {
                 </h2>
                 <p>You agree to indemnify and hold Truck Support and its parents, subsidiaries, affiliates, officers,
                     employees, agents, partners and licensors (if any) harmless from any claim or demand, including
-                    reasonable attorneys' fees, due to or arising out of your: (a) use of the website; (b) violation of
+                    reasonable attorneys fees, due to or arising out of your: (a) use of the website; (b) violation of
                     this Agreement or any law or regulation; or (c) violation of any right of a third party.
 
 
@@ -348,7 +348,7 @@ const TermsService = () => {
 
 
                 </h2>
-                <p>The website is provided to you "AS IS" and "AS AVAILABLE" and with all faults and defects without
+                <p>The website is provided to you AS IS and AS AVAILABLE and with all faults and defects without
                     warranty of any kind. To the maximum extent permitted under applicable law, Truck Support, on its
                     own behalf and on behalf of its affiliates and its and their respective licensors and service
                     providers, expressly disclaims all warranties, whether express, implied, statutory or otherwise,
@@ -362,7 +362,7 @@ const TermsService = () => {
 
 
                 </p>
-                <p>Without limiting the foregoing, neither Truck Support nor any Truck Support's provider makes any
+                <p>Without limiting the foregoing, neither Truck Support nor any Truck Supports provider makes any
                     representation or warranty of any kind, express or implied: (i) as to the operation or availability
                     of the website, or the information, content, and materials or products included thereon; (ii) that
                     the website will be uninterrupted or error-free; (iii) as to the accuracy, reliability, or currency
@@ -419,7 +419,7 @@ const TermsService = () => {
                     competent jurisdiction, the invalidity of such provision shall not affect the validity of the
                     remaining provisions of this Agreement, which shall remain in full force and effect. No waiver of
                     any term of this Agreement shall be deemed a further or continuing waiver of such term or any other
-                    term, and Truck Support's failure to assert any right or provision under this Agreement shall not
+                    term, and Truck Support failure to assert any right or provision under this Agreement shall not
                     constitute a waiver of such right or provision. YOU AND Truck Support AGREE THAT ANY CAUSE OF ACTION
                     ARISING OUT OF OR RELATED TO THE SERVICES MUST COMMENCE WITHIN ONE (1) YEAR AFTER THE CAUSE OF
                     ACTION ACCRUES. OTHERWISE, SUCH CAUSE OF ACTION IS PERMANENTLY BARRED.
@@ -435,7 +435,7 @@ const TermsService = () => {
                 </h2>
                 <p>
                     Except as provided herein, the failure to exercise a right or to require performance of an
-                    obligation under this Agreement shall not effect a party's ability to exercise such right or require
+                    obligation under this Agreement shall not effect a partys ability to exercise such right or require
                     such performance at any time thereafter nor shall be the waiver of a breach constitute waiver of any
                     subsequent breach.
 
@@ -466,7 +466,7 @@ const TermsService = () => {
 
                 </h2>
                 <p>Truck Support reserves the right, at its sole discretion, to modify or replace this Agreement at any
-                    time. If a revision is material we will provide at least 30 days' notice prior to any new terms
+                    time. If a revision is material we will provide at least 30 days notice prior to any new terms
                     taking effect. What constitutes a material change will be determined at our sole discretion.
 
 
@@ -491,7 +491,7 @@ const TermsService = () => {
 
                 </p>
                 <p>You may be subject to additional terms and conditions that apply when you use or purchase other Truck
-                    Support's services, which Truck Support will provide to you at the time of such use or purchase.
+                    Supports services, which Truck Support will provide to you at the time of such use or purchase.
 
                 </p>
             </section>
@@ -538,7 +538,7 @@ const TermsService = () => {
 
                 </h2>
                 <p>This section applies to any dispute EXCEPT IT DOESN’T INCLUDE A DISPUTE RELATING TO CLAIMS FOR
-                    INJUNCTIVE OR EQUITABLE RELIEF REGARDING THE ENFORCEMENT OR VALIDITY OF YOUR OR Truck Support's
+                    INJUNCTIVE OR EQUITABLE RELIEF REGARDING THE ENFORCEMENT OR VALIDITY OF YOUR OR Truck Supports
                     INTELLECTUAL PROPERTY RIGHTS. The term “dispute” means any dispute, action, or other controversy
                     between you and Truck Support concerning the Services or this agreement, whether in contract,
                     warranty, tort, statute, regulation, ordinance, or any other legal or equitable basis. “Dispute”
@@ -655,7 +655,7 @@ const TermsService = () => {
 
                 </p><p>In no event shall Truck Support be liable for any special, direct, indirect, consequential, or incidental damages or any damages whatsoever, whether in an action of contract, negligence or other tort, arising out of or in connection with the use of the Service or the contents of the Service. The Company reserves the right to make additions, deletions, or modifications to the contents on the Service at any time without prior notice.
 
-            </p><p></p>The Truck Support Service and its contents are provided "as is" and "as available" without any warranty or representations of any kind, whether express or implied. Truck Support is a distributor and not a publisher of the content supplied by third parties; as such, Truck Support exercises no editorial control over such content and makes no warranty or representation as to the accuracy, reliability or currency of any information, content, service or merchandise provided through or accessible via the Truck Support Service. Without limiting the foregoing, Truck Support specifically disclaims all warranties and representations in any content transmitted on or in connection with the Truck Support Service or on sites that may appear as links on the Truck Support Service, or in the products provided as a part of, or otherwise in connection with, the Truck Support Service, including without limitation any warranties of merchantability, fitness for a particular purpose or non-infringement of third party rights. No oral advice or written information given by Truck Support or any of its affiliates, employees, officers, directors, agents, or the like will create a warranty. Price and availability information is subject to change without notice. Without limiting the foregoing, Truck Support does not warrant that the Truck Support Service will be uninterrupted, uncorrupted, timely, or error-free.
+            </p><p></p>The Truck Support Service and its contents are provided as is and as available without any warranty or representations of any kind, whether express or implied. Truck Support is a distributor and not a publisher of the content supplied by third parties; as such, Truck Support exercises no editorial control over such content and makes no warranty or representation as to the accuracy, reliability or currency of any information, content, service or merchandise provided through or accessible via the Truck Support Service. Without limiting the foregoing, Truck Support specifically disclaims all warranties and representations in any content transmitted on or in connection with the Truck Support Service or on sites that may appear as links on the Truck Support Service, or in the products provided as a part of, or otherwise in connection with, the Truck Support Service, including without limitation any warranties of merchantability, fitness for a particular purpose or non-infringement of third party rights. No oral advice or written information given by Truck Support or any of its affiliates, employees, officers, directors, agents, or the like will create a warranty. Price and availability information is subject to change without notice. Without limiting the foregoing, Truck Support does not warrant that the Truck Support Service will be uninterrupted, uncorrupted, timely, or error-free.
 
 
             </section>
