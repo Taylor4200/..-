@@ -20,13 +20,13 @@ const HomeOne = () => {
     <>
       <HeaderOne style={false} />
       <Banner />
-      <Feedback />
+      {/*<Feedback />*/}
       <BLockFeatureOne />
       <BLockFeatureTwo />
       <BLockFeatureThree />
       <Property />
       <FancyBannerOne style={false} />
-      <AgentArea style={false} />
+      {/*<AgentArea style={false} />*/}
         <FancyBannerMob style={false} />
       {/*<BLockFeatureFour />*/}
       <BLockFeatureFive style={false} />

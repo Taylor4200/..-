@@ -28,14 +28,14 @@ const PricingOneArea = () => {
             </div>
 
             <div className="pr-table-one">
-               <nav className="pricing-nav-one d-flex justify-content-center">
-                  <div className="nav nav-tabs" role="tablist">
-                     {tab_title.map((tab, index) => (
-                        <button key={index} onClick={() => handleTabClick(index)} className={`nav-link ${activeTab === index ? "active" : ""}`} id="buy-tab" type="button">{tab}</button>
-                     ))}
-                  </div>
-               </nav>
-               <div className="discount-text mt-15 text-center">Save 30% on Annual plan</div>
+               {/*<nav className="pricing-nav-one d-flex justify-content-center">*/}
+               {/*   <div className="nav nav-tabs" role="tablist">*/}
+               {/*      {tab_title.map((tab, index) => (*/}
+               {/*         <button key={index} onClick={() => handleTabClick(index)} className={`nav-link ${activeTab === index ? "active" : ""}`} id="buy-tab" type="button">{tab}</button>*/}
+               {/*      ))}*/}
+               {/*   </div>*/}
+               {/*</nav>*/}
+               {/*<div className="discount-text mt-15 text-center">Save 30% on Annual plan</div>*/}
 
                <div className="dot-bg-wrapper mt-60 lg-mt-40">
                   <div className="tab-content">

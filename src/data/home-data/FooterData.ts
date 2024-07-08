@@ -17,14 +17,14 @@ const footer_data: DataType[] = [
       page: "home_1",
       widget_class: "xs-mt-50",
       widget_title: "Links",
-      footer_link: [{ link: "/", link_title: "Home" }, { link: "/about_us_01", link_title: "About Company" },{ link: "/contact", link_title: "Contact" }, { link: "/", link_title: "Advertising" },]
+      footer_link: [{ link: "/", link_title: "Home" }, { link: "/about_us_01", link_title: "About Company" },{ link: "/contact", link_title: "Contact" }, { link: "/pricing_01", link_title: "Advertising" },]
    },
    {
       id: 2,
       widget_class: "xs-mt-30",
       page: "home_1",
       widget_title: "Legal",
-      footer_link: [{ link: "/faq", link_title: "Terms & conditions" }, { link: "/faq", link_title: "Cookie" }, { link: "/faq", link_title: "Privacy policy" }, { link: "/faq", link_title: "Faq’s" },]
+      footer_link: [{ link: "/terms-of-service", link_title: "Terms & conditions" }, { link: "/faq", link_title: "Cookie" }, { link: "/privacy-policy", link_title: "Privacy policy" }, { link: "/faq", link_title: "Faq’s" },]
    },
    {
       id: 3,

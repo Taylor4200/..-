@@ -29,7 +29,7 @@ const menu_data: MenuItem[] = [
         id: 2,
         has_dropdown: false,
         title: "Advertising",
-        link: "/advertising"
+        link: "/pricing_01"
     },
     {
         id: 3,

@@ -6,6 +6,8 @@ import Image from "next/image";
 import { useState } from "react";
 
 import logo from "@/assets/images/logo/logo_01.svg";
+import truckSupportIcon from "@/assets/images/logo//trucksupportIcon.png"
+
 
 const NavMenu = () => {
     const pathname = usePathname();
@@ -31,7 +33,7 @@ const NavMenu = () => {
 
     return (
         <ul className="navbar-nav align-items-lg-center">
-            <li className="d-block d-lg-none"><div className="logo"><Link href="/" className="d-block"><Image src={logo} alt="" /></Link></div></li>
+            <li className="d-block d-lg-none"><div className="logo"><Link href="/" className="d-block"><Image width={100} src={truckSupportIcon} alt="" /></Link></div></li>
             <li className="nav-item dashboard-menu">
                 {/*<Link className="nav-link" href="/dashboard/dashboard-index" target="_blank">Dashboard</Link>*/}
                 <Link className="nav-link" href="/">Home</Link>

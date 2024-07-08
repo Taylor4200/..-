@@ -14,7 +14,7 @@ const AboutUsOne = () => {
    return (
       <>
          <HeaderOne style={true} />
-         <BreadcrumbOne title="About Us" sub_title="About us" style={false} />
+         {/*<BreadcrumbOne title="About Us" sub_title="About us" style={false} />*/}
          <BLockFeatureOne />
          <VideoBanner />
          {/*<BLockFeatureFive style={true} />*/}

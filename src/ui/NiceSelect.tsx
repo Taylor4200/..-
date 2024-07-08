@@ -67,6 +67,11 @@ const NiceSelect: FC<NiceSelectProps> = ({
             onKeyDown={(e) => e}
           >
             {item.text}
+
+            {/*<ul>*/}
+            {/*  <li>dawa</li>*/}
+            {/*  <li>dawa</li>*/}
+            {/*</ul>*/}
           </li>
         ))}
       </ul>

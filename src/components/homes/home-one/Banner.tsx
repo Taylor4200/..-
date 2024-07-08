@@ -4,6 +4,9 @@ import DropdownOne from "@/components/search-dropdown/home-dropdown/DropdownOne"
 
 import titleShape from "@/assets/images/shape/shape_01.svg"
 import bannerThumb from "@/assets/images/assets/ils_01.svg"
+import Background1 from "@/assets/images/assets/Background1_Services.png"
+
+
 
 const Banner = () => {
    return (
