@@ -5,7 +5,7 @@ const DropdownOne = ({ style }: any) => {
    const selectHandler = (e: any) => { };
 
    const searchHandler = () => {
-      window.location.href = '/listing_0';
+      window.location.href = '/listing_04';
    };
 
    return (
@@ -16,11 +16,14 @@ const DropdownOne = ({ style }: any) => {
                   <div className="label">I’m looking for...</div>
                   <NiceSelect className={`nice-select ${style ? "fw-normal" : ""}`}
                      options={[
-                        { value: "apartments", text: "Buy Apartments" },
-                        { value: "condos", text: "Rent Condos" },
-                        { value: "houses", text: "Sell Houses" },
-                        { value: "industrial", text: "Rent Industrial" },
-                        { value: "villas", text: "Sell Villas" },
+                        { value: "Mobile Repair", text: "Mobile Repair", data:["Truck Repair", "Trailer Repair", "Tire Repair", "Refrigeration"] },
+                        { value: "Repair Shops", text: "Repair Shops", data:["Truck Shops", "Trailer Shops", "Tire Shops", "Reefer Shops"] },
+                        { value: "Towering Service", text: "Towering Service", data:[] },
+                        { value: "National Network", text: "National Network", data:["Love's Truck Care", "Goodyear Commercial", "Boss Truck Shops", "Speedco"] },
+                        { value: "Truck Shops", text: "Truck Shops", data:["All Truck Shops", "With Service", "With Parking", "With Showers", "With Scales"] },
+                         { value: "Truck Wash", text: "Truck Wash", data:["Tractor Wash", "Trailer Wash", "Tanker Wash"] },
+                         { value: "Heavy Duty Parts", text: "Heavy Duty Parts", data:["Truck Parts", "Trailer Parts", "Engine Parts", "Truck Accessories"] },
+                         { value: "Dealer Truck", text: "Dealer Truck", data:["CatePiller", "Cummins"] },
                      ]}
                      defaultCurrent={0}
                      onChange={selectHandler}
@@ -33,13 +36,13 @@ const DropdownOne = ({ style }: any) => {
                   <div className="label">Location</div>
                   <NiceSelect className={`nice-select location ${style ? "fw-normal" : ""}`}
                      options={[
-                        { value: "germany", text: "Berlin, Germany" },
-                        { value: "dhaka", text: "Dhanmondi, Dhaka" },
-                        { value: "mexico", text: "Acapulco, Mexico" },
-                        { value: "france", text: "Cannes, France" },
-                        { value: "india", text: "Delhi, India" },
-                        { value: "giza", text: "Giza, Egypt" },
-                        { value: "cuba", text: "Havana, Cuba" },
+                        { value: "germany", text: "Berlin, Germany", data:[] },
+                        { value: "dhaka", text: "Dhanmondi, Dhaka", data:[] },
+                        { value: "mexico", text: "Acapulco, Mexico", data:[] },
+                        { value: "france", text: "Cannes, France", data:[] },
+                        { value: "india", text: "Delhi, India", data:[] },
+                        { value: "giza", text: "Giza, Egypt", data:[] },
+                        { value: "cuba", text: "Havana, Cuba", data:[] },
                      ]}
                      defaultCurrent={0}
                      onChange={selectHandler}
