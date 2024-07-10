@@ -1,6 +1,7 @@
 import NiceSelect from "@/ui/NiceSelect";
 import {useRef, useState} from "react";
-import {LoadScript, Autocomplete} from '@react-google-maps/api';
+import {Autocomplete, useJsApiLoader} from '@react-google-maps/api';
+import {libraries} from "@/utils/utils";
 
 const DropdownOne = ({style}: any) => {
 
@@ -22,12 +23,18 @@ const DropdownOne = ({style}: any) => {
     };
 
     const restrictions = {
-        country:[ 'us', 'ca']
+        country: ['us', 'ca']
     }
 
     const options = {
         strictBounds: true,
     };
+
+    const {isLoaded} = useJsApiLoader({
+        id: 'google-map-script',
+        googleMapsApiKey: process?.env?.NEXT_PUBLIC_GOOGLEAPIKEY || "",
+        libraries,
+    });
 
     return (
         <form onSubmit={(e) => {
@@ -35,27 +42,27 @@ const DropdownOne = ({style}: any) => {
             searchHandler();
         }}>
             <div className="row gx-0 align-items-center">
-                <div className={`${style ? "col-xl-5" : "col-xl-4"} col-lg-4`}>
+                <div className={`${style ? "col-xl-4" : "col-xl-4"} col-lg-4`}>
                     <div className="input-box-one border-left">
                         <div className="label">Location</div>
 
-                        <LoadScript
-                            googleMapsApiKey={process?.env?.NEXT_PUBLIC_GOOGLEAPIKEY || ""}
-                            libraries={['places']}
-                        >
-                            <Autocomplete
-                                restrictions={restrictions} options={options}
-                                          onLoad={() => console.log('Do something onLoad')}
-                                          onPlaceChanged={handleOnPlaceChanged}
-                                          fields={['geometry.location', 'formatted_address']}
-                            >
-                                <input style={{border: 0, marginLeft: 15, width: "100%"}}
-                                       placeholder="Enter your address"/>
-                            </Autocomplete>
-                        </LoadScript>
+                        {
+                            isLoaded ?
+                                <Autocomplete
+                                    restrictions={restrictions} options={options}
+                                    onLoad={() => console.log('Do something onLoad')}
+                                    onPlaceChanged={handleOnPlaceChanged}
+                                    fields={['geometry.location', 'formatted_address']}
+                                >
+                                    <input style={{border: 0, marginLeft: 15, width: "100%"}}
+                                           placeholder="Enter your address"/>
+                                </Autocomplete>
+                                : null
+                        }
+
                     </div>
                 </div>
-                <div className="col-xl-4 col-lg-4">
+                <div className="col-xl-5 col-lg-4">
                     <div className="input-box-one border-left">
                         <div className="label">I’m looking for...</div>
                         <NiceSelect className={`nice-select ${style ? "fw-normal" : ""}`}

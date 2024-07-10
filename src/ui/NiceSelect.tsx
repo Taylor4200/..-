@@ -76,12 +76,12 @@ const NiceSelect: FC<NiceSelectProps> = ({
                         {item.text}
 
                         {
-                            openSelect === i ? <ul style={{paddingLeft: 0}}>
+                            openSelect === i ? <ul style={{paddingLeft: 0, backgroundColor: "#F5F5F8"}}>
                                 {
                                     item?.data?.map((data, index) => <li
                                         key={index}
                                         data-value={item.value}
-                                        className={`option ${item.value === current?.value ? "selected focus" : ""
+                                        className={`option text-black ${item.value === current?.value ? "selected focus" : ""
                                         }`}
                                         style={{fontSize: '18px'}}
                                         role="menuitem"
