@@ -10,7 +10,7 @@ const FancyBanner = ({ style }: any) => {
             <div className="row align-items-center">
                <div className="col-lg-6">
                   <div className="title-one text-center text-lg-start md-mb-40 pe-xl-5">
-                     <h3 className="text-white m0">Start your <span>Journey{style ? "" : <Image src={titleShape} alt="" className="lazy-img" />}</span> As a Retailer.</h3>
+                     <h3 className="text-white m0">Begin <span>promoting{style ? "" : <Image src={titleShape} alt="" className="lazy-img" />}</span>Your business today!.</h3>
                   </div>
                </div>
                <div className="col-lg-6">

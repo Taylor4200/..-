@@ -21,8 +21,9 @@ const PricingOneArea = () => {
             <div className="row">
                <div className="col-lg-10 m-auto">
                   <div className="title-one text-center mb-40 lg-mb-30 wow fadeInUp">
-                     <h3>Unbeatable prices, no contracts, simple & easy</h3>
-                     <p className="fs-24">Try Team plan features for 14 days · No credit card required</p>
+                     <h3>Find the listing that aligns perfectly with your business needs</h3>
+                     <p className="fs-24">TruckSupport <span>&#174;</span> presents a range of listing options. allowing
+                        you to pick the one that perfectly matches your specific requirements and budget! </p>
                   </div>
                </div>
             </div>

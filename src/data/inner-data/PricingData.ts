@@ -28,7 +28,7 @@ const pricing_data: DataType[] = [
             btn: "active"
          },
          {
-            id: 1,
+            id: 2,
             plan: "Gold Plan",
             price: "$89",
             desc: "Great for Startup",
@@ -36,7 +36,7 @@ const pricing_data: DataType[] = [
             btn: "Get Started"
          },
          {
-            id: 1,
+            id: 3,
             plan: "Business Plan",
             price: "$147",
             desc: "Great for Large Business",
@@ -58,7 +58,7 @@ const pricing_data: DataType[] = [
             btn: "active"
          },
          {
-            id: 1,
+            id: 2,
             plan: "Gold Plan",
             price: "$189",
             desc: "Great for Startup",
@@ -66,7 +66,7 @@ const pricing_data: DataType[] = [
             btn: "Get Started"
          },
          {
-            id: 1,
+            id: 3,
             plan: "Business Plan",
             price: "$347",
             desc: "Great for Large Business",

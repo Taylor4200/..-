@@ -20,8 +20,8 @@ const feature_content: ContentType = {
       .</>),
    title_1: "Who we are?",
    title_2: "Our Mission",
-   desc_2: (<>Our founders Dustin Moskovitz & Justin Rosenstein met  leading Engineering teams at Facebook. As operations scaled, they grew frustrated by how difficult coordinate</>),
-   desc_3: (<>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod incididunt ut labore et dolore aliqua.</>),
+   desc_2: (<>247TruckSupport.com offers 24/7 access to verified truck services. detailed listing, comprehensive support, all for free. Trusted, easy-to-use and always available.</>),
+   desc_3: (<>Connecting truckers with reliable, verified services 24/7 to ensure seamless operations and minimal downtime on the road.</>),
 }
 
 const { sub_title, desc_1, title_1, title_2, desc_2, desc_3 } = feature_content;
@@ -35,26 +35,26 @@ const BLockFeatureOne = () => {
                   <div className="me-xxl-4">
                      <div className="title-one mb-60 lg-mb-40">
                         <div className="upper-title">{sub_title}</div>
-                        <h3>Secure your <span>family&apos;s<Image src={titleShape} alt="" className="lazy-img" /></span> Dream home.</h3>
+                        <h3>Online <span>Truck<Image src={titleShape} alt="" className="lazy-img" /></span> Service directory.</h3>
                         <p className="fs-22">{desc_1}</p>
                      </div>
                      <Link href="/contact" className="btn-two">Contact Us</Link>
-                     <div className="counter-wrapper border-top pt-40 md-pt-10 mt-65 md-mt-40">
-                        <div className="row">
-                           <div className="col-xxl-6 col-sm-5">
-                              <div className="counter-block-one mt-20">
-                                 <div className="main-count fw-500 color-dark"><span className="counter"><Count number={1.2} /></span>%</div>
-                                 <span>Low interest rate</span>
-                              </div>
-                           </div>
-                           <div className="col-xxl-6 col-sm-7">
-                              <div className="counter-block-one mt-20">
-                                 <div className="main-count fw-500 color-dark">$<span className="counter"><Count number={1.3} /></span>b+</div>
-                                 <span>Cumulative trading volume</span>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
+                     {/*<div className="counter-wrapper border-top pt-40 md-pt-10 mt-65 md-mt-40">*/}
+                     {/*   <div className="row">*/}
+                     {/*      <div className="col-xxl-6 col-sm-5">*/}
+                     {/*         <div className="counter-block-one mt-20">*/}
+                     {/*            <div className="main-count fw-500 color-dark"><span className="counter"><Count number={1.2} /></span>%</div>*/}
+                     {/*            <span>Low interest rate</span>*/}
+                     {/*         </div>*/}
+                     {/*      </div>*/}
+                     {/*      <div className="col-xxl-6 col-sm-7">*/}
+                     {/*         <div className="counter-block-one mt-20">*/}
+                     {/*            <div className="main-count fw-500 color-dark">$<span className="counter"><Count number={1.3} /></span>b+</div>*/}
+                     {/*            <span>Cumulative trading volume</span>*/}
+                     {/*         </div>*/}
+                     {/*      </div>*/}
+                     {/*   </div>*/}
+                     {/*</div>*/}
                   </div>
                </div>
 
