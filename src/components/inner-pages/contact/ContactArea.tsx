@@ -24,12 +24,12 @@ const address_data: DataType[] = [
       title: "Our hotline number",
       address_1: "+757 699 4478,",
       address_2: "+991 377 9731",
-   },
-   {
-      id: 3,
-      title: "Live chat",
-      address_1: "www.homylivechat.com"
-   },
+   }
+   // {
+   //    id: 3,
+   //    title: "Live chat",
+   //    address_1: "www.homylivechat.com"
+   // },
 ]
 
 const ContactArea = () => {
@@ -47,9 +47,9 @@ const ContactArea = () => {
 
          <div className="address-banner wow fadeInUp mt-60 lg-mt-40">
             <div className="container">
-               <div className="d-flex flex-wrap justify-content-center justify-content-lg-between">
+               <div className="d-flex flex-wrap justify-content-center justify-content-lg-evenly">
                   {address_data.map((item) => (
-                     <div key={item.id} className={`block position-relative ${item.class_name} z-1 mt-25`}>
+                     <div key={item.id} className={`block position-relative z-1 mt-25`}>
                         <div className="d-xl-flex align-items-center">
                            <div className="icon rounded-circle d-flex align-items-center justify-content-center">
                               <Image src={circleImg} alt="" className="lazy-img" /></div>
@@ -66,19 +66,19 @@ const ContactArea = () => {
          </div>
 
          <div className="bg-pink mt-150 xl-mt-120 md-mt-80">
-            <div className="row">
-               <div className="col-xl-7 col-lg-6">
-                  <div className="form-style-one wow fadeInUp">
+            <div className="container">
+               <div className="">
+                  <div className="form-style-one wow fadeInUp m-auto">
                      <ContactForm />
                   </div>
                </div>
-               <div className="col-xl-5 col-lg-6 d-flex order-lg-first">
-                  <div className="contact-map-banner w-100">
-                     <div className="gmap_canvas h-100 w-100">
-                        <iframe className="gmap_iframe h-100 w-100" src="https://maps.google.com/maps?width=600&amp;height=400&amp;hl=en&amp;q=dhaka collage&amp;t=&amp;z=12&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>
-                     </div>
-                  </div>
-               </div>
+               {/*<div className="col-xl-5 col-lg-6 d-flex order-lg-first">*/}
+               {/*   <div className="contact-map-banner w-100">*/}
+               {/*      <div className="gmap_canvas h-100 w-100">*/}
+               {/*         <iframe className="gmap_iframe h-100 w-100" src="https://maps.google.com/maps?width=600&amp;height=400&amp;hl=en&amp;q=dhaka collage&amp;t=&amp;z=12&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>*/}
+               {/*      </div>*/}
+               {/*   </div>*/}
+               {/*</div>*/}
             </div>
          </div>
       </div>

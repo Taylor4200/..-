@@ -1,4 +1,9 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {}
+const nextConfig = {
+    reactStrictMode: true,
+    env: {
+        NEXT_PUBLIC_GOOGLEAPIKEY: "AIzaSyAPOl2oO16KO0fjLp_AI-5tLqwrrzPhWUM",
+    },
+};
 
-module.exports = nextConfig
+export default nextConfig;
