@@ -3,7 +3,7 @@ import Image from "next/image"
 import DropdownOne from "@/components/search-dropdown/home-dropdown/DropdownOne";
 
 import titleShape from "@/assets/images/shape/shape_01.svg"
-import bannerThumb from "@/assets/images/assets/ils_01.svg"
+import bannerThumb from "@/assets/images/assets/bannerTruck.png"
 import Background1 from "@/assets/images/assets/Background1_Services.png"
 
 
@@ -14,7 +14,7 @@ const Banner = () => {
          <div className="container position-relative">
             <div className="row">
                <div className="col-xxl-10 col-xl-9 col-lg-10 col-md-10 m-auto">
-                  <h1 className="hero-heading text-center wow fadeInUp">Truck <span className="d-inline-block position-relative">Support <Image src={titleShape} alt="" className="lazy-img" /></span></h1>
+                  <h1 className="hero-heading text-center wow fadeInUp" style={{ color: "#FF6725" }}>Truck <span className="d-inline-block position-relative">Support <Image src={titleShape} alt="" className="lazy-img" /></span></h1>
                   <p className="fs-24 color-dark text-center pt-35 pb-35 wow fadeInUp" data-wow-delay="0.1s">We’ve more than 745,000 Service Available.</p>
                </div>
             </div>
@@ -28,7 +28,7 @@ const Banner = () => {
                </div>
             </div>
          </div>
-         <Image src={bannerThumb} alt="" className="lazy-img shapes w-100 illustration" />
+         <Image style={{ top: 120, height: 800 }} src={bannerThumb}  alt="" className="lazy-img shapes w-100 illustration" />
       </div>
    )
 }
