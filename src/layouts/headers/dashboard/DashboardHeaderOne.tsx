@@ -26,6 +26,9 @@ import dashboardIconActive_10 from "@/assets/images/dashboard/icon/icon_10_activ
 import dashboardIcon_10 from "@/assets/images/dashboard/icon/icon_10.svg";
 import dashboardIcon_11 from "@/assets/images/dashboard/icon/icon_41.svg";
 
+import truckSupportIcon from "@/assets/images/logo//trucksupportIcon.png"
+
+
 const DashboardHeaderOne = ({ isActive, setIsActive }: any) => {
    const pathname = usePathname();
 
@@ -34,7 +37,7 @@ const DashboardHeaderOne = ({ isActive, setIsActive }: any) => {
          <div className="position-relative">
             <div className="logo d-md-block d-flex align-items-center justify-content-between plr bottom-line pb-30">
                <Link href="/dashboard-index">
-                  <Image src={dashboardLogo} alt="" />
+                  <Image src={truckSupportIcon} alt="" />
                </Link>
                <button onClick={() => setIsActive(false)} className="close-btn d-block d-md-none"><i className="fa-light fa-circle-xmark"></i></button>
             </div>

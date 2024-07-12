@@ -23,18 +23,18 @@ const DashboardHeaderTwo = ({title}:any) => {
                   <span></span>
                </button>
                <form onSubmit={(e) => e.preventDefault()} className="search-form ms-auto">
-                  <input type="text" placeholder="Search here.." />
-                  <button><Image src={dashboardIcon_1} alt="" className="lazy-img m-auto" /></button>
+                  {/*<input type="text" placeholder="Search here.." />*/}
+                  {/*<button><Image src={dashboardIcon_1} alt="" className="lazy-img m-auto" /></button>*/}
                </form>
                <div className="profile-notification position-relative dropdown-center ms-3 ms-md-5 me-4">
-                  <button className="noti-btn dropdown-toggle" type="button" id="notification-dropdown" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
-                     <Image src={dashboardIcon_2} alt="" className="lazy-img" />
-                     <div className="badge-pill"></div>
-                  </button>
-                  <Notification />
+                  {/*<button className="noti-btn dropdown-toggle" type="button" id="notification-dropdown" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">*/}
+                  {/*   <Image src={dashboardIcon_2} alt="" className="lazy-img" />*/}
+                  {/*   <div className="badge-pill"></div>*/}
+                  {/*</button>*/}
+                  {/*<Notification />*/}
                </div>
                <div className="d-none d-md-block me-3">
-                  <Link href="/add-property" className="btn-two"><span>Add Listing</span> <i className="fa-thin fa-arrow-up-right"></i></Link>
+                  {/*<Link href="/add-property" className="btn-two"><span>Add Listing</span> <i className="fa-thin fa-arrow-up-right"></i></Link>*/}
                </div>
                <div className="user-data position-relative">
                   <button className="user-avatar online position-relative rounded-circle dropdown-toggle" type="button" id="profile-dropdown" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">

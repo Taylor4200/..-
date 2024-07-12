@@ -10,10 +10,10 @@ const AddPropertyBody = () => {
    return (
       <div className="dashboard-body">
          <div className="position-relative">
-            <DashboardHeaderTwo title="Add New Property" />
-            <h2 className="main-title d-block d-lg-none">Add New Property</h2>
+            <DashboardHeaderTwo title="Add New Listing" />
+            <h2 className="main-title d-block d-lg-none">Add New Listing</h2>
             <Overview />
-            <ListingDetails />
+            {/*<ListingDetails />*/}
 
             <div className="bg-white card-box border-20 mt-40">
                <h4 className="dash-title-three">Photo & Video Attachment</h4>
@@ -36,11 +36,11 @@ const AddPropertyBody = () => {
                </div>
                <small>Upload file .jpg, .png, .mp4</small>
             </div>
-            <SelectAmenities />
+            {/*<SelectAmenities />*/}
             <AddressAndLocation />
 
             <div className="button-group d-inline-flex align-items-center mt-30">
-               <Link href="#" className="dash-btn-two tran3s me-3">Submit Property</Link>
+               <Link href="#" className="dash-btn-two tran3s me-3">Submit Listing</Link>
                <Link href="#" className="dash-cancel-btn tran3s">Cancel</Link>
             </div>
          </div>
