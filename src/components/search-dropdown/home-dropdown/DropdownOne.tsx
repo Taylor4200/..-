@@ -103,7 +103,7 @@ const DropdownOne = ({style}: any) => {
                                     defaultCurrent={0}
                                     onChange={selectHandler}
                                     name=""
-                                    placeholder=""/>
+                                    placeholder="Select Service"/>
                     </div>
                 </div>
                 {/*<div className="col-xl-3 col-lg-4">*/}

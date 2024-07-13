@@ -26,7 +26,7 @@ const NiceSelect: FC<NiceSelectProps> = ({
                                              name,
                                          }) => {
     const [open, setOpen] = useState(false);
-    const [current, setCurrent] = useState<Option>(options[defaultCurrent]);
+    const [current, setCurrent] = useState("");
     const [currentOpt, setCurrentOpt] = useState("")
     const onClose = useCallback(() => {
         setOpen(false);
@@ -37,9 +37,9 @@ const NiceSelect: FC<NiceSelectProps> = ({
 
     useClickAway(ref, onClose);
 
-    const currentHandler = (item: Option) => {
+    const currentHandler = (item: string) => {
         setCurrent(item);
-        onChange({target: {value: item.value}} as ChangeEvent<HTMLSelectElement>);
+        onChange({target: {value: item}} as ChangeEvent<HTMLSelectElement>);
         onClose();
     };
 
@@ -52,7 +52,7 @@ const NiceSelect: FC<NiceSelectProps> = ({
             onKeyDown={(e) => e}
             ref={ref}
         >
-            <span className="current">{current?.text + " - " + currentOpt || placeholder}</span>
+            <span className="current">{current || placeholder}</span>
             <ul
                 className="list"
                 role="menubar"
@@ -63,7 +63,7 @@ const NiceSelect: FC<NiceSelectProps> = ({
                     <li
                         key={i}
                         data-value={item.value}
-                        className={`option ${item.value === current?.value ? "selected focus" : ""
+                        className={`option ${item.value === current ? "selected focus" : ""
                         }`}
                         style={{fontSize: '18px'}}
                         role="menuitem"
@@ -81,13 +81,12 @@ const NiceSelect: FC<NiceSelectProps> = ({
                                     item?.data?.map((data, index) => <li
                                         key={index}
                                         data-value={item.value}
-                                        className={`option text-black ${item.value === current?.value ? "selected focus" : ""
+                                        className={`option text-black ${item.value === current ? "selected focus" : ""
                                         }`}
                                         style={{fontSize: '18px'}}
                                         role="menuitem"
                                         onClick={() => {
-                                            currentHandler(item)
-                                            setCurrentOpt(data)
+                                            currentHandler(item?.text + " - " + data)
                                             setOpenSelect(i)
                                         }}
                                         onKeyDown={(e) => e}

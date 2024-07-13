@@ -7,3 +7,15 @@
 @import "../../public/assets/fonts/bootstrap-icons-1.11.1/font/bootstrap-icons.css";
 @import "../../public/assets/fonts/font-awesome-6.4.2/css/all.css";
 @import "../../public/assets/scss/style.scss";
+
+.chip {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: 25px;
+  background-color: #e0e0e0;
+  margin: 0.25rem;
+}
+.chip .close-btn {
+  margin-left: 0.5rem;
+  cursor: pointer;
+}
