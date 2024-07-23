@@ -1,20 +1,72 @@
 import NiceSelect from "@/ui/NiceSelect";
-import {useRef, useState} from "react";
+import {LegacyRef, useCallback, useRef, useState} from "react";
 import {Autocomplete, useJsApiLoader} from '@react-google-maps/api';
 import {libraries} from "@/utils/utils";
+import {usePlacesWidget} from "react-google-autocomplete";
+import {usePathname, useRouter, useSearchParams} from "next/navigation";
 
-const DropdownOne = ({style}: any) => {
+const DropdownOne = ({style, categories}: any) => {
+
+    const [locationError, setLocationError] = useState(false);
+    const [selectionError, setSelectionError] = useState(false);
+
+    const router = useRouter()
+    const pathname = usePathname()
+    const searchParams = useSearchParams()
+
+    // Get a new searchParams string by merging the current
+    // searchParams with a provided key/value pair
+    const createQueryString = useCallback(
+        (name: string, value: string) => {
+            const params = new URLSearchParams(searchParams.toString())
+            params.set(name, value)
+
+            return params.toString()
+        },
+        [searchParams]
+    )
+
+    const [locationState, setLocationState] = useState<{
+        latitude: number | null;
+        longitude: number | null;
+    }>({
+        latitude: null,
+        longitude: null,
+    })
+
+    const [state, setState] = useState({
+        category: null,
+        subCategory: null,
+    })
 
     const [autoComplete, setAutoComplete] = useState<google.maps.places.Autocomplete | null>(null)
 
     const selectHandler = (e: any) => {
+        setState({category: e?.category, subCategory: e?.subCategory})
     };
 
     const searchHandler = () => {
-        window.location.href = '/listing_04';
-    };
+        let error = false
+        if (locationState?.longitude === null || locationState.latitude === null) {
+            setLocationError(true)
+            error = true
+        } else {
+            setLocationError(false)
+            error = false
+        }
 
-    const autoCompleteRef = useRef<HTMLInputElement>(null)
+        if (state?.category === null || state?.subCategory === null) {
+            setSelectionError(true)
+            error = true;
+        } else {
+            setSelectionError(false)
+            error = false;
+        }
+        if (error) return
+        // window.location.href = '/listing_04';
+
+        router.push('/listing_04' + '?' + `${createQueryString('category', state?.category) + '&' + createQueryString('subCategory', state?.subCategory) + '&' + createQueryString('latitude', locationState?.latitude) + '&' + createQueryString('longitude', locationState?.longitude)}`)
+    };
 
     const handleOnPlaceChanged = () => {
         /*
@@ -28,13 +80,25 @@ const DropdownOne = ({style}: any) => {
 
     const options = {
         strictBounds: true,
+        componentRestrictions: {country: ['us', 'ca']},
     };
 
-    const {isLoaded} = useJsApiLoader({
-        id: 'google-map-script',
-        googleMapsApiKey: process?.env?.NEXT_PUBLIC_GOOGLEAPIKEY || "",
-        libraries,
-    });
+    // const {isLoaded} = useJsApiLoader({
+    //     id: 'google-map-script',
+    //     googleMapsApiKey: process?.env?.NEXT_PUBLIC_GOOGLEAPIKEY || "",
+    //     libraries
+    // });
+
+    const {ref} = usePlacesWidget<any>({
+        apiKey: process?.env?.NEXT_PUBLIC_GOOGLEAPIKEY || "",
+        onPlaceSelected: (place) => {
+            setLocationState({
+                latitude: place?.geometry?.location?.lat() || null,
+                longitude: place?.geometry?.location?.lng() || null
+            })
+        },
+        options: options,
+    })
 
     return (
         <form onSubmit={(e) => {
@@ -43,63 +107,42 @@ const DropdownOne = ({style}: any) => {
         }}>
             <div className="row gx-0 align-items-center">
                 <div className={`${style ? "col-xl-4" : "col-xl-4"} col-lg-4`}>
-                    <div className="input-box-one border-left">
+                    <div className="input-box-one border-left" style={{border: locationError ? '1px solid red' : 0}}>
                         <div className="label">Location</div>
 
-                        {
-                            isLoaded ?
-                                <Autocomplete
-                                    restrictions={restrictions} options={options}
-                                    onLoad={() => console.log('Do something onLoad')}
-                                    onPlaceChanged={handleOnPlaceChanged}
-                                    fields={['geometry.location', 'formatted_address']}
-                                >
-                                    <input style={{border: 0, marginLeft: 15, width: "100%"}}
-                                           placeholder="Enter your address"/>
-                                </Autocomplete>
-                                : null
-                        }
+                        {/*{*/}
+                        {/*    isLoaded ?*/}
+                        {/*        <Autocomplete*/}
+                        {/*            restrictions={restrictions} options={options}*/}
+                        {/*            onLoad={() => console.log('Do something onLoad')}*/}
+                        {/*            onPlaceChanged={handleOnPlaceChanged}*/}
+                        {/*            fields={['geometry.location', 'formatted_address']}*/}
+                        {/*        >*/}
+                        <input ref={ref} style={{border: 0, marginLeft: 15, width: "100%"}}
+                               placeholder="Enter your address"/>
+                        {/*{*/}
+                        {/*    error ? <p style={{ color: "red", fontSize: 12 }}>Please select the Address</p> : null*/}
+                        {/*}*/}
+                        {/*        </Autocomplete>*/}
+                        {/*        : null*/}
+                        {/*}*/}
 
                     </div>
                 </div>
                 <div className="col-xl-5 col-lg-4">
-                    <div className="input-box-one border-left">
+                    <div className="input-box-one border-left" style={{border: selectionError ? '1px solid red' : 0}}>
                         <div className="label">I’m looking for...</div>
                         <NiceSelect className={`nice-select ${style ? "fw-normal" : ""}`}
-                                    options={[
-                                        {
-                                            value: "Mobile Repair",
-                                            text: "Mobile Repair",
-                                            data: ["Truck Repair", "Trailer Repair", "Tire Repair", "Refrigeration"]
-                                        },
-                                        {
-                                            value: "Repair Shops",
-                                            text: "Repair Shops",
-                                            data: ["Truck Shops", "Trailer Shops", "Tire Shops", "Reefer Shops"]
-                                        },
-                                        {value: "Towering Service", text: "Towering Service", data: []},
-                                        {
-                                            value: "National Network",
-                                            text: "National Network",
-                                            data: ["Love's Truck Care", "Goodyear Commercial", "Boss Truck Shops", "Speedco"]
-                                        },
-                                        {
-                                            value: "Truck Shops",
-                                            text: "Truck Shops",
-                                            data: ["All Truck Shops", "With Service", "With Parking", "With Showers", "With Scales"]
-                                        },
-                                        {
-                                            value: "Truck Wash",
-                                            text: "Truck Wash",
-                                            data: ["Tractor Wash", "Trailer Wash", "Tanker Wash"]
-                                        },
-                                        {
-                                            value: "Heavy Duty Parts",
-                                            text: "Heavy Duty Parts",
-                                            data: ["Truck Parts", "Trailer Parts", "Engine Parts", "Truck Accessories"]
-                                        },
-                                        {value: "Dealer Truck", text: "Dealer Truck", data: ["CatePiller", "Cummins"]},
-                                    ]}
+                                    options={categories?.map(item => {
+                                        return {
+                                            value: item?.id,
+                                            text: item?.name,
+                                            data: item?.Subcategories?.map(data => ({
+                                                label: data?.name,
+                                                value: data?.id
+                                            }))
+                                        }
+                                    })}
                                     defaultCurrent={0}
                                     onChange={selectHandler}
                                     name=""

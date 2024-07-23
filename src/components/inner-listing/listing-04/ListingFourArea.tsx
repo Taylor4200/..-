@@ -8,7 +8,7 @@ import Fancybox from "@/components/common/Fancybox";
 import DropdownOne from "@/components/search-dropdown/home-dropdown/DropdownOne";
 import {useState} from "react";
 
-const ListingFourArea = () => {
+const ListingFourArea = ({data}: any) => {
 
     const itemsPerPage = 6;
     const page = "listing_6";
@@ -111,12 +111,12 @@ const ListingFourArea = () => {
                             </div>
                         </div> :
                         <>
-                            {currentItems.map((item: any) => (
+                            {data?.map((item: any) => (
                                 <div key={item.id} className="listing-card-seven border-20 p-20 mb-50 wow fadeInUp">
                                     <div className="d-flex flex-wrap layout-one">
                                         <div
-                                            className={`img-gallery position-relative z-1 border-20 overflow-hidden ${item.bg_img}`}>
-                                            <div className={`tag border-20 ${item.tag_bg}`}>{item.tag}</div>
+                                            className={`img-gallery position-relative z-1 border-20 overflow-hidden ${item?.bg_img}`}>
+                                            <div className={`tag border-20 ${item?.tag_bg}`}>{item?.tag}</div>
                                             <div className="img-slider-btn">
                                                 03 <i className="fa-regular fa-image"></i>
                                                 <Fancybox
@@ -126,7 +126,7 @@ const ListingFourArea = () => {
                                                         },
                                                     }}
                                                 >
-                                                    {item.carousel_thumb.map((thumb: any, index: any) => (
+                                                    {item?.carousel_thumb?.map((thumb: any, index: any) => (
                                                         <a key={index} className="d-block" data-fancybox="gallery2"
                                                            href={`/assets/images/listing/img_large_0${thumb.id}.jpg`}></a>
                                                     ))}
@@ -135,7 +135,7 @@ const ListingFourArea = () => {
                                         </div>
                                         <div className="property-info position-relative">
                                             <Link href="/listing_details_04"
-                                                  className="title tran3s mb-15">{item.title}</Link>
+                                                  className="title tran3s mb-15">{item?.name}</Link>
                                             <div className="address">{item.address}</div>
                                             <ul>
                                                 <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius,

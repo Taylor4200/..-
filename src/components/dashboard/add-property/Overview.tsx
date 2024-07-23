@@ -1,27 +1,93 @@
 import NiceSelect from "@/ui/NiceSelect";
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import {createClient} from "@/utils/supabase/client";
+import * as yup from "yup";
+import {useForm} from "react-hook-form";
+import {yupResolver} from "@hookform/resolvers/yup";
+
+
+type state = {
+    category: null | number
+    subCategory: null | number
+    label: string
+}
+
+interface FormData {
+    name: string;
+    description?: string;
+    googlePlaceID: string
+}
+
 
 const Overview = () => {
 
-    const [selectedServices, setSelectedServices] = useState<string[]>([])
+    const supabase = createClient()
+
+    const schema = yup
+        .object({
+            name: yup.string().required().label("name"),
+            // description: yup.string().required().label("description"),
+            googlePlaceID: yup.string().required().label("googlePlaceID"),
+        })
+        .required();
+
+    const {register, handleSubmit, reset, formState: {errors},} = useForm<FormData>({resolver: yupResolver(schema),});
+    const onSubmit = async (data: FormData) => {
+
+    }
+
+    const [isLoading, setIsLoading] = useState(true)
+    const [categories, setCategories] = useState<any>([])
+
+    useEffect(() => {
+        const fetchPosts = async () => {
+            const {data} = await supabase.from('Categories').select(`
+  id, 
+  name, 
+  Subcategories ( id, name )
+`)
+            console.log({data})
+            setCategories(data)
+            setIsLoading(false)
+        }
+
+        fetchPosts()
+    }, [])
+
+    const [selectedServices, setSelectedServices] = useState<state[]>([])
 
     const selectHandler = (e: any) => {
-        const value = e.target.value
-        setSelectedServices(prevState => prevState?.includes(value) ? prevState?.filter(item => item !== value) : [...prevState, value])
+
+        const findCat = categories?.find(item => item?.id === e?.category)
+        const findSubCat = findCat?.Subcategories?.find(item => item?.id === e?.subCategory)
+
+        const isAlreadyAdded = selectedServices?.find(item => item?.label === (findCat?.name + " - " + findSubCat?.name))
+
+        if (isAlreadyAdded) {
+            setSelectedServices(prevState => prevState?.filter(item => item?.label !== isAlreadyAdded?.label))
+            return
+        }
+
+        setSelectedServices(prevState => ([...prevState, {
+            category: e?.category,
+            subCategory: e?.subCategory,
+            label: findCat?.name + " - " + findSubCat?.name
+        }]))
     };
 
     const handleDelete = (index: number) => setSelectedServices(prevState => prevState?.filter((_, i) => i !== index))
 
     return (
-        <div className="bg-white card-box border-20">
+        <form onSubmit={handleSubmit(onSubmit)} className="bg-white card-box border-20">
             <h4 className="dash-title-three">Overview</h4>
             <div className="dash-input-wrapper mb-30">
                 <label htmlFor="">Listing Title*</label>
-                <input type="text" placeholder="Your Listing Name"/>
+                <input type="text" {...register("name")} placeholder="Your Listing Name"/>
+                <p className="form_error">{errors.name?.message}</p>
             </div>
             <div className="dash-input-wrapper mb-30">
                 <label htmlFor="">Description*</label>
-                <textarea className="size-lg" placeholder="Write about listing..."></textarea>
+                <textarea className="size-lg" {...register("description")} placeholder="Write about listing..."></textarea>
             </div>
             <div className="row align-items-end">
                 <div className="col-md-6">
@@ -29,40 +95,16 @@ const Overview = () => {
                         <label htmlFor="">Services*</label>
 
                         <NiceSelect className={`nice-select `}
-                                    options={[
-                                        {
-                                            value: "Mobile Repair",
-                                            text: "Mobile Repair",
-                                            data: ["Truck Repair", "Trailer Repair", "Tire Repair", "Refrigeration"]
-                                        },
-                                        {
-                                            value: "Repair Shops",
-                                            text: "Repair Shops",
-                                            data: ["Truck Shops", "Trailer Shops", "Tire Shops", "Reefer Shops"]
-                                        },
-                                        {value: "Towering Service", text: "Towering Service", data: []},
-                                        {
-                                            value: "National Network",
-                                            text: "National Network",
-                                            data: ["Love's Truck Care", "Goodyear Commercial", "Boss Truck Shops", "Speedco"]
-                                        },
-                                        {
-                                            value: "Truck Shops",
-                                            text: "Truck Shops",
-                                            data: ["All Truck Shops", "With Service", "With Parking", "With Showers", "With Scales"]
-                                        },
-                                        {
-                                            value: "Truck Wash",
-                                            text: "Truck Wash",
-                                            data: ["Tractor Wash", "Trailer Wash", "Tanker Wash"]
-                                        },
-                                        {
-                                            value: "Heavy Duty Parts",
-                                            text: "Heavy Duty Parts",
-                                            data: ["Truck Parts", "Trailer Parts", "Engine Parts", "Truck Accessories"]
-                                        },
-                                        {value: "Dealer Truck", text: "Dealer Truck", data: ["CatePiller", "Cummins"]},
-                                    ]}
+                                    options={categories?.map(item => {
+                                        return {
+                                            value: item?.id,
+                                            text: item?.name,
+                                            data: item?.Subcategories?.map(data => ({
+                                                label: data?.name,
+                                                value: data?.id
+                                            }))
+                                        }
+                                    })}
                                     defaultCurrent={0}
                                     onChange={selectHandler}
                                     name=""
@@ -103,7 +145,8 @@ const Overview = () => {
                 <div className="col-md-6">
                     <div className="dash-input-wrapper mb-30">
                         <label htmlFor="">Google Place ID*</label>
-                        <input type="text" placeholder="Enter Google Place ID"/>
+                        <input type="text" {...register("googlePlaceID")} placeholder="Enter Google Place ID"/>\
+                        <p className="form_error">{errors.googlePlaceID?.message}</p>
                     </div>
                 </div>
                 <div className="col-md-6">
@@ -113,7 +156,7 @@ const Overview = () => {
                                 {
                                     selectedServices?.map((item, index) => (
                                         <div key={index} className="chip">
-                                            {item}
+                                            {item?.label}
                                             <span onClick={() => handleDelete(index)}
                                                   className="close-btn">&times;</span>
                                         </div>
@@ -132,7 +175,7 @@ const Overview = () => {
                 {/*   </div>*/}
                 {/*</div>*/}
             </div>
-        </div>
+        </form>
     )
 }
 

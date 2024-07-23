@@ -9,6 +9,7 @@ import Image from "next/image";
 
 import OpenEye from "@/assets/images/icon/icon_68.svg";
 import {useRouter} from "next/navigation";
+import {login} from "@/app/login/actions";
 
 interface FormData {
     email: string;
@@ -17,8 +18,9 @@ interface FormData {
 
 const LoginForm = () => {
 
-    const router = useRouter()
 
+    const [error, setError] = useState("");
+    const [isLoading, setIsLoading] = useState(false);
 
     const schema = yup
         .object({
@@ -28,11 +30,22 @@ const LoginForm = () => {
         .required();
 
     const {register, handleSubmit, reset, formState: {errors},} = useForm<FormData>({resolver: yupResolver(schema),});
-    const onSubmit = (data: FormData) => {
-        const notify = () => toast('Login successfully', {position: 'top-center'});
-        notify();
-        reset();
-        router.push("/dashboard/dashboard-index")
+    const onSubmit = async (data: FormData) => {
+        try {
+            setIsLoading(true)
+            const response  = await login(data)
+            if(response?.status === 500) {
+                setError(response.message)
+                return
+            }
+            const notify = () => toast('Login successfully', {position: 'top-center'});
+            notify();
+        } finally {
+            setIsLoading(false)
+        }
+
+        // reset();
+        // router.push("/dashboard/dashboard-index")
     };
 
     const [isPasswordVisible, setPasswordVisibility] = useState(false);
@@ -70,9 +83,16 @@ const LoginForm = () => {
                         </div>
                         <Link href="#">Forget Password?</Link>
                     </div>
+
+                    {
+                        error ? <p style={{color: "red", fontSize: 18, textAlign: "center"}}>{error}</p> : null
+                    }
+
                 </div>
                 <div className="col-12">
-                    <button type="submit" className="btn-two w-100 text-uppercase d-block mt-20">Login</button>
+                    <button disabled={isLoading} type="submit"
+                            className="btn-two w-100 text-uppercase d-block mt-20">Login
+                    </button>
                 </div>
             </div>
         </form>

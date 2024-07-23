@@ -1,6 +1,6 @@
-"use client"
+// "use client"
 
-import React, {useState} from 'react';
+import React from 'react';
 import Link from "next/link";
 import LoginForm from "@/components/forms/LoginForm";
 import RegisterForm from "@/components/forms/RegisterForm";
@@ -8,18 +8,28 @@ import Image from "next/image";
 import loginIcon_1 from "@/assets/images/icon/google.png";
 import loginIcon_2 from "@/assets/images/icon/facebook.png";
 import truckSupportIcon from "@/assets/images/logo//trucksupportIcon.png"
+import { createClient } from '@/utils/supabase/server'
+import { redirect } from 'next/navigation'
 
 
 const tab_title: string[] = ["Login", "Signup",];
+import { login, signup } from './actions'
 
 
 
-const Page = () => {
-    const [activeTab, setActiveTab] = useState(0);
+const Page = async () => {
+    // const [activeTab, setActiveTab] = useState(0);
+    //
+    // const handleTabClick = (index: any) => {
+    //     setActiveTab(index);
+    // };
 
-    const handleTabClick = (index: any) => {
-        setActiveTab(index);
-    };
+    const supabase = createClient()
+
+    const { data } = await supabase.auth.getUser()
+    if (data?.user) {
+        redirect('/dashboard/dashboard-index')
+    }
 
     return (
         <>
@@ -41,7 +51,9 @@ const Page = () => {
                                 {/*    ))}*/}
                                 {/*</ul>*/}
                                 <div className="tab-content mt-15">
-                                    <div className={`tab-pane fade ${activeTab === 0 ? 'show active' : ''}`}>
+                                    <div className={`tab-pane fade show active`}>
+
+                                    {/*<div className={`tab-pane fade ${activeTab === 0 ? 'show active' : ''}`}>*/}
                                         <div className="text-center mb-20">
                                             <h2>Welcome Back!</h2>
                                             <p className="fs-20 color-dark">Please enter your details</p>
@@ -49,27 +61,32 @@ const Page = () => {
                                         <LoginForm />
                                     </div>
 
-                                    <div className={`tab-pane fade ${activeTab === 1 ? 'show active' : ''}`}>
-                                        <div className="text-center mb-20">
-                                            <h2>Register</h2>
-                                            <p className="fs-20 color-dark">Already have an account? <Link onClick={() => handleTabClick(0)} href="#">Login</Link></p>
-                                        </div>
-                                        <RegisterForm />
-                                    </div>
+                                    {/*<div className={`tab-pane fade ${activeTab === 1 ? 'show active' : ''}`}>*/}
+                                    {/*    <div className="text-center mb-20">*/}
+                                    {/*        <h2>Register</h2>*/}
+                                    {/*        <p className="fs-20 color-dark">Already have an account? <Link onClick={() => handleTabClick(0)} href="#">Login</Link></p>*/}
+                                    {/*    </div>*/}
+                                    {/*    <RegisterForm />*/}
+                                    {/*</div>*/}
                                 </div>
 
-                                {
-                                    activeTab === 0 ?
-                                        <div className="d-flex align-items-center justify-content-center mt-30 mb-10">
-                                            <p className="fs-20 color-dark">Still don&apos;t have an account? <Link
-                                                onClick={() => handleTabClick(1)} href="#">Sign
-                                                up</Link></p>
+                                {/*{*/}
+                                {/*    activeTab === 0 ?*/}
+                                {/*        <div className="d-flex align-items-center justify-content-center mt-30 mb-10">*/}
+                                {/*            <p className="fs-20 color-dark">Still don&apos;t have an account? <Link*/}
+                                {/*            //     onClick={login*/}
+                                {/*            //     () => handleTabClick(1)*/}
+                                {/*            // }*/}
+                                {/*                href="#">*/}
+                                {/*                Sign*/}
+                                {/*                up</Link></p>*/}
 
-                                            {/*<div className="line"></div>*/}
-                                            {/*<span className="pe-3 ps-3 fs-6">OR</span>*/}
-                                            {/*<div className="line"></div>*/}
-                                        </div> : null
-                                }
+                                {/*            /!*<div className="line"></div>*!/*/}
+                                {/*            /!*<span className="pe-3 ps-3 fs-6">OR</span>*!/*/}
+                                {/*            /!*<div className="line"></div>*!/*/}
+                                {/*        </div>*/}
+                                {/*: null*/}
+                                {/*}*/}
 
 
                                 {/*<div className="row">*/}

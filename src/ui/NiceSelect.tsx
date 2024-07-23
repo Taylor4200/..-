@@ -1,11 +1,11 @@
 "use client"
-import React, {useState, useCallback, useRef, FC, ChangeEvent} from "react";
+import React, {useState, useCallback, useRef, FC, ChangeEvent, useMemo} from "react";
 import {useClickAway} from "react-use";
 
 interface Option {
     value: string;
     text: string;
-    data?: string[]
+    data?: { value: string, label: string }[];
 }
 
 type NiceSelectProps = {
@@ -13,7 +13,7 @@ type NiceSelectProps = {
     defaultCurrent: number;
     placeholder: string;
     className?: string;
-    onChange: (event: ChangeEvent<HTMLSelectElement>) => void;
+    onChange: (data: any) => void;
     name: string;
 }
 
@@ -27,7 +27,10 @@ const NiceSelect: FC<NiceSelectProps> = ({
                                          }) => {
     const [open, setOpen] = useState(false);
     const [current, setCurrent] = useState("");
-    const [currentOpt, setCurrentOpt] = useState("")
+    const [state, setState] = useState({
+        category: null,
+        subCategory: null,
+    })
     const onClose = useCallback(() => {
         setOpen(false);
     }, []);
@@ -37,11 +40,29 @@ const NiceSelect: FC<NiceSelectProps> = ({
 
     useClickAway(ref, onClose);
 
-    const currentHandler = (item: string) => {
-        setCurrent(item);
-        onChange({target: {value: item}} as ChangeEvent<HTMLSelectElement>);
+    const currentHandler = (category: number, subCategory: number) => {
+        setState({category: category, subCategory: subCategory})
+        onChange({category: category, subCategory: subCategory});
         onClose();
     };
+
+    const getName = useMemo(() => {
+        let lb;
+        let lbb;
+        options?.map(item => {
+            if (item?.value === state.category) {
+                lb = item?.text;
+                item?.data?.map(data => {
+                    if (data?.value === state?.subCategory) {
+                        lbb = data?.label
+                    }
+                })
+            }
+        })
+
+        if (lbb && lb) return lb + " - " + lbb
+        else return undefined
+    }, [state])
 
     return (
         <div
@@ -52,7 +73,7 @@ const NiceSelect: FC<NiceSelectProps> = ({
             onKeyDown={(e) => e}
             ref={ref}
         >
-            <span className="current">{current || placeholder}</span>
+            <span className="current">{getName ? getName : placeholder}</span>
             <ul
                 className="list"
                 role="menubar"
@@ -86,12 +107,13 @@ const NiceSelect: FC<NiceSelectProps> = ({
                                         style={{fontSize: '18px'}}
                                         role="menuitem"
                                         onClick={() => {
-                                            currentHandler(item?.text + " - " + data)
+                                            currentHandler(item.value, data.value)
+                                            // currentHandler(item?.value + " - " + data?.value)
                                             setOpenSelect(i)
                                         }}
                                         onKeyDown={(e) => e}
                                     >
-                                        {data}
+                                        {data.label}
                                     </li>)
                                 }
                             </ul> : null

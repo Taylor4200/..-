@@ -5,7 +5,9 @@ export const metadata = {
   title: "Homy - Real Estate React Next js Template",
 };
 const index = () => {
-  return (
+
+
+    return (
     <Wrapper>
       <HomeOne />
     </Wrapper>

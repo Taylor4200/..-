@@ -4,11 +4,11 @@ import ListingFourArea from "./ListingFourArea"
 import HeaderOne from "@/layouts/headers/HeaderOne"
 import FooterOne from "@/layouts/footers/FooterOne";
 
-const ListingSix = () => {
+const ListingSix = ({data}: any) => {
    return (
       <>
          <HeaderOne style={false} />
-         <ListingFourArea />
+         <ListingFourArea data={data} />
          <FancyBanner />
          <FooterOne style={true} />
       </>
