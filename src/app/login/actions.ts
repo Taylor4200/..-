@@ -8,20 +8,19 @@ import {createClient} from '@/utils/supabase/server'
 export async function login(datas: any) {
 
     // try {
-        const supabase = createClient()
+    const supabase = createClient()
 
-        const {error, data} = await supabase.auth.signInWithPassword(datas)
+    const {error, data} = await supabase.auth.signInWithPassword(datas)
 
-        if (error) {
-            return {
-                message: error.message,
-                status: 500,
-            };
-        }
-        console.log(data)
+    if (error) {
+        return {
+            message: error.message,
+            status: 500,
+        };
+    }
 
-        revalidatePath('/', 'layout')
-        redirect('/dashboard/dashboard-index')
+    revalidatePath('/', 'layout')
+    redirect('/dashboard/dashboard-index')
     // }
     // catch (error: any) {
     //     console.log(error)
@@ -32,6 +31,25 @@ export async function login(datas: any) {
     // }
 
 
+}
+
+export async function logout() {
+    const supabase = createClient()
+
+    const {error} = await supabase.auth.signOut();
+
+    if (error) {
+        redirect('/error')
+    }
+
+    if (error) {
+        return {
+            message: "Error Sing out",
+            status: 500,
+        };
+    }
+
+    redirect("/login")
 }
 
 export async function signup(formData: FormData) {
