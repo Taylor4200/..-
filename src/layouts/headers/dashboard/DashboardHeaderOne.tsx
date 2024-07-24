@@ -36,7 +36,7 @@ const DashboardHeaderOne = ({ isActive, setIsActive }: any) => {
       <aside className={`dash-aside-navbar ${isActive ? "show" : ""}`}>
          <div className="position-relative">
             <div className="logo d-md-block d-flex align-items-center justify-content-between plr bottom-line pb-30">
-               <Link href="/dashboard-index">
+               <Link href="/dashboard/dashboard-index">
                   <Image src={truckSupportIcon} alt="" />
                </Link>
                <button onClick={() => setIsActive(false)} className="close-btn d-block d-md-none"><i className="fa-light fa-circle-xmark"></i></button>
