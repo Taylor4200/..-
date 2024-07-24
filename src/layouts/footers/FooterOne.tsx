@@ -6,10 +6,10 @@ import footerLogo_1 from "@/assets/images/logo/logo_01.svg"
 import footerLogo_2 from "@/assets/images/logo/logo_03.svg"
 import footerShape_1 from "@/assets/images/shape/shape_32.svg"
 import footerShape_2 from "@/assets/images/shape/shape_33.svg"
-import truckSupportIcon from "@/assets/images/logo//trucksupportIcon.png"
+import truckSupportIcon from "@/assets/images/logo/truckWhiteLogo.png"
 
 
-const icon_1: string[] = ["facebook", "twitter", "instagram", "youtube"]
+const icon_1 = [{icon: "facebook",link: "https://www.facebook.com/people/Truck-Support/61563590780030/"} , {icon: "instagram",link: "https://www.instagram.com/247trucksupport"}, {icon: "youtube", link: "https://www.youtube.com/@247TruckSupport"},{ icon: "twitter", link: "https://x.com/Trucksupport247" }]
 
 const FooterOne = ({ style }: any) => {
    return (
@@ -27,14 +27,14 @@ const FooterOne = ({ style }: any) => {
                            </div>
                            {/*<p className="mb-60 lg-mb-40 md-mb-20">11910 Clyde Rapid Suite 70, Willyand, Virginia, United States</p>*/}
                            <h6>CONTACT</h6>
-                           <Link href="#" className={`email tran3s mb-70 lg-mb-50 ${style ? "font-garamond" : "fs-24 text-decoration-underline"}`}>marketing@247trucksupport.com</Link>
+                           <Link href="#" style={{ fontSize: 28 }} className={`email tran3s mb-70 lg-mb-50 ${style ? "font-garamond" : "fs-24 text-decoration-underline"}`}>marketing@247trucksupport.com</Link>
                            <ul className="style-none d-flex align-items-center social-icon">
                               {icon_1.map((icon, i) => (
-                                 <li key={i}><Link href="#"><i className={`fa-brands fa${style ? "" : "-square"}-${icon}`}></i></Link></li>
+                                 <li key={i}><Link href={icon.link}><i className={`fa-brands fa${style ? "" : "-square"}-${icon.icon}`}></i></Link></li>
                               ))}
                            </ul>
                         </div>
-                        {style && <Image src={footerShape_1} alt="" className="lazy-img shapes shape_01" />}
+                        {/*{style && <Image src={footerShape_1} alt="" className="lazy-img shapes shape_01" />}*/}
                      </div>
                   </div>
 

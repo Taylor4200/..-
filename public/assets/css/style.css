@@ -2369,7 +2369,7 @@ iframe {
   display: inline-block;
   width: 10px;
   height: 10px;
-  background: url(../images/shape/shape_79.svg) no-repeat center;
+  /*background: url(../images/shape/shape_79.svg) no-repeat center;*/
   background-size: cover;
   margin-left: 5px;
   vertical-align: 2px;
