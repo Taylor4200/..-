@@ -1,6 +1,7 @@
 "use client"
-import React, {useState, useCallback, useRef, FC, ChangeEvent, useMemo} from "react";
+import React, {useState, useCallback, useRef, FC, ChangeEvent, useMemo, useEffect} from "react";
 import {useClickAway} from "react-use";
+import {useSearchParams} from "next/navigation";
 
 interface Option {
     value: string;
@@ -46,6 +47,21 @@ const NiceSelect: FC<NiceSelectProps> = ({
         onClose();
     };
 
+    const searchParams = useSearchParams()
+
+    const category = searchParams.get('category')
+
+    const subCategory = searchParams.get('subCategory')
+
+
+    useEffect(() => {
+        if (category && subCategory) {
+            setState({category: parseInt(category), subCategory: parseInt(subCategory)})
+            onChange({category: parseInt(category), subCategory: parseInt(subCategory)});
+        }
+    }, []);
+
+
     const getName = useMemo(() => {
         let lb;
         let lbb;
@@ -62,7 +78,7 @@ const NiceSelect: FC<NiceSelectProps> = ({
 
         if (lbb && lb) return lb + " - " + lbb
         else return undefined
-    }, [state])
+    }, [state, options])
 
     return (
         <div

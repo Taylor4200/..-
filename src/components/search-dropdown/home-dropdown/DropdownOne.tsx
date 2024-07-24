@@ -1,14 +1,13 @@
 import NiceSelect from "@/ui/NiceSelect";
-import {FocusEventHandler, LegacyRef, useCallback, useRef, useState} from "react";
+import {FocusEventHandler, LegacyRef, useCallback, useEffect, useRef, useState} from "react";
 import {Autocomplete, useJsApiLoader} from '@react-google-maps/api';
 import {libraries} from "@/utils/utils";
 import {usePlacesWidget} from "react-google-autocomplete";
-import {usePathname, useRouter, useSearchParams} from "next/navigation";
+import {useRouter, useSearchParams} from "next/navigation";
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
+
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-
 
 const DropdownOne = ({style, categories}: any) => {
 
@@ -20,8 +19,12 @@ const DropdownOne = ({style, categories}: any) => {
     const handleClose = () => setLocationShowError(false)
 
     const router = useRouter()
-    const pathname = usePathname()
+
     const searchParams = useSearchParams()
+    const address = searchParams.get('address')
+    const latitude = searchParams.get('latitude')
+
+    const longitude = searchParams.get('longitude')
 
     // Get a new searchParams string by merging the current
     // searchParams with a provided key/value pair
@@ -38,9 +41,11 @@ const DropdownOne = ({style, categories}: any) => {
     const [locationState, setLocationState] = useState<{
         latitude: number | null;
         longitude: number | null;
+        address: string
     }>({
         latitude: null,
         longitude: null,
+        address: ""
     })
 
     const [state, setState] = useState({
@@ -54,8 +59,9 @@ const DropdownOne = ({style, categories}: any) => {
         setState({category: e?.category, subCategory: e?.subCategory})
     };
 
-    const searchHandler = () => {
+    const searchHandler = async () => {
         let error = false
+        let selectError = false
         if (locationState?.longitude === null || locationState.latitude === null) {
             setLocationError(true)
             error = true
@@ -66,15 +72,24 @@ const DropdownOne = ({style, categories}: any) => {
 
         if (state?.category === null || state?.subCategory === null) {
             setSelectionError(true)
-            error = true;
+            selectError = true;
         } else {
             setSelectionError(false)
-            error = false;
+            selectError = false;
         }
-        if (error) return
+        if (error || selectError) return
         // window.location.href = '/listing_04';
 
-        router.push('/listing_04' + '?' + `${createQueryString('category', state?.category) + '&' + createQueryString('subCategory', state?.subCategory) + '&' + createQueryString('latitude', locationState?.latitude) + '&' + createQueryString('longitude', locationState?.longitude)}`)
+        const url = '/listing_04' + '?' + `${createQueryString('category', state?.category) + '&' + createQueryString('subCategory', state?.subCategory) + '&' + createQueryString('latitude', locationState?.latitude) + '&' + createQueryString('longitude', locationState?.longitude) + '&' + createQueryString('address', locationState?.address)}`
+        const url1 = '/listing_04' + '?' + 'category=' + state?.category + '&' + 'subCategory=' + state?.subCategory + '&' + 'latitude=' + locationState?.latitude + '&' + 'longitude=' + locationState?.longitude + '&' +  'address=' + locationState?.address
+
+
+        if(address) {
+            router.push(url1)
+            return;
+        }
+
+        router.push(url)
     };
 
     const handleOnPlaceChanged = () => {
@@ -103,7 +118,8 @@ const DropdownOne = ({style, categories}: any) => {
         onPlaceSelected: (place) => {
             setLocationState({
                 latitude: place?.geometry?.location?.lat() || null,
-                longitude: place?.geometry?.location?.lng() || null
+                longitude: place?.geometry?.location?.lng() || null,
+                address: place?.formatted_address || ""
             })
         },
         options: options,
@@ -141,10 +157,26 @@ const DropdownOne = ({style, categories}: any) => {
 
             setLocationState({
                 latitude: crd?.latitude || null,
-                longitude: crd?.longitude || null
+                longitude: crd?.longitude || null,
+                address: data?.plus_code?.compound_code || ""
             })
         }
     }
+
+    useEffect(() => {
+        console.log({address})
+        if(address) {
+            ref.current.value = address;
+        }
+
+        if(latitude && longitude && address) {
+            setLocationState({
+                latitude: parseFloat(latitude) || null,
+                longitude: parseFloat(longitude) || null,
+                address: address || ""
+            })
+        }
+    }, [])
 
     function errors(err: PositionErrorCallback) {
         console.warn(`ERROR(${err.code}): ${err.message}`);
