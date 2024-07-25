@@ -10,7 +10,7 @@ import {createClient} from "@/utils/supabase/client";
 import * as yup from "yup";
 import {Controller, useForm} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup";
-import {useEffect, useState} from "react";
+import {ChangeEvent, useEffect, useState} from "react";
 import {toast} from "react-toastify";
 import {Backdrop, CircularProgress} from "@mui/material";
 
@@ -68,14 +68,36 @@ const AddPropertyBody = () => {
 
     const [isLoading, setIsLoading] = useState(true)
     const [categories, setCategories] = useState<any>([])
+    const [uploadedFile, setUploadedFile] = useState<File | undefined>(undefined)
+
+    const handleFileUpload = async (e: ChangeEvent<HTMLInputElement>) => {
+        if (e?.target?.files && e?.target?.files?.length > 0) setUploadedFile(e.target.files[0])
+    }
+
+    const handleRemoveFile = () => setUploadedFile(undefined)
 
     const scrollTop = () => {
-        window.scrollTo({ top: 0, behavior: "smooth" });
+        window.scrollTo({top: 0, behavior: "smooth"});
     };
 
     const onSubmit = async (data: FormDataField) => {
         try {
             setIsLoading(true)
+            let url
+
+            if (uploadedFile) {
+                const fileName = Date.now().toString();
+                const fileExt = fileName.split('.').pop();
+                const {data, error} = await supabase
+                    .storage
+                    .from('images')
+                    .upload(fileName, uploadedFile, {
+                        contentType: `image/${fileExt}`,
+                        upsert: false
+                    })
+                url = process.env.NEXT_PUBLIC_IMAGE_URL + fileName
+                console.log({data, error, url})
+            }
             // Start a transaction
             const {data: listing, error: listingError} = await supabase
                 .from('Listing')
@@ -84,7 +106,8 @@ const AddPropertyBody = () => {
                     description: data?.description || "",
                     lat: data?.lat ? parseFloat(data?.lat) : null,
                     lng: data?.lang ? parseFloat(data?.lang) : null,
-                    google_place_id: data?.googlePlaceID || ""
+                    google_place_id: data?.googlePlaceID || "",
+                    imageUrl: url,
                 })
                 .select()
                 .single()  // Retrieve the inserted listing data including the generated listing_id
@@ -117,6 +140,7 @@ const AddPropertyBody = () => {
             const notify = () => toast('New Listing Created', {position: 'top-center'});
             notify();
             reset()
+            setUploadedFile(undefined)
             setSelectedServices([])
 
         } catch (e) {
@@ -175,10 +199,10 @@ const AddPropertyBody = () => {
         <div className="dashboard-body">
 
             <Backdrop
-                sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+                sx={{color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1}}
                 open={isLoading}
             >
-                <CircularProgress color="inherit" />
+                <CircularProgress color="inherit"/>
             </Backdrop>
 
             <DashboardHeaderTwo title="Add New Listing"/>
@@ -331,24 +355,33 @@ const AddPropertyBody = () => {
 
                 <div className="bg-white card-box border-20 mt-40">
                     <h4 className="dash-title-three">Photo & Video Attachment</h4>
-                    <div className="dash-input-wrapper mb-20">
-                        <label htmlFor="">File Attachment*</label>
 
-                        <div className="attached-file d-flex align-items-center justify-content-between mb-15">
-                            <span>PorpertyImage_01.jpg</span>
-                            <Link href="#" className="remove-btn"><i className="bi bi-x"></i></Link>
-                        </div>
-                        <div className="attached-file d-flex align-items-center justify-content-between mb-15">
-                            <span>PorpertyImage_02.jpg</span>
-                            <Link href="#" className="remove-btn"><i className="bi bi-x"></i></Link>
-                        </div>
-                    </div>
+
+                    {
+                        uploadedFile ?
+                            <div className="dash-input-wrapper mb-20">
+                                <label htmlFor="">File Attachment*</label>
+                                <div className="attached-file d-flex align-items-center justify-content-between mb-15">
+                                    <span>{uploadedFile?.name}</span>
+                                    <button onClick={handleRemoveFile} className="remove-btn"><i
+                                        className="bi bi-x"></i></button>
+                                </div>
+                                {/*<div className="attached-file d-flex align-items-center justify-content-between mb-15">*/}
+                                {/*    <span>PorpertyImage_02.jpg</span>*/}
+                                {/*    <Link href="#" className="remove-btn"><i className="bi bi-x"></i></Link>*/}
+                                {/*</div>*/}
+                            </div>
+                            : null
+                    }
+
+
                     <div className="dash-btn-one d-inline-block position-relative me-3">
                         <i className="bi bi-plus"></i>
                         Upload File
-                        <input type="file" id="uploadCV" name="uploadCV" placeholder=""/>
+                        <input onChange={handleFileUpload} type="file" accept="image/*" id="uploadCV" name="uploadCV"
+                               placeholder=""/>
                     </div>
-                    <small>Upload file .jpg, .png, .mp4</small>
+                    {/*<small>Upload file .jpg, .png, .mp4</small>*/}
                 </div>
                 {/*<SelectAmenities />*/}
                 {/*<AddressAndLocation/>*/}
