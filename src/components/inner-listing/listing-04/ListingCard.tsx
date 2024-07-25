@@ -5,6 +5,7 @@ import Fancybox from "@/components/common/Fancybox";
 import Link from "next/link";
 import {useSearchParams} from "next/navigation";
 import {Get_Distance} from "@/utils/utils";
+import Image from "next/image";
 
 const ListingCard = ({item}: any) => {
 
@@ -24,22 +25,29 @@ const ListingCard = ({item}: any) => {
             <div className="d-flex flex-wrap layout-one">
                 <div
                     className={`img-gallery position-relative z-1 border-20 overflow-hidden ${item?.bg_img}`}>
+                    {
+                        item?.imageUrl ? <Image src={item?.imageUrl} alt="img" width={0}
+                                                height={0}
+                                                sizes="100vw"
+                                                style={{width: '100%', height: '100%'}}/> : null
+                    }
+
                     <div className={`tag border-20 ${item?.tag_bg}`}>{item?.tag}</div>
-                    <div className="img-slider-btn">
-                        03 <i className="fa-regular fa-image"></i>
-                        <Fancybox
-                            options={{
-                                Carousel: {
-                                    infinite: true,
-                                },
-                            }}
-                        >
-                            {item?.carousel_thumb?.map((thumb: any, index: any) => (
-                                <a key={index} className="d-block" data-fancybox="gallery2"
-                                   href={`/assets/images/listing/img_large_0${thumb.id}.jpg`}></a>
-                            ))}
-                        </Fancybox>
-                    </div>
+                    {/*<div className="img-slider-btn">*/}
+                    {/*    03 <i className="fa-regular fa-image"></i>*/}
+                    {/*    <Fancybox*/}
+                    {/*        options={{*/}
+                    {/*            Carousel: {*/}
+                    {/*                infinite: true,*/}
+                    {/*            },*/}
+                    {/*        }}*/}
+                    {/*    >*/}
+                    {/*        {item?.carousel_thumb?.map((thumb: any, index: any) => (*/}
+                    {/*            <a key={index} className="d-block" data-fancybox="gallery2"*/}
+                    {/*               href={`/assets/images/listing/img_large_0${thumb.id}.jpg`}></a>*/}
+                    {/*        ))}*/}
+                    {/*    </Fancybox>*/}
+                    {/*</div>*/}
                 </div>
                 <div className="property-info position-relative">
                     <Link href="/listing_details_04"
@@ -48,7 +56,7 @@ const ListingCard = ({item}: any) => {
                     <div style={{display: "flex", alignItems: "center"}}>
                         <i className="fa-solid fa-location-dot fa-image"
                            style={{marginBottom: 17, paddingRight: 10}}></i>
-                        <p>{item?.distance  ? (item?.distance + "  " + "Mi") : ""}</p>
+                        <p>{item?.distance ? (item?.distance + "  " + "Mi") : ""}</p>
                     </div>
                     <div className="address">{item.address}</div>
                     <ul style={{minHeight: 100}}>

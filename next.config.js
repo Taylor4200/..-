@@ -12,6 +12,16 @@ const nextConfig = {
     env: {
         NEXT_PUBLIC_GOOGLEAPIKEY: "AIzaSyAPOl2oO16KO0fjLp_AI-5tLqwrrzPhWUM",
     },
+
+    images: {
+        remotePatterns: [
+            {
+                protocol: "https",
+                hostname: "byyuteiacjynrnivszox.supabase.co",
+                port: "",
+            },
+        ]
+    }
 };
 
 export default nextConfig;
