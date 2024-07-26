@@ -145,9 +145,9 @@ const ListingFourArea = ({data}: any) => {
                             {/*    name=""*/}
                             {/*    placeholder=""/>*/}
                         </div>
-                        <Link href="/listing_03" className="tran3s layout-change rounded-circle ms-auto ms-sm-3"
-                              data-bs-toggle="tooltip" title="Switch To Grid View"><i
-                            className="fa-regular fa-grid-2"></i></Link>
+                        {/*<Link href="/listing_03" className="tran3s layout-change rounded-circle ms-auto ms-sm-3"*/}
+                        {/*      data-bs-toggle="tooltip" title="Switch To Grid View"><i*/}
+                        {/*    className="fa-regular fa-grid-2"></i></Link>*/}
                         <div onClick={() => setMapShow(prevState => !prevState)}
                              className="tran3s layout-change rounded-circle ms-auto ms-sm-3" style={{cursor: "pointer"}}
                              data-bs-toggle="tooltip" title="Switch To Map"><i
@@ -164,7 +164,7 @@ const ListingFourArea = ({data}: any) => {
                                     <GoogleMap
                                         onLoad={handleOnLoad}
                                         onClick={() => setActiveMarker(null)}
-                                        mapContainerStyle={{width: "100vw", height: "100vh"}}
+                                        mapContainerStyle={{height: "100vh"}}
                                     >
                                         {markers.map(({id, name, position}) => (
                                             <Marker
