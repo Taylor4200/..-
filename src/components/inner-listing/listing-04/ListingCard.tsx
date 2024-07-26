@@ -1,24 +1,28 @@
 "use client"
 
-import React, {useMemo} from 'react';
+import React, {useMemo, useState} from 'react';
 import Fancybox from "@/components/common/Fancybox";
 import Link from "next/link";
 import {useSearchParams} from "next/navigation";
 import {Get_Distance} from "@/utils/utils";
 import Image from "next/image";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import {Dialog, DialogContent, DialogContentText, DialogTitle} from "@mui/material";
 
 const ListingCard = ({item}: any) => {
 
-    // const searchParams = useSearchParams()
-    // const latitude = searchParams.get('latitude')
-    //
-    // const longitude = searchParams.get('longitude')
-    // const distance = useMemo(() => {
-    //     if (latitude && longitude && item?.lat && item?.lng) {
-    //         return Get_Distance(latitude, item?.lat, longitude, item?.lng, "K")
-    //     }
-    // }, [item?.lat, item?.lng, latitude, longitude])
+    const [contactModal, setContactModal] = useState(false);
 
+    console.log(item)
+
+    const searchParams = useSearchParams()
+
+    const latitude = searchParams.get('latitude')
+    const longitude = searchParams.get('longitude')
+
+
+    const handleContactModal = () => setContactModal(prevState => !prevState)
 
     return (
         <div className="listing-card-seven border-20 p-20 mb-50 wow fadeInUp">
@@ -50,33 +54,50 @@ const ListingCard = ({item}: any) => {
                     {/*</div>*/}
                 </div>
                 <div className="property-info position-relative">
-                    <Link href="/listing_details_04"
+                    <Link href={`/listing_details_03?id=${item.id}&name=${item.name}&latitude=${latitude}&longitude=${longitude}`}
                           className="title tran3s mb-15">{item?.name}</Link>
 
-                    <div style={{display: "flex", alignItems: "center"}}>
-                        <i className="fa-solid fa-location-dot fa-image"
-                           style={{marginBottom: 17, paddingRight: 10}}></i>
-                        <p>{item?.distance ? (item?.distance + "  " + "Mi") : ""}</p>
-                    </div>
-                    <div className="address">{item.address}</div>
-                    <ul style={{minHeight: 100}}>
-                        {item?.description}
-                        {/*<li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius,*/}
-                        {/*    vitae.*/}
-                        {/*</li>*/}
-                        {/*<li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius,*/}
-                        {/*    vitae.*/}
-                        {/*</li>*/}
+                    <Box display="flex" alignItems="baseline">
+                        <Typography variant="subtitle1">{item?.distance + " " + "Mi"}</Typography>
+                        {/*<p>{item?.distance ? (item?.distance + "  " + "Mi") : ""}</p>*/}
 
-                        {/*<li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius,*/}
-                        {/*    vitae.*/}
-                        {/*</li>*/}
+                        <div style={{display: "flex", alignItems: "center", paddingLeft: 16, marginTop: 6}}>
+                            <i className="bi bi-geo-alt"></i>
+                            <Typography sx={{pl: 1, pt: 0.5}} variant="subtitle2">{item.address}</Typography>
+                        </div>
+                    </Box>
 
-                        {/*<li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius,*/}
-                        {/*    vitae.*/}
-                        {/*</li>*/}
+                    <Box sx={{minHeight: 140, mt: 2.5}}>
+                        <Typography variant="body1"
+                                    sx={{
+                                        display: '-webkit-box',
+                                        overflow: 'hidden',
+                                        WebkitBoxOrient: 'vertical',
+                                        WebkitLineClamp: 5
+                                    }}>
+                            {item?.description}
+                        </Typography>
+                    </Box>
 
-                    </ul>
+                    {/*<ul style={{minHeight: 100}}>*/}
+
+
+                    {/*<li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius,*/}
+                    {/*    vitae.*/}
+                    {/*</li>*/}
+                    {/*<li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius,*/}
+                    {/*    vitae.*/}
+                    {/*</li>*/}
+
+                    {/*<li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius,*/}
+                    {/*    vitae.*/}
+                    {/*</li>*/}
+
+                    {/*<li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius,*/}
+                    {/*    vitae.*/}
+                    {/*</li>*/}
+
+                    {/*</ul>*/}
                     <div className=" mt-30 pt-30 pb-5 d-none d-lg-block"
                          style={{position: "absolute", width: "-webkit-fill-available", bottom: -30}}>
                         <ul className=" d-flex flex-wrap align-items-center justify-content-between"
@@ -123,7 +144,7 @@ const ListingCard = ({item}: any) => {
                             <li><Link href="#"><i
                                 className="fa-light fa-circle-plus"></i></Link></li>
                             <li>
-                                <Link href="#" className="btn-ten rounded-0" target="_blank"><span>Connect</span></Link>
+                                <button onClick={handleContactModal} className="btn-ten rounded-0"><span>Connect</span></button>
 
                             </li>
                         </ul>
@@ -132,6 +153,47 @@ const ListingCard = ({item}: any) => {
                     </div>
                 </div>
             </div>
+
+            <Dialog
+                open={contactModal}
+                onClose={handleContactModal}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+            >
+                <DialogTitle id="alert-dialog-title">
+                    {"Contact Info"}
+                </DialogTitle>
+                <DialogContent>
+                    <DialogContentText variant="h4">
+                        To Serve You Better Mention
+                        247TruckSupport.com®
+                    </DialogContentText>
+
+                    <Box display="flex" alignItems="center" justifyContent="space-between" mt={5}>
+                        <Box>
+                            <DialogContentText>
+                                Primary Phone
+                            </DialogContentText>
+                            <DialogContentText variant="body1" fontWeight="bold">{item?.phone}</DialogContentText>
+                        </Box>
+
+                        <a href={"tel:"+ item?.phone}>
+                            <button className="btn-ten rounded-0"><span>Call</span></button>
+                        </a>
+
+
+                    </Box>
+
+
+                </DialogContent>
+                {/*<DialogActions>*/}
+                {/*    <Button onClick={handleClose}>Disagree</Button>*/}
+                {/*    <Button onClick={handleClose} autoFocus>*/}
+                {/*        Agree*/}
+                {/*    </Button>*/}
+                {/*</DialogActions>*/}
+            </Dialog>
+
         </div>
     );
 };

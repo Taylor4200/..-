@@ -72,7 +72,7 @@ const index = async ({
             <Suspense fallback={
                 <Backdrop
                     sx={{color: '#fff'}}
-                    open={!data}>
+                    open={true}>
                     <CircularProgress color="inherit"/>
                 </Backdrop>
             }>
