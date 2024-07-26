@@ -1,9 +1,10 @@
 import ListingFour from "@/components/inner-listing/listing-04";
 import Wrapper from "@/layouts/Wrapper";
 // import supabase from "@/utils/supabase/client";
-import { createClient } from '@/utils/supabase/server'
+import {createClient} from '@/utils/supabase/server'
 import {Get_Distance} from "@/utils/utils";
 import {Backdrop, CircularProgress} from "@mui/material";
+import {Suspense} from "react";
 
 
 export const metadata = {
@@ -15,10 +16,12 @@ async function getData(params: { category: string, subCategory: string, latitude
     const supabase = createClient()
 
     try {
-        const {data, status, error} =   await supabase
+        const {data, status, error} = await supabase
             .from('Listing')
             .select('*, listingsubcategories!inner(listid)')
             .eq('listingsubcategories.subcategoryid', parseInt(params.subCategory))
+            .not('lat', 'is', null)
+            .not('lng', 'is', null)
 
         //     await supabase.rpc('test5', {
         //     // lat: 40.807313,
@@ -27,21 +30,21 @@ async function getData(params: { category: string, subCategory: string, latitude
         // })
 
 
-
         console.log({error})
 
 
         if (data) {
-            return data?.map(item => {
+            const arrayWithDistance = data?.map(item => {
                 let distance = null
                 if (params.latitude && params.longitude && item?.lat && item?.lng) {
-                    distance =  Get_Distance(params.latitude, item?.lat, params?.longitude, item?.lng, "K")
+                    distance = Get_Distance(params.latitude, item?.lat, params?.longitude, item?.lng, "K")
                 }
                 return {
                     distance,
                     ...item
                 }
             })
+            return arrayWithDistance?.filter(item => item?.distance <= 100)
             // Process the data as needed
         } else {
             throw new Error(`Request failed with ${status}`);
@@ -64,18 +67,18 @@ const index = async ({
     const data = await getData(searchParams)
     console.log({data, lenghthss: data?.length})
 
-    if(!data) return (
-        <Backdrop
-            sx={{ color: '#fff' }}
-            open={!data}
-        >
-            <CircularProgress color="inherit" />
-        </Backdrop>
-    )
-
     return (
         <Wrapper>
-            <ListingFour data={data}/>
+            <Suspense fallback={
+                <Backdrop
+                    sx={{color: '#fff'}}
+                    open={!data}>
+                    <CircularProgress color="inherit"/>
+                </Backdrop>
+            }>
+                <ListingFour data={data}/>
+            </Suspense>
+
         </Wrapper>
     )
 }
