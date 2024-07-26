@@ -9,6 +9,7 @@ import DropdownOne from "@/components/search-dropdown/home-dropdown/DropdownOne"
 import {useEffect, useState} from "react";
 import dynamic from 'next/dynamic'
 import {createClient} from "@/utils/supabase/client";
+import {GoogleMap, InfoWindow, Marker, useLoadScript} from "@react-google-maps/api";
 
 const ListingCard = dynamic(() => import('@/components/inner-listing/listing-04/ListingCard'), {ssr: false})
 const ListingFourArea = ({data}: any) => {
@@ -63,6 +64,33 @@ const ListingFourArea = ({data}: any) => {
     // };
 
     const [isMapShow, setMapShow] = useState(false)
+
+    const markers = data?.map(item => {
+        return {
+            id: item.id,
+            name: item?.name,
+            position: {lat: item?.lat, lng: item?.lng}
+        }
+    })
+
+    const [activeMarker, setActiveMarker] = useState<number | null>(null);
+
+    const handleActiveMarker = (marker: number) => {
+        if (marker === activeMarker) {
+            return;
+        }
+        setActiveMarker(marker);
+    };
+
+    const handleOnLoad = (map: google.maps.Map) => {
+        const bounds = new google.maps.LatLngBounds();
+        markers.forEach(({position}) => bounds.extend(position));
+        map.fitBounds(bounds);
+    };
+
+    const {isLoaded} = useLoadScript({
+        googleMapsApiKey: process?.env?.NEXT_PUBLIC_GOOGLEAPIKEY || ""
+    });
 
     return (
         <div className="property-listing-six bg-pink-two pt-110 md-pt-80 pb-170 xl-pb-120 mt-150 xl-mt-120">
@@ -131,15 +159,40 @@ const ListingFourArea = ({data}: any) => {
                     isMapShow ?
                         <div className="hero-banner-seven position-relative mt-120 lg-mt-100">
                             <div id="" className="h-100">
-                                <div className="google-map-home" id="contact-google-map" data-map-lat="40.925372"
-                                     data-map-lng="-74.276544" data-icon-path="/assetes/images/home2/map-icon.png"
-                                     data-map-title="Awesome Place" data-map-zoom="12"></div>
-                                <iframe
-                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d83088.3595592641!2d-105.54557276330914!3d39.29302101722867!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x874014749b1856b7%3A0xc75483314990a7ff!2sColorado%2C%20USA!5e0!3m2!1sen!2sbd!4v1699764452737!5m2!1sen!2sbd"
-                                    width="600" height="450" style={{border: 0}} allowFullScreen={true} loading="lazy"
-                                    referrerPolicy="no-referrer-when-downgrade" className="w-100 h-100">
-                                </iframe>
+                            {
+                                isLoaded ?
+                                    <GoogleMap
+                                        onLoad={handleOnLoad}
+                                        onClick={() => setActiveMarker(null)}
+                                        mapContainerStyle={{width: "100vw", height: "100vh"}}
+                                    >
+                                        {markers.map(({id, name, position}) => (
+                                            <Marker
+                                                key={id}
+                                                position={position}
+                                                onClick={() => handleActiveMarker(id)}
+                                            >
+                                                {activeMarker === id ? (
+                                                    <InfoWindow onCloseClick={() => setActiveMarker(null)}>
+                                                        <div>{name}</div>
+                                                    </InfoWindow>
+                                                ) : null}
+                                            </Marker>
+                                        ))}
+                                    </GoogleMap> : null
+                            }
                             </div>
+
+                            {/*<div id="" className="h-100">*/}
+                            {/*    <div className="google-map-home" id="contact-google-map" data-map-lat="40.925372"*/}
+                            {/*         data-map-lng="-74.276544" data-icon-path="/assetes/images/home2/map-icon.png"*/}
+                            {/*         data-map-title="Awesome Place" data-map-zoom="12"></div>*/}
+                            {/*    <iframe*/}
+                            {/*        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d83088.3595592641!2d-105.54557276330914!3d39.29302101722867!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x874014749b1856b7%3A0xc75483314990a7ff!2sColorado%2C%20USA!5e0!3m2!1sen!2sbd!4v1699764452737!5m2!1sen!2sbd"*/}
+                            {/*        width="600" height="450" style={{border: 0}} allowFullScreen={true} loading="lazy"*/}
+                            {/*        referrerPolicy="no-referrer-when-downgrade" className="w-100 h-100">*/}
+                            {/*    </iframe>*/}
+                            {/*</div>*/}
                         </div> :
                         <>
                             {data?.sort((a: any, b:any) => (b?.distance != null) - (a?.distance != null) || a?.distance - b?.distance)?.map((item: any) =>
