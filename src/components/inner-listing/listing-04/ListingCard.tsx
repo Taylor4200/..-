@@ -55,7 +55,13 @@ const ListingCard = ({item}: any) => {
                 </div>
                 <div className="property-info position-relative">
                     <Link href={`/listing_details_03?id=${item.id}&name=${item.name}&latitude=${latitude}&longitude=${longitude}`}
-                          className="title tran3s mb-15">{item?.name}</Link>
+                          className="title tran3s mb-15"
+                          style={{
+                              maxWidth: 650, display: '-webkit-box',
+                              overflow: 'hidden',
+                              WebkitBoxOrient: 'vertical',
+                              WebkitLineClamp: 2
+                          }}>{item?.name}</Link>
 
                     <Box display="flex" alignItems="baseline">
                         <Typography variant="subtitle1">{item?.distance + " " + "Mi"}</Typography>
