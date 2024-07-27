@@ -17,7 +17,7 @@ const PropertyTableBody = ({list, handleDeleteListing}: any) => {
 
     return (
         <tbody className="border-0">
-        {list.map((item) => (
+        {list?.map((item) => (
             <tr key={item.id}>
                 <td>
                     <div className="d-lg-flex align-items-center position-relative">

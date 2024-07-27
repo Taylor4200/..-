@@ -158,7 +158,7 @@ const PropertyListBody = () => {
                     </div>
 
 
-                    {list.length > 0 && (
+                    {list?.length > 0 && (
                         <div className=" d-flex align-items-center justify-content-center style-none pt-40">
                             <div className="container mt-5">
                                 <nav aria-label="Page navigation example">
