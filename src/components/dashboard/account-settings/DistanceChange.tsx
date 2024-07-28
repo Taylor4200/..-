@@ -29,7 +29,7 @@ const DistanceChange = ({data}: any) => {
                 <div className="row d-flex align-items-center">
                     <div className="col-4">
                         <div className="dash-input-wrapper mb-20">
-                            <label htmlFor="">Distance</label>
+                            <label htmlFor="">Distance (in Miles)</label>
                             <input defaultValue={data?.distance} type="number"
                                    onChange={(e) => setInput(e.target.value)} className="form-control"/>
                         </div>
