@@ -3,6 +3,7 @@ import Link from "next/link"
 
 import infoAvatar from "@/assets/images/agent/img_06.jpg"
 import {useSearchParams} from "next/navigation";
+import {createClient} from "@/utils/supabase/client";
 
 const SidebarInfo = ({data}: any) => {
 
@@ -10,6 +11,7 @@ const SidebarInfo = ({data}: any) => {
     const latitude = searchParams.get('latitude')
 
     const longitude = searchParams.get('longitude')
+    const supabase = createClient()
 
     const handleNavigate = () => {
         const latDes = data?.lat;
@@ -21,6 +23,16 @@ const SidebarInfo = ({data}: any) => {
 
         const win = window.open(newUrl, '_blank');
         win?.focus();
+    }
+
+    const handleUserCalled = async () => {
+        if(!data?.phone) return
+        const {error} = await supabase
+            .rpc('increment_totalinterect', {x: 1, row_id: 1})
+
+        if (error) {
+            console.log(error)
+        }
     }
 
     return (
@@ -43,10 +55,10 @@ const SidebarInfo = ({data}: any) => {
                     <li>Location: <span>{data?.address}</span></li>
                     <li>Website: <span><Link href={data?.website || ""}>{data?.website}</Link></span>
                     </li>
-                    <li>Phone: <span><Link href="tel:+12347687565">{data?.phone}</Link></span></li>
+                    <li>Phone: <span><Link onClick={handleUserCalled} href={data?.phone ? "tel:"+ data?.phone : "#"}>{data?.phone}</Link></span></li>
                 </ul>
             </div>
-            <Link href={`tel:${data?.phone}`} className="btn-nine text-uppercase rounded-3 w-100 mb-10">CONTACT
+            <Link onClick={handleUserCalled}  href={data?.phone ? "tel:"+ data?.phone : "#"} className="btn-nine text-uppercase rounded-3 w-100 mb-10">CONTACT
                 Business</Link>
         </>
     )

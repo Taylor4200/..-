@@ -21,37 +21,37 @@ interface DataType {
    class_name?: string;
 }
 
-const dashboard_card_data: DataType[] = [
-   {
-      id: 1,
-      icon: icon_1,
-      title: "Impressions",
-      value: "1.7k+",
-      class_name: "skew-none",
-   },
-   {
-      id: 2,
-      icon: icon_2,
-      title: "Click",
-      value: "03",
-   },
-   {
-      id: 3,
-      icon: icon_3,
-      title: "Conversions",
-      value: "4.8k",
-   },
-   {
-      id: 4,
-      icon: icon_4,
-      title: "EPC",
-      value: "07",
-   },
-]
+const DashboardBody = ({data}: any) => {
 
-const DashboardBody = () => {
+   const dashboard_card_data: DataType[] = [
+      {
+         id: 1,
+         icon: icon_1,
+         title: "Impressions",
+         value: data?.total_visit,
+         class_name: "skew-none",
+      },
+      {
+         id: 2,
+         icon: icon_2,
+         title: "Click",
+         value: data?.total_interect,
+      },
+      {
+         id: 3,
+         icon: icon_3,
+         title: "Conversions",
+         value: "",
+      },
+      {
+         id: 4,
+         icon: icon_4,
+         title: "EPC",
+         value: "",
+      },
+   ]
 
-   const data = {
+   const datas = {
       labels: ["Mobile", "Desktop", "Tablet", "Other"],
       datasets: [
          {
@@ -132,7 +132,7 @@ const DashboardBody = () => {
                         <p className="text-center" style={{fontWeight: "bolder", fontSize: 30}}>120,222</p>
                         <h5 className="dash-title-three text-center">Devices Accessed</h5>
                      </div>
-                     <Doughnut data={data}/>
+                     <Doughnut data={datas}/>
                      {/*<RecentMessage/>*/}
                   </div>
                </div>

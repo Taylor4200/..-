@@ -9,13 +9,12 @@ import Image from "next/image";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import {Dialog, DialogContent, DialogContentText, DialogTitle} from "@mui/material";
+import {createClient} from "@/utils/supabase/client";
 
 const ListingCard = ({item}: any) => {
 
     const [contactModal, setContactModal] = useState(false);
-
-    console.log(item)
-
+    const supabase = createClient()
     const searchParams = useSearchParams()
 
     const latitude = searchParams.get('latitude')
@@ -23,6 +22,16 @@ const ListingCard = ({item}: any) => {
 
 
     const handleContactModal = () => setContactModal(prevState => !prevState)
+
+    const handleUserCalled = async () => {
+        if(!item?.phone) return
+        const {error} = await supabase
+            .rpc('increment_totalinterect', {x: 1, row_id: 1})
+
+        if (error) {
+            console.log(error)
+        }
+    }
 
     return (
         <div className="listing-card-seven border-20 p-20 mb-50 wow fadeInUp">
@@ -183,9 +192,9 @@ const ListingCard = ({item}: any) => {
                             <DialogContentText variant="body1" fontWeight="bold">{item?.phone}</DialogContentText>
                         </Box>
 
-                        <a href={"tel:"+ item?.phone}>
-                            <button className="btn-ten rounded-0"><span>Call</span></button>
-                        </a>
+                        <Link href={item?.phone ? "tel:"+ item?.phone : "#"}>
+                            <button onClick={handleUserCalled} className="btn-ten rounded-0"><span>Call</span></button>
+                        </Link>
 
 
                     </Box>
