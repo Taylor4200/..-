@@ -9,8 +9,9 @@ import icon_4 from "@/assets/images/dashboard/icon/icon_32.svg"
 import icon_5 from "@/assets/images/dashboard/icon/icon_33.svg"
 import icon_6 from "@/assets/images/dashboard/icon/icon_34.svg"
 import icon_7 from "@/assets/images/dashboard/icon/icon_35.svg"
+import moment from "moment";
 
-const OpenEmail = () => {
+const OpenEmail = ({selectedThread}: any) => {
    return (
       <div className="col-lg-8">
          <div className="open-email-container pb-40">
@@ -18,13 +19,13 @@ const OpenEmail = () => {
                <div className="sender-info d-flex align-items-center">
                   <Image src={logo_1} alt="" className="lazy-img logo" />
                   <div className="ps-3">
-                     <div className="sender-name">Killwake</div>
-                     <div className="sender-email">kilwakesales@inquiry.com</div>
+                     <div className="sender-name">{selectedThread?.name}</div>
+                     <div className="sender-email">{selectedThread?.email}</div>
                   </div>
                </div>
 
                <div className="email-info">
-                  <div className="time">4:45AM (3 hours ago)</div>
+                  <div className="time">{moment(selectedThread?.created_at).startOf('minute').fromNow()}</div>
                   <div className="d-flex align-items-center justify-content-end">
                      <button className="delete-email"><Image src={icon_1} alt="" className="lazy-img" /></button>
                      <button className="reply-email ms-3 me-3"><Image src={icon_2} alt="" className="lazy-img" /></button>
@@ -45,42 +46,35 @@ const OpenEmail = () => {
 
             <div className="email-body divider">
                <div className="ps-4 pe-4 ps-xxl-5 pe-xxl-5">
-                  <h2>Payment Verification</h2>
-                  <p>Hello, Greeting from Uber. Hope you doing great. I am approaching to you for as our company need a great & talented account manager. </p>
-                  <p>What we need from you to start:</p>
-                  <ul className="style-none mb-30">
-                     <li>- Your CV</li>
-                     <li>- Verified Gov ID</li>
-                  </ul>
-                  <p>After that we need to redesign our landing page because the current one doesn&apos;t carry any information. If you have any question don’t hesitate to contact us.</p>
-                  <p>Our Telegram <Link href="#" className="fw-500">@rainbow</Link> <br />Thank you!</p>
+                  <h2>{selectedThread?.title}</h2>
+                  {selectedThread?.message}
                </div>
             </div>
 
             <div className="email-footer">
                <div className="ps-4 pe-4 ps-xxl-5 pe-xxl-5">
-                  <div className="attachments mb-30">
-                     <div className="d-flex justify-content-between mb-5">
-                        <h6 className="m0">2 Attachment</h6>
-                        <Link href="#" className="all-download">Download All</Link>
-                     </div>
-                     <div className="d-flex">
-                        <Link href="#" className="file tran3s d-flex align-items-center mt-10" download>
-                           <div className="icon rounded-circle d-flex align-items-center justify-content-center"><Image src={icon_3} alt="" className="lazy-img" /></div>
-                           <div className="ps-2">
-                              <div className="file-name">project-details.pdf</div>
-                              <div className="file-size">2.3mb</div>
-                           </div>
-                        </Link>
-                        <Link href="#" className="file tran3s d-flex align-items-center mt-10" download>
-                           <div className="icon rounded-circle d-flex align-items-center justify-content-center"><Image src={icon_3} alt="" className="lazy-img" /></div>
-                           <div className="ps-2">
-                              <div className="file-name">form.pdf</div>
-                              <div className="file-size">1.3mb</div>
-                           </div>
-                        </Link>
-                     </div>
-                  </div>
+                  {/*<div className="attachments mb-30">*/}
+                  {/*   <div className="d-flex justify-content-between mb-5">*/}
+                  {/*      <h6 className="m0">2 Attachment</h6>*/}
+                  {/*      <Link href="#" className="all-download">Download All</Link>*/}
+                  {/*   </div>*/}
+                  {/*   <div className="d-flex">*/}
+                  {/*      <Link href="#" className="file tran3s d-flex align-items-center mt-10" download>*/}
+                  {/*         <div className="icon rounded-circle d-flex align-items-center justify-content-center"><Image src={icon_3} alt="" className="lazy-img" /></div>*/}
+                  {/*         <div className="ps-2">*/}
+                  {/*            <div className="file-name">project-details.pdf</div>*/}
+                  {/*            <div className="file-size">2.3mb</div>*/}
+                  {/*         </div>*/}
+                  {/*      </Link>*/}
+                  {/*      <Link href="#" className="file tran3s d-flex align-items-center mt-10" download>*/}
+                  {/*         <div className="icon rounded-circle d-flex align-items-center justify-content-center"><Image src={icon_3} alt="" className="lazy-img" /></div>*/}
+                  {/*         <div className="ps-2">*/}
+                  {/*            <div className="file-name">form.pdf</div>*/}
+                  {/*            <div className="file-size">1.3mb</div>*/}
+                  {/*         </div>*/}
+                  {/*      </Link>*/}
+                  {/*   </div>*/}
+                  {/*</div>*/}
 
                   <div className="compose-new-email-container">
                      <div className="new-email-header position-relative">
@@ -90,7 +84,7 @@ const OpenEmail = () => {
                         </div>
                         <div className="input-group d-flex align-items-center">
                            <div className="text-center" style={{ width: "60px" }}>To</div>
-                           <input type="email" className="flex-fill" placeholder="rainbowsales@inquiry.com" />
+                           <input type="email" className="flex-fill" placeholder={selectedThread?.email} />
                         </div>
                         <div className="collapse" id="CC-input">
                            <div className="input-group d-flex align-items-center">

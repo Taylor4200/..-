@@ -1,11 +1,11 @@
 import DashboardHeaderOne from "@/layouts/headers/dashboard/DashboardHeaderOne"
 import MessageBody from "./MessageBody"
 
-const DashboardMessage = () => {
+const DashboardMessage = ({data}: any) => {
    return (
       <>
          <DashboardHeaderOne />
-         <MessageBody />
+         <MessageBody data={data}/>
       </>
    )
 }
