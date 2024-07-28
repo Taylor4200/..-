@@ -1,38 +1,20 @@
-import {GoogleMap, InfoWindow, Marker, useLoadScript} from "@react-google-maps/api";
+import {GoogleMap, InfoWindow, Marker} from "@react-google-maps/api";
 import {useState} from "react";
 
 const CommonLocation = ({data}: any) => {
 
     const markers = [
         {
-            id: data.id,
+            id: data?.id,
             name: data?.name,
             position: {lat: data?.lat, lng: data?.lng}
         },
-        // {
-        //     id: 2,
-        //     name: "Denver, Colorado",
-        //     position: { lat: 39.739235, lng: -104.99025 }
-        // },
-        // {
-        //     id: 3,
-        //     name: "Los Angeles, California",
-        //     position: { lat: 34.052235, lng: -118.243683 }
-        // },
-        // {
-        //     id: 4,
-        //     name: "New York, New York",
-        //     position: { lat: 40.712776, lng: -74.005974 }
-        // }
     ];
 
-    const [activeMarker, setActiveMarker] = useState<number | null>(null);
+    const [activeMarker, setActiveMarker] = useState<boolean>(false);
 
-    const handleActiveMarker = (marker: number) => {
-        if (marker === activeMarker) {
-            return;
-        }
-        setActiveMarker(marker);
+    const handleActiveMarker = () => {
+        setActiveMarker(true);
     };
 
     const handleOnLoad = (map: google.maps.Map) => {
@@ -45,26 +27,26 @@ const CommonLocation = ({data}: any) => {
         <>
             <h4 className="mb-40">Location</h4>
             <div className="bg-white shadow4 border-20 p-30">
-                <div className="map-banner overflow-hidden border-15">
+                <div className="map-banner overflow-hidden border-15" style={{height: 700}}>
                     <div className="gmap_canvas h-100 w-100">
-                        <GoogleMap
-                            onLoad={handleOnLoad}
-                            onClick={() => setActiveMarker(null)}
-                            mapContainerStyle={{width: "100vw", height: "100vh"}}
+                        <GoogleMap options={{
+                            streetViewControl: false,
+                        }}
+                                   onLoad={handleOnLoad}
+                                   onClick={() => setActiveMarker(true)}
+                                   mapContainerStyle={{height: "100vh"}}
                         >
-                            {markers.map(({id, name, position}) => (
-                                <Marker
-                                    key={id}
-                                    position={position}
-                                    onClick={() => handleActiveMarker(id)}
-                                >
-                                    {activeMarker === id ? (
-                                        <InfoWindow onCloseClick={() => setActiveMarker(null)}>
-                                            <div>{name}</div>
-                                        </InfoWindow>
-                                    ) : null}
-                                </Marker>
-                            ))}
+                            <Marker
+                                position={{lat: data?.lat, lng: data?.lng}}
+                                onClick={handleActiveMarker}
+                            >
+                                {activeMarker ? (
+                                    <InfoWindow onCloseClick={() => setActiveMarker(false)}>
+                                        <h6>{data?.name}
+                                        </h6>
+                                    </InfoWindow>
+                                ) : null}
+                            </Marker>
                         </GoogleMap>
 
                         {/*<iframe*/}

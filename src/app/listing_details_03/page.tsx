@@ -5,6 +5,7 @@ import {Get_Distance} from "@/utils/utils";
 import {Backdrop, CircularProgress} from "@mui/material";
 import ListingFour from "@/components/inner-listing/listing-04";
 import {Suspense} from "react";
+import {redirect} from "next/navigation";
 
 export const metadata = {
     title: "Listing Details Three Homy - Real Estate React Next js Template",
@@ -25,7 +26,7 @@ async function getData(params: { [p: string]: string | string[] | undefined }) {
 
         if (data) return data?.map(item => {
             return {
-                distance : Get_Distance(params.latitude, item?.lat, params?.longitude, item?.lng, "K"),
+                distance: Get_Distance(params.latitude, item?.lat, params?.longitude, item?.lng, "K"),
                 ...item
             }
         })
@@ -46,6 +47,7 @@ const index = async ({
 }) => {
 
     const data = await getData(searchParams)
+    if(!data || data?.length === 0) redirect("/")
     console.log({data})
 
     return (
@@ -57,7 +59,13 @@ const index = async ({
                     <CircularProgress color="inherit"/>
                 </Backdrop>
             }>
-                <ListingDetailsThree data={data ? data[0] : null}/>
+
+                {
+
+                    (data && data[0]) ? <ListingDetailsThree data={data[0]}/> : null
+
+                }
+
             </Suspense>
         </Wrapper>
     )

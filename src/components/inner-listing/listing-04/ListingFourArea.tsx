@@ -174,7 +174,7 @@ const ListingFourArea = ({data}: any) => {
                                             >
                                                 {activeMarker === id ? (
                                                     <InfoWindow onCloseClick={() => setActiveMarker(null)}>
-                                                        <div>{name}</div>
+                                                        <h6>{name}</h6>
                                                     </InfoWindow>
                                                 ) : null}
                                             </Marker>
