@@ -30,6 +30,12 @@ async function getData(params: { category: string, subCategory: string, latitude
         // })
 
 
+        const distance = await supabase
+            .from('settings')
+            .select('*')
+            .eq('id', 1)
+            .single()
+
         console.log({error})
 
 
@@ -44,7 +50,7 @@ async function getData(params: { category: string, subCategory: string, latitude
                     ...item
                 }
             })
-            return arrayWithDistance?.filter(item => item?.distance <= 100)
+            return arrayWithDistance?.filter(item => item?.distance <= (distance?.data?.distance || 100))
             // Process the data as needed
         } else {
             throw new Error(`Request failed with ${status}`);
