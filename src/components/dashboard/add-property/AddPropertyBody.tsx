@@ -10,9 +10,10 @@ import {createClient} from "@/utils/supabase/client";
 import * as yup from "yup";
 import {Controller, useForm} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup";
-import {ChangeEvent, useEffect, useState} from "react";
+import {ChangeEvent, useEffect, useRef, useState} from "react";
 import {toast} from "react-toastify";
 import {Backdrop, CircularProgress} from "@mui/material";
+import {useRouter, useSearchParams} from "next/navigation";
 
 type state = {
     category: null | number
@@ -33,6 +34,71 @@ interface FormDataField {
 const AddPropertyBody = () => {
 
     const supabase = createClient()
+
+    const searchParams = useSearchParams()
+
+    const listID = searchParams.get('id')
+    const router = useRouter()
+
+    const getData = async (datas: any) => {
+        const {data, status, error} = await supabase
+            .from('Listing')
+            .select('*, listingsubcategories!inner(subcategoryid)')
+            .match({id: listID})
+            .single()
+
+        if (data) {
+            setValue("name", data?.name)
+            setValue("description", data?.description)
+            setValue("lat", data?.lat)
+            setValue("lang", data?.lng)
+            setValue("googlePlaceID", data?.google_place_id)
+
+            data?.listingsubcategories?.map(items => {
+                const subID = items?.subcategoryid
+                datas?.map(item => {
+                    item?.Subcategories?.map((subcategory) => {
+                        if(subcategory?.id === subID){
+                            setSelectedServices(prevState => ([...prevState, {
+                                category: item?.id,
+                                subCategory: subcategory?.id,
+                                label: item?.name + " - " + subcategory?.name
+                            }]))
+                        }
+                    })
+
+                })
+            })
+
+
+        }
+    }
+
+    const fetchPosts = async () => {
+        const {data} = await supabase.from('Categories').select(`
+  id, 
+  name, 
+  Subcategories ( id, name )
+`)
+        setCategories(data)
+        setIsLoading(false)
+
+
+        if (listID) {
+            getData(data)
+        }
+    }
+
+    const initialized = useRef(false);
+    useEffect(() => {
+        if (!initialized.current) {
+            initialized.current = true;
+
+            setIsLoading(true)
+
+            fetchPosts()
+        }
+    }, []);
 
     const schema = yup
         .object({
@@ -83,65 +149,89 @@ const AddPropertyBody = () => {
     const onSubmit = async (data: FormDataField) => {
         try {
             setIsLoading(true)
-            let url
-
-            if (uploadedFile) {
-                const fileName = Date.now().toString();
-                const fileExt = fileName.split('.').pop();
-                const {data, error} = await supabase
-                    .storage
-                    .from('images')
-                    .upload(fileName, uploadedFile, {
-                        contentType: `image/${fileExt}`,
-                        upsert: false
+            if (listID) {
+                const {error} = await supabase
+                    .from('Listing')
+                    .update({
+                        name: data.name,
+                        description: data?.description || "",
+                        lat: data?.lat ? parseFloat(data?.lat) : null,
+                        lng: data?.lang ? parseFloat(data?.lang) : null,
+                        google_place_id: data?.googlePlaceID || "",
                     })
-                url = process.env.NEXT_PUBLIC_IMAGE_URL + fileName
-                console.log({data, error, url})
-            }
-            // Start a transaction
-            const {data: listing, error: listingError} = await supabase
-                .from('Listing')
-                .insert({
-                    name: data.name,
-                    description: data?.description || "",
-                    lat: data?.lat ? parseFloat(data?.lat) : null,
-                    lng: data?.lang ? parseFloat(data?.lang) : null,
-                    google_place_id: data?.googlePlaceID || "",
-                    imageUrl: url,
-                })
-                .select()
-                .single()  // Retrieve the inserted listing data including the generated listing_id
+                    .eq('id', parseInt(listID))
 
-            if (listingError) {
-                console.error('Error inserting listing:', listingError)
-                return
-            }
+                const notify = () => toast('Listing Updated!', {position: 'top-center'});
+                notify();
+                router.back()
 
-            console.log("list added", listing)
-            const listingId = listing.id
+                if (error) {
+                    console.error('Error updating listing:', error)
+                    return
+                }
+            } else {
 
-            data?.state?.map(async item => {
-                const {data: listingSubCategory, error: listingSubCategoryError} = await supabase
-                    .from('listingsubcategories')
-                    .insert([
-                        {listid: listingId, subcategoryid: item.subCategory}
-                    ])
+                let url
 
-                if (listingSubCategoryError) {
-                    console.error('Error inserting into ListingSubCategory:', listingSubCategoryError)
+                if (uploadedFile) {
+                    const fileName = Date.now().toString();
+                    const fileExt = fileName.split('.').pop();
+                    const {data, error} = await supabase
+                        .storage
+                        .from('images')
+                        .upload(fileName, uploadedFile, {
+                            contentType: `image/${fileExt}`,
+                            upsert: false
+                        })
+                    url = process.env.NEXT_PUBLIC_IMAGE_URL + fileName
+                    console.log({data, error, url})
+                }
+                // Start a transaction
+                const {data: listing, error: listingError} = await supabase
+                    .from('Listing')
+                    .insert({
+                        name: data.name,
+                        description: data?.description || "",
+                        lat: data?.lat ? parseFloat(data?.lat) : null,
+                        lng: data?.lang ? parseFloat(data?.lang) : null,
+                        google_place_id: data?.googlePlaceID || "",
+                        imageUrl: url,
+                    })
+                    .select()
+                    .single()  // Retrieve the inserted listing data including the generated listing_id
+
+                if (listingError) {
+                    console.error('Error inserting listing:', listingError)
                     return
                 }
 
-                console.log('Successfully inserted listing and linked subcategory', {listing, listingSubCategory})
-            })
+                console.log("list added", listing)
+                const listingId = listing.id
 
-            scrollTop()
+                data?.state?.map(async item => {
+                    const {data: listingSubCategory, error: listingSubCategoryError} = await supabase
+                        .from('listingsubcategories')
+                        .insert([
+                            {listid: listingId, subcategoryid: item.subCategory}
+                        ])
 
-            const notify = () => toast('New Listing Created', {position: 'top-center'});
-            notify();
-            reset()
-            setUploadedFile(undefined)
-            setSelectedServices([])
+                    if (listingSubCategoryError) {
+                        console.error('Error inserting into ListingSubCategory:', listingSubCategoryError)
+                        return
+                    }
+
+                    console.log('Successfully inserted listing and linked subcategory', {listing, listingSubCategory})
+                })
+
+                scrollTop()
+
+                const notify = () => toast('New Listing Created', {position: 'top-center'});
+                notify();
+                reset()
+                setUploadedFile(undefined)
+                setSelectedServices([])
+            }
+
 
         } catch (e) {
             console.log(e)
@@ -151,22 +241,6 @@ const AddPropertyBody = () => {
 
 
     }
-
-    useEffect(() => {
-        setIsLoading(true)
-        const fetchPosts = async () => {
-            const {data} = await supabase.from('Categories').select(`
-  id, 
-  name, 
-  Subcategories ( id, name )
-`)
-            console.log({data})
-            setCategories(data)
-            setIsLoading(false)
-        }
-
-        fetchPosts()
-    }, [])
 
     const [selectedServices, setSelectedServices] = useState<state[]>([])
 

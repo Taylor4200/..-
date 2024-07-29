@@ -13,7 +13,19 @@ const PropertyTableBody = ({list, handleDeleteListing}: any) => {
 
     const handleDelete = (id: number) => handleDeleteListing(id)
 
-    console.log(list)
+    const keyStr =
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
+
+    const triplet = (e1: number, e2: number, e3: number) =>
+        keyStr.charAt(e1 >> 2) +
+        keyStr.charAt(((e1 & 3) << 4) | (e2 >> 4)) +
+        keyStr.charAt(((e2 & 15) << 2) | (e3 >> 6)) +
+        keyStr.charAt(e3 & 63);
+
+    const rgbDataURL = (r: number, g: number, b: number) =>
+        `data:image/gif;base64,R0lGODlhAQABAPAA${
+            triplet(0, r, g) + triplet(b, 255, 255)
+        }/yH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==`;
 
     return (
         <tbody className="border-0">
@@ -21,7 +33,8 @@ const PropertyTableBody = ({list, handleDeleteListing}: any) => {
             <tr key={item.id}>
                 <td>
                     <div className="d-lg-flex align-items-center position-relative">
-                        <Image src={item?.imageUrl || noImageIcon} alt="" className="p-img"
+                        <Image src={item?.imageUrl || noImageIcon} placeholder="blur" priority
+                               blurDataURL={rgbDataURL(237, 181, 6)} alt="" className="p-img"
                                style={{height: 140, width: 140}} width={105} height={10}/>
                         <div className="ps-lg-4 md-pt-10">
                             <Link style={{
@@ -62,7 +75,7 @@ const PropertyTableBody = ({list, handleDeleteListing}: any) => {
                                                                                 className="lazy-img"/> View</Link></li>
                             <li><Link className="dropdown-item" href="#"><Image src={icon_2} alt=""
                                                                                 className="lazy-img"/> Share</Link></li>
-                            <li><Link className="dropdown-item" href="#"><Image src={icon_3} alt=""
+                            <li><Link className="dropdown-item" href={`/dashboard/add-property?edit=true&id=${item?.id}`}><Image src={icon_3} alt=""
                                                                                 className="lazy-img"/> Edit</Link></li>
                             <li>
                                 <button onClick={() => handleDelete(item.id)} className="dropdown-item"><Image
