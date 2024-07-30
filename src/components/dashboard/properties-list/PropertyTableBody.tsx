@@ -59,6 +59,7 @@ const PropertyTableBody = ({list, handleDeleteListing}: any) => {
                         </div>
                     </div>
                 </td>
+                <td>{item?.type?.toUpperCase()}</td>
                 <td>{moment(item?.created_at).startOf('minute').fromNow()}</td>
                 <td>{item?.phone}</td>
                 <td>
@@ -75,8 +76,11 @@ const PropertyTableBody = ({list, handleDeleteListing}: any) => {
                                                                                 className="lazy-img"/> View</Link></li>
                             <li><Link className="dropdown-item" href="#"><Image src={icon_2} alt=""
                                                                                 className="lazy-img"/> Share</Link></li>
-                            <li><Link className="dropdown-item" href={`/dashboard/add-property?edit=true&id=${item?.id}`}><Image src={icon_3} alt=""
-                                                                                className="lazy-img"/> Edit</Link></li>
+                            <li><Link className="dropdown-item"
+                                      href={`/dashboard/add-property?edit=true&id=${item?.id}`}><Image src={icon_3}
+                                                                                                       alt=""
+                                                                                                       className="lazy-img"/> Edit</Link>
+                            </li>
                             <li>
                                 <button onClick={() => handleDelete(item.id)} className="dropdown-item"><Image
                                     src={icon_4} alt=""

@@ -24,7 +24,7 @@ const ListingCard = ({item}: any) => {
     const handleContactModal = () => setContactModal(prevState => !prevState)
 
     const handleUserCalled = async () => {
-        if(!item?.phone) return
+        if (!item?.phone) return
         const {error} = await supabase
             .rpc('increment_totalinterect', {x: 1, row_id: 1})
 
@@ -36,13 +36,16 @@ const ListingCard = ({item}: any) => {
     return (
         <div className="listing-card-seven border-20 p-20 mb-50 wow fadeInUp">
             <div className="d-flex flex-wrap layout-one">
-                <div
-                    className={`img-gallery position-relative z-1 border-20 overflow-hidden ${item?.bg_img}`}>
+                <div style={{height: item?.type === "premium" ? 150 : "100%"}}
+                     className={` position-relative z-1 border-20 overflow-hidden ${item?.type !== "standard" ? item?.bg_img + " " + "img-gallery" : ""}`}>
                     {
-                        item?.imageUrl ? <Image src={item?.imageUrl} alt="img" width={0}
-                                                height={0}
-                                                sizes="100vw"
-                                                style={{width: '100%', height: '100%'}}/> : null
+                        item?.type !== "standard" && item?.imageUrl ? <Image src={item?.imageUrl} alt="img" width={0}
+                                                                             height={0}
+                                                                             sizes="100vw"
+                                                                             style={{
+                                                                                 width: '100%',
+                                                                                 height: '100%'
+                                                                             }}/> : null
                     }
 
                     <div className={`tag border-20 ${item?.tag_bg}`}>{item?.tag}</div>
@@ -62,17 +65,18 @@ const ListingCard = ({item}: any) => {
                     {/*    </Fancybox>*/}
                     {/*</div>*/}
                 </div>
-                <div className="property-info position-relative">
-                    <Link href={`/listing_details_03?id=${item.id}&name=${item.name}&latitude=${latitude}&longitude=${longitude}`}
-                          className="title tran3s mb-15"
-                          style={{
-                              maxWidth: 650, display: '-webkit-box',
-                              overflow: 'hidden',
-                              WebkitBoxOrient: 'vertical',
-                              WebkitLineClamp: 2
-                          }}>{item?.name}</Link>
+                <div className="property-info position-relative" style={{ width: item?.type === "standard" ? "100%": "calc(100% - 326px)" }}>
+                    <Link
+                        href={`/listing_details_03?id=${item.id}&name=${item.name}&latitude=${latitude}&longitude=${longitude}`}
+                        className="title tran3s mb-15"
+                        style={{
+                            maxWidth: 650, display: '-webkit-box',
+                            overflow: 'hidden',
+                            WebkitBoxOrient: 'vertical',
+                            WebkitLineClamp: 2
+                        }}>{item?.name}</Link>
 
-                    <Box display="flex" alignItems="baseline">
+                    <Box display="flex" alignItems="baseline" mb={item?.type === "standard" ? 4 : 0}>
                         <Typography variant="subtitle1">{item?.distance + " " + "Mi"}</Typography>
                         {/*<p>{item?.distance ? (item?.distance + "  " + "Mi") : ""}</p>*/}
 
@@ -82,17 +86,21 @@ const ListingCard = ({item}: any) => {
                         </div>
                     </Box>
 
-                    <Box sx={{minHeight: 140, mt: 2.5}}>
-                        <Typography variant="body1"
-                                    sx={{
-                                        display: '-webkit-box',
-                                        overflow: 'hidden',
-                                        WebkitBoxOrient: 'vertical',
-                                        WebkitLineClamp: 5
-                                    }}>
-                            {item?.description}
-                        </Typography>
-                    </Box>
+                    {
+                        item?.type === "standard" ? null :
+                            <Box sx={{minHeight: item?.type === "pro" ? 140 : "auto", my: 2.5}}>
+                                <Typography variant="body1"
+                                            sx={{
+                                                display: '-webkit-box',
+                                                overflow: 'hidden',
+                                                WebkitBoxOrient: 'vertical',
+                                                WebkitLineClamp: 5
+                                            }}>
+                                    {item?.description}
+                                </Typography>
+                            </Box>
+                    }
+
 
                     {/*<ul style={{minHeight: 100}}>*/}
 
@@ -159,7 +167,8 @@ const ListingCard = ({item}: any) => {
                             <li><Link href="#"><i
                                 className="fa-light fa-circle-plus"></i></Link></li>
                             <li>
-                                <button onClick={handleContactModal} className="btn-ten rounded-0"><span>Connect</span></button>
+                                <button onClick={handleContactModal} className="btn-ten rounded-0"><span>Connect</span>
+                                </button>
 
                             </li>
                         </ul>
@@ -192,7 +201,7 @@ const ListingCard = ({item}: any) => {
                             <DialogContentText variant="body1" fontWeight="bold">{item?.phone}</DialogContentText>
                         </Box>
 
-                        <Link href={item?.phone ? "tel:"+ item?.phone : "#"}>
+                        <Link href={item?.phone ? "tel:" + item?.phone : "#"}>
                             <button onClick={handleUserCalled} className="btn-ten rounded-0"><span>Call</span></button>
                         </Link>
 

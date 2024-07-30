@@ -146,6 +146,7 @@ const PropertyListBody = () => {
                                 <thead>
                                 <tr>
                                     <th scope="col">Title</th>
+                                    <th scope="col">Type</th>
                                     <th scope="col">Created AT</th>
                                     <th scope="col">Number</th>
                                     <th scope="col">Status</th>

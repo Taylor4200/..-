@@ -12,7 +12,7 @@ import {Controller, useForm} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup";
 import {ChangeEvent, useEffect, useRef, useState} from "react";
 import {toast} from "react-toastify";
-import {Backdrop, CircularProgress} from "@mui/material";
+import {Backdrop, CircularProgress, FormControlLabel, Radio, RadioGroup} from "@mui/material";
 import {useRouter, useSearchParams} from "next/navigation";
 
 type state = {
@@ -21,6 +21,8 @@ type state = {
     label: string
 }
 
+type listType = "standard" | "premium" | "pro"
+
 interface FormDataField {
     name: string;
     description?: string;
@@ -28,6 +30,7 @@ interface FormDataField {
     state: state[],
     lat?: string,
     lang?: string
+    type: listType
 }
 
 
@@ -53,6 +56,7 @@ const AddPropertyBody = () => {
             setValue("lat", data?.lat)
             setValue("lang", data?.lng)
             setValue("googlePlaceID", data?.google_place_id)
+            setValue("type", data?.type)
 
             data?.listingsubcategories?.map(items => {
                 const subID = items?.subcategoryid
@@ -106,6 +110,7 @@ const AddPropertyBody = () => {
             // description: yup.string().required().label("description"),
             googlePlaceID: yup.string().label("googlePlaceID"),
             state: yup.array().min(1, "You must Select least 1 Category").required("required"),
+            // type: yup.string().required().label("type"),
             // lat: yup.number()
             //     .nullable()
             //     .transform(value => (value === '' ? null : value))
@@ -128,7 +133,8 @@ const AddPropertyBody = () => {
     } = useForm<FormDataField>({
         resolver: yupResolver(schema), defaultValues: {
             lat: "",
-            lang: ""
+            lang: "",
+            type: "standard" as listType
         }
     });
 
@@ -158,6 +164,7 @@ const AddPropertyBody = () => {
                         lat: data?.lat ? parseFloat(data?.lat) : null,
                         lng: data?.lang ? parseFloat(data?.lang) : null,
                         google_place_id: data?.googlePlaceID || "",
+                        type: data?.type
                     })
                     .eq('id', parseInt(listID))
 
@@ -196,6 +203,7 @@ const AddPropertyBody = () => {
                         lng: data?.lang ? parseFloat(data?.lang) : null,
                         google_place_id: data?.googlePlaceID || "",
                         imageUrl: url,
+                        type: data?.type
                     })
                     .select()
                     .single()  // Retrieve the inserted listing data including the generated listing_id
@@ -421,6 +429,32 @@ const AddPropertyBody = () => {
                         {/*      <input type="text" placeholder="Tax Rate" />*/}
                         {/*   </div>*/}
                         {/*</div>*/}
+                    </div>
+
+                    <div className="row align-items-end">
+                        <div className="col-md-6">
+                            <div className="dash-input-wrapper mb-30">
+                                <label htmlFor="">Listing Type</label>
+
+                                <Controller
+                                    name="type"
+                                    control={control}
+                                    render={({ field }) => (
+                                        <RadioGroup {...field} row aria-labelledby="radio-buttons" name="buttons-group">
+                                            <FormControlLabel value={"standard"} control={<Radio />} label={"Standard"} />
+                                            <FormControlLabel value={"premium"} control={<Radio />} label={"Premium"} />
+                                            <FormControlLabel value={"pro"} control={<Radio />} label={"Pro"} />
+
+                                        </RadioGroup>
+                                    )}
+                                />
+
+
+                                {/*<p className="form_error">{errors.lat?.message}</p>*/}
+                            </div>
+
+
+                        </div>
                     </div>
                 </div>
 
