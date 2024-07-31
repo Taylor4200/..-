@@ -6,6 +6,7 @@ import PropertyTableBody from "./PropertyTableBody";
 import {useEffect, useState} from "react";
 import {createClient} from "@/utils/supabase/client";
 import {Backdrop, CircularProgress} from "@mui/material";
+import {useSearchParams} from "next/navigation";
 
 const PropertyListBody = () => {
 
@@ -14,6 +15,10 @@ const PropertyListBody = () => {
     const [totalCount, setTotalCount] = useState(0);
     const [loading, setLoading] = useState<boolean>(true)
 
+    const searchParams = useSearchParams()
+
+    const search = searchParams.get('search')
+
     const NO_PER_PAGE = 10;
 
     const supabase = createClient()
@@ -21,10 +26,27 @@ const PropertyListBody = () => {
     const from = ((page - 1) * NO_PER_PAGE)
     const to = (page * NO_PER_PAGE) - 1
 
-    const fetchList = async () => {
-        try {
-            setLoading(true)
+    const fetchListWithSearch = async (search: string | null) => {
+        let datas;
+        let errors;
+        let counts;
+        if (search) {
+            const {data, error} = await supabase
+                .from('Listing')
+                .select('*')
+                .textSearch('name', `${search}`)
+                .range(from, to)
+                .order('id', {ascending: false})
 
+            const {count} = await supabase
+                .from("Listing")
+                .select("*", {count: "exact", head: true})
+                .textSearch('name', `${search}`)
+
+            datas = data;
+            errors = error;
+            counts = count
+        } else {
             const {data, error} = await supabase
                 .from('Listing')
                 .select('*')
@@ -35,8 +57,25 @@ const PropertyListBody = () => {
                 .from("Listing")
                 .select("*", {count: "exact", head: true})
 
-            if (count) setTotalCount(count)
-            if (data && data?.length) setList(data);
+            datas = data;
+            errors = error;
+            counts = count
+        }
+
+        return {
+            datas, errors, counts
+        }
+
+    }
+
+    const fetchList = async (search: string | null) => {
+        try {
+            setLoading(true)
+
+            const {datas, errors, counts} = await fetchListWithSearch(search)
+
+            if (counts) setTotalCount(counts)
+            if (datas && datas?.length) setList(datas);
         } catch (e) {
             console.log(e)
         } finally {
@@ -46,8 +85,9 @@ const PropertyListBody = () => {
     };
 
     useEffect(() => {
-        fetchList();
-    }, []);
+        setPage(1)
+        fetchList(search);
+    }, [search]);
 
 // event handler for page change on click
     const handlePageChange = async (pageNumber: number) => {
@@ -57,15 +97,29 @@ const PropertyListBody = () => {
                 pageNumber > 0 &&
                 pageNumber !== page
             ) {
-                const fromHere = ((pageNumber - 1) * NO_PER_PAGE)
-                const toHere = (pageNumber * NO_PER_PAGE) - 1
-                const {data, error} = await supabase
-                    .from('Listing')
-                    .select('*')
-                    .range(fromHere, toHere)
-                    .order('id', {ascending: false})
-                if (data && data?.length) setList(data);
-                setPage(pageNumber);
+
+                if (search) {
+                    const fromHere = ((pageNumber - 1) * NO_PER_PAGE)
+                    const toHere = (pageNumber * NO_PER_PAGE) - 1
+                    const {data, error} = await supabase
+                        .from('Listing')
+                        .select('*')
+                        .range(fromHere, toHere)
+                        .order('id', {ascending: false})
+                        .textSearch('name', `${search}`)
+                    if (data && data?.length) setList(data);
+                    setPage(pageNumber);
+                } else {
+                    const fromHere = ((pageNumber - 1) * NO_PER_PAGE)
+                    const toHere = (pageNumber * NO_PER_PAGE) - 1
+                    const {data, error} = await supabase
+                        .from('Listing')
+                        .select('*')
+                        .range(fromHere, toHere)
+                        .order('id', {ascending: false})
+                    if (data && data?.length) setList(data);
+                    setPage(pageNumber);
+                }
             }
         } catch (e) {
             console.log(e)
@@ -92,7 +146,7 @@ const PropertyListBody = () => {
                 .delete()
                 .eq('id', id)
 
-            await fetchList()
+            await fetchList(null)
 
             console.log({resListCat, resList})
         } catch (e) {
