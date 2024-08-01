@@ -379,7 +379,7 @@ const ListingFourArea = ({data}: any) => {
                                 isLoaded ?
                                     <GoogleMap options={{
                                         mapId: process?.env?.NEXT_PUBLIC_GOOGLEID || "",
-                                        // styles: exampleMapStyles,
+                                        // styles: exampleMapStyles,//
                                     }}
                                         onLoad={handleOnLoad}
                                         onClick={() => setActiveMarker(null)}
