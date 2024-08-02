@@ -15,6 +15,44 @@ import {toast} from "react-toastify";
 import {Backdrop, CircularProgress, FormControlLabel, Radio, RadioGroup} from "@mui/material";
 import {useRouter, useSearchParams} from "next/navigation";
 
+import 'react-quill/dist/quill.snow.css'; // Import Quill styles
+import dynamic from "next/dynamic"
+import ReactQuill from "react-quill";
+
+
+const QuillEditor = dynamic(() => import('react-quill'), {ssr: false});
+
+const quillModules = {
+    toolbar: [
+        [{header: [1, 2, 3, false]}],
+        ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+        [{list: 'ordered'}, {list: 'bullet'}],
+        ['link', 'image'],
+        [{align: []}],
+        [{color: []}],
+        ['code-block'],
+        ['clean'],
+    ],
+};
+
+
+const quillFormats = [
+    'header',
+    'bold',
+    'italic',
+    'underline',
+    'strike',
+    'blockquote',
+    'list',
+    'bullet',
+    'link',
+    'image',
+    'align',
+    'color',
+    'code-block',
+];
+
+
 type state = {
     category: null | number
     subCategory: null | number
@@ -62,7 +100,7 @@ const AddPropertyBody = () => {
                 const subID = items?.subcategoryid
                 datas?.map(item => {
                     item?.Subcategories?.map((subcategory) => {
-                        if(subcategory?.id === subID){
+                        if (subcategory?.id === subID) {
                             setSelectedServices(prevState => ([...prevState, {
                                 category: item?.id,
                                 subCategory: subcategory?.id,
@@ -300,12 +338,34 @@ const AddPropertyBody = () => {
                     </div>
                     <div className="dash-input-wrapper mb-30">
                         <label htmlFor="">Description*</label>
-                        <textarea className="size-lg" {...register("description")}
-                                  placeholder="Write about listing..."></textarea>
+
+                        <Controller
+                            name="description"
+                            control={control}
+                            rules={{
+                                required: "Please enter task description",
+                            }}
+                            render={({field}) => (
+                                <QuillEditor
+                                    {...field}
+                                    placeholder={"Write Description"}
+                                    onChange={(text) => {
+                                        field.onChange(text);
+                                    }} theme="snow"
+                                    modules={quillModules}
+                                    formats={quillFormats}
+                                    style={{height: 300}}
+                                />
+                            )}
+                        />
+
+
+                        {/*<textarea className="size-lg" {...register("description")}*/}
+                        {/*          placeholder="Write about listing..."></textarea>*/}
                     </div>
                     <div className="row align-items-end">
                         <div className="col-md-6">
-                            <div className="dash-input-wrapper mb-30">
+                            <div className="dash-input-wrapper mb-30 mt-30">
                                 <label htmlFor="">Services*</label>
 
                                 <NiceSelect className={`nice-select `}
@@ -439,11 +499,11 @@ const AddPropertyBody = () => {
                                 <Controller
                                     name="type"
                                     control={control}
-                                    render={({ field }) => (
+                                    render={({field}) => (
                                         <RadioGroup {...field} row aria-labelledby="radio-buttons" name="buttons-group">
-                                            <FormControlLabel value={"standard"} control={<Radio />} label={"Standard"} />
-                                            <FormControlLabel value={"premium"} control={<Radio />} label={"Premium"} />
-                                            <FormControlLabel value={"pro"} control={<Radio />} label={"Pro"} />
+                                            <FormControlLabel value={"standard"} control={<Radio/>} label={"Standard"}/>
+                                            <FormControlLabel value={"premium"} control={<Radio/>} label={"Premium"}/>
+                                            <FormControlLabel value={"pro"} control={<Radio/>} label={"Pro"}/>
 
                                         </RadioGroup>
                                     )}

@@ -65,7 +65,8 @@ const ListingCard = ({item}: any) => {
                     {/*    </Fancybox>*/}
                     {/*</div>*/}
                 </div>
-                <div className="property-info position-relative" style={{ width: item?.type === "standard" ? "100%": "calc(100% - 326px)" }}>
+                <div className="property-info position-relative"
+                     style={{width: item?.type === "standard" ? "100%" : "calc(100% - 326px)"}}>
                     <Link
                         href={`/listing_details_03?id=${item.id}&name=${item.name}&latitude=${latitude}&longitude=${longitude}`}
                         className="title tran3s mb-15"
@@ -89,15 +90,12 @@ const ListingCard = ({item}: any) => {
                     {
                         item?.type === "standard" ? null :
                             <Box sx={{minHeight: item?.type === "pro" ? 140 : "auto", my: 2.5}}>
-                                <Typography variant="body1"
-                                            sx={{
-                                                display: '-webkit-box',
-                                                overflow: 'hidden',
-                                                WebkitBoxOrient: 'vertical',
-                                                WebkitLineClamp: 5
-                                            }}>
-                                    {item?.description}
-                                </Typography>
+                                <div style={{
+                                    display: '-webkit-box',
+                                    overflow: 'hidden',
+                                    WebkitBoxOrient: 'vertical',
+                                    WebkitLineClamp: 3
+                                }} dangerouslySetInnerHTML={{__html: item?.description}}></div>
                             </Box>
                     }
 
