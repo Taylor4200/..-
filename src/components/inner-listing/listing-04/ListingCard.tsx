@@ -199,8 +199,8 @@ const ListingCard = ({item}: any) => {
                             <DialogContentText variant="body1" fontWeight="bold">{item?.phone}</DialogContentText>
                         </Box>
 
-                        <Link href={item?.phone ? "tel:" + item?.phone : "#"}>
-                            <button onClick={handleUserCalled} className="btn-ten rounded-0"><span>Call</span></button>
+                        <Link className="btn-ten rounded-0" onClick={handleUserCalled} href={item?.phone ? "tel:" + item?.phone : "#"}>
+                            <span>Call</span>
                         </Link>
 
 

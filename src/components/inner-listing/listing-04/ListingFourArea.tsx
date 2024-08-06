@@ -38,7 +38,7 @@ const ListingFourArea = ({data}: any) => {
             id: item.id,
             name: item?.name,
             position: {lat: item?.lat, lng: item?.lng},
-            scale: item?.type === "pro" ? 0.6 : data?.type === "premium" ? 0.4 : 0.2,
+            scale: item?.type === "pro" ? 0.7 : item?.type === "premium" ? 0.5 : 0.2,
             imageUrl: item?.imageUrl,
             phone: item?.phone,
             type: item?.type
