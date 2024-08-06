@@ -1,15 +1,12 @@
 "use client"
-import DropdownTwo from "@/components/search-dropdown/inner-dropdown/DropdownTwo";
-import UseShortedProperty from "@/hooks/useShortedProperty";
-import NiceSelect from "@/ui/NiceSelect";
-import Link from "next/link";
-import ReactPaginate from "react-paginate";
-import Fancybox from "@/components/common/Fancybox";
 import DropdownOne from "@/components/search-dropdown/home-dropdown/DropdownOne";
 import {useEffect, useState} from "react";
 import dynamic from 'next/dynamic'
 import {createClient} from "@/utils/supabase/client";
 import {GoogleMap, InfoWindow, Marker, useLoadScript} from "@react-google-maps/api";
+import noImageIcon from "@/assets/images/listing/NoImagePhoto.jpg";
+import Image from "next/image";
+import Link from "next/link";
 
 const ListingCard = dynamic(() => import('@/components/inner-listing/listing-04/ListingCard'), {ssr: false})
 const ListingFourArea = ({data}: any) => {
@@ -34,35 +31,6 @@ const ListingFourArea = ({data}: any) => {
         fetchPosts()
     }, [])
 
-
-    const itemsPerPage = 6;
-    const page = "listing_6";
-
-    // const {
-    //     itemOffset,
-    //     sortedProperties,
-    //     currentItems,
-    //     pageCount,
-    //     handlePageClick,
-    //     handleBathroomChange,
-    //     handleBedroomChange,
-    //     handleSearchChange,
-    //     handlePriceChange,
-    //     maxPrice,
-    //     priceValue,
-    //     resetFilters,
-    //     selectedAmenities,
-    //     handleAmenityChange,
-    //     handleLocationChange,
-    //     handleStatusChange,
-    //     handleTypeChange,
-    //     handlePriceDropChange
-    // } = UseShortedProperty({itemsPerPage, page});
-
-    // const handleResetFilter = () => {
-    //     resetFilters();
-    // };
-
     const [isMapShow, setMapShow] = useState(false)
 
     const markers = data?.map(item => {
@@ -70,6 +38,9 @@ const ListingFourArea = ({data}: any) => {
             id: item.id,
             name: item?.name,
             position: {lat: item?.lat, lng: item?.lng},
+            scale: item?.type === "pro" ? 0.6 : data?.type === "premium" ? 0.4 : 0.2,
+            imageUrl: item?.imageUrl,
+            phone: data?.phone
         }
     })
 
@@ -92,221 +63,15 @@ const ListingFourArea = ({data}: any) => {
         googleMapsApiKey: process?.env?.NEXT_PUBLIC_GOOGLEAPIKEY || "",
     });
 
-    const exampleMapStyles = [
-        {
-            elementType: "geometry",
-            stylers: [
-                {
-                    color: "#ebe3cd",
-                },
-            ],
-        },
-        {
-            elementType: "labels.text.fill",
-            stylers: [
-                {
-                    color: "#523735",
-                },
-            ],
-        },
-        {
-            elementType: "labels.text.stroke",
-            stylers: [
-                {
-                    color: "#f5f1e6",
-                },
-            ],
-        },
-        {
-            featureType: "administrative",
-            elementType: "geometry.stroke",
-            stylers: [
-                {
-                    color: "#c9b2a6",
-                },
-            ],
-        },
-        {
-            featureType: "administrative.land_parcel",
-            elementType: "geometry.stroke",
-            stylers: [
-                {
-                    color: "#dcd2be",
-                },
-            ],
-        },
-        {
-            featureType: "administrative.land_parcel",
-            elementType: "labels.text.fill",
-            stylers: [
-                {
-                    color: "#ae9e90",
-                },
-            ],
-        },
-        {
-            featureType: "landscape.natural",
-            elementType: "geometry",
-            stylers: [
-                {
-                    color: "#dfd2ae",
-                },
-            ],
-        },
-        {
-            featureType: "poi",
-            elementType: "geometry",
-            stylers: [
-                {
-                    color: "#dfd2ae",
-                },
-            ],
-        },
-        {
-            featureType: "poi",
-            elementType: "labels.text.fill",
-            stylers: [
-                {
-                    color: "#93817c",
-                },
-            ],
-        },
-        {
-            featureType: "poi.park",
-            elementType: "geometry.fill",
-            stylers: [
-                {
-                    color: "#a5b076",
-                },
-            ],
-        },
-        {
-            featureType: "poi.park",
-            elementType: "labels.text.fill",
-            stylers: [
-                {
-                    color: "#447530",
-                },
-            ],
-        },
-        {
-            featureType: "road",
-            elementType: "geometry",
-            stylers: [
-                {
-                    color: "#f5f1e6",
-                },
-            ],
-        },
-        {
-            featureType: "road.arterial",
-            elementType: "geometry",
-            stylers: [
-                {
-                    color: "#fdfcf8",
-                },
-            ],
-        },
-        {
-            featureType: "road.highway",
-            elementType: "geometry",
-            stylers: [
-                {
-                    color: "#f8c967",
-                },
-            ],
-        },
-        {
-            featureType: "road.highway",
-            elementType: "geometry.stroke",
-            stylers: [
-                {
-                    color: "#e9bc62",
-                },
-            ],
-        },
-        {
-            featureType: "road.highway.controlled_access",
-            elementType: "geometry",
-            stylers: [
-                {
-                    color: "#e98d58",
-                },
-            ],
-        },
-        {
-            featureType: "road.highway.controlled_access",
-            elementType: "geometry.stroke",
-            stylers: [
-                {
-                    color: "#db8555",
-                },
-            ],
-        },
-        {
-            featureType: "road.local",
-            elementType: "labels.text.fill",
-            stylers: [
-                {
-                    color: "#806b63",
-                },
-            ],
-        },
-        {
-            featureType: "transit.line",
-            elementType: "geometry",
-            stylers: [
-                {
-                    color: "#dfd2ae",
-                },
-            ],
-        },
-        {
-            featureType: "transit.line",
-            elementType: "labels.text.fill",
-            stylers: [
-                {
-                    color: "#8f7d77",
-                },
-            ],
-        },
-        {
-            featureType: "transit.line",
-            elementType: "labels.text.stroke",
-            stylers: [
-                {
-                    color: "#ebe3cd",
-                },
-            ],
-        },
-        {
-            featureType: "transit.station",
-            elementType: "geometry",
-            stylers: [
-                {
-                    color: "#dfd2ae",
-                },
-            ],
-        },
-        {
-            featureType: "water",
-            elementType: "geometry.fill",
-            stylers: [
-                {
-                    color: "#b9d3c2",
-                },
-            ],
-        },
-        {
-            featureType: "water",
-            elementType: "labels.text.fill",
-            stylers: [
-                {
-                    color: "#92998d",
-                },
-            ],
-        },
-    ]
+    const handleUserCalled = async (phone: any) => {
+        if (!phone) return
+        const {error} = await supabase
+            .rpc('increment_totalinterect', {x: 1, row_id: 1})
+
+        if (error) {
+            console.log(error)
+        }
+    }
 
     return (
         <div className="property-listing-six bg-pink-two pt-110 md-pt-80 pb-170 xl-pb-120 mt-150 xl-mt-120">
@@ -375,31 +140,86 @@ const ListingFourArea = ({data}: any) => {
                     isMapShow ?
                         <div className="hero-banner-seven position-relative mt-120 lg-mt-100">
                             <div id="" className="h-100">
-                            {
-                                isLoaded ?
-                                    <GoogleMap options={{
-                                        mapId: process?.env?.NEXT_PUBLIC_GOOGLEID || "",
-                                        // styles: exampleMapStyles,//
-                                    }}
-                                        onLoad={handleOnLoad}
-                                        onClick={() => setActiveMarker(null)}
-                                        mapContainerStyle={{height: "100vh"}}
-                                    >
-                                        {markers.map(({id, name, position}) => (
-                                            <Marker
-                                                key={id}
-                                                position={position}
-                                                onClick={() => handleActiveMarker(id)}
-                                            >
-                                                {activeMarker === id ? (
-                                                    <InfoWindow onCloseClick={() => setActiveMarker(null)}>
-                                                        <h6>{name}</h6>
-                                                    </InfoWindow>
-                                                ) : null}
-                                            </Marker>
-                                        ))}
-                                    </GoogleMap> : null
-                            }
+                                {
+                                    isLoaded ?
+                                        <GoogleMap options={{
+                                            mapId: process?.env?.NEXT_PUBLIC_GOOGLEID || "",
+                                        }}
+                                                   onLoad={handleOnLoad}
+                                                   onClick={() => setActiveMarker(null)}
+                                                   mapContainerStyle={{height: "100vh"}}
+                                        >
+                                            {markers.map(({id, name, position, scale, imageUrl, phone}) => (
+                                                <Marker
+                                                    icon={{
+                                                        path: "M27.648-41.399q0-3.816-2.7-6.516t-6.516-2.7-6.516 2.7-2.7 6.516 2.7 6.516 6.516 2.7 6.516-2.7 2.7-6.516zm9.216 0q0 3.924-1.188 6.444l-13.104 27.864q-.576 1.188-1.71 1.872t-2.43.684-2.43-.684-1.674-1.872l-13.14-27.864q-1.188-2.52-1.188-6.444 0-7.632 5.4-13.032t13.032-5.4 13.032 5.4 5.4 13.032z",
+                                                        fillColor: '#E32831',
+                                                        fillOpacity: 1,
+                                                        strokeWeight: 0,
+                                                        scale: scale
+                                                    }}
+                                                    key={id}
+                                                    position={position}
+                                                    onClick={() => handleActiveMarker(id)}
+                                                >
+                                                    {activeMarker === id ? (
+                                                        <InfoWindow onCloseClick={() => setActiveMarker(null)}>
+                                                            <>
+
+                                                                <Image src={imageUrl || noImageIcon} width={0}
+                                                                       height={0}
+                                                                       sizes="100vw"
+                                                                       style={{
+                                                                           width: '100%',
+                                                                           height: '100%',
+                                                                           borderRadius: 25,
+                                                                           maxHeight: 265,
+                                                                           maxWidth: 240
+                                                                       }} alt="" className="lazy-img icon me-2"/>
+                                                                <h6 style={{marginTop: 20}}>{name}</h6>
+
+                                                                <div style={{
+                                                                    display: "flex",
+                                                                    alignItems: "center",
+                                                                    width: "100%",
+                                                                    justifyContent: "space-between"
+                                                                }}>
+                                                                    <div onClick={() => handleUserCalled(phone)}
+                                                                         style={{
+                                                                             backgroundColor: "#F2F6F9",
+                                                                             width: "48%",
+                                                                             height: 60,
+                                                                             textAlign: "center",
+                                                                             display: "flex",
+                                                                             alignItems: "center",
+                                                                             justifyContent: "center", cursor: "pointer"
+                                                                         }}>
+                                                                        <i className="fa-regular fa-phone-volume fa-2x"></i>
+
+                                                                    </div>
+                                                                    <Link
+                                                                        href={`/listing_details_03?id=${id}&name=${name}&latitude=${position?.lat}&longitude=${position?.lng}`}
+
+                                                                        style={{
+                                                                            backgroundColor: "#F2F6F9",
+                                                                            width: "48%",
+                                                                            height: 60,
+                                                                            textAlign: "center",
+                                                                            display: "flex",
+                                                                            alignItems: "center",
+                                                                            justifyContent: "center", cursor: "pointer"
+                                                                        }}>
+                                                                        <i className="fa-solid fa-arrow-up-right-from-square fa-2x"></i>
+                                                                    </Link>
+                                                                </div>
+
+                                                            </>
+                                                        </InfoWindow>
+                                                    ) : null}
+                                                </Marker>
+                                            ))}
+                                        </GoogleMap> : null
+                                }
                             </div>
 
                             {/*<div id="" className="h-100">*/}
@@ -414,7 +234,7 @@ const ListingFourArea = ({data}: any) => {
                             {/*</div>*/}
                         </div> :
                         <>
-                            {data?.sort((a: any, b:any) => (b?.distance != null) - (a?.distance != null) || a?.distance - b?.distance)?.map((item: any) =>
+                            {data?.sort((a: any, b: any) => (b?.distance != null) - (a?.distance != null) || a?.distance - b?.distance)?.map((item: any) =>
                                 <ListingCard key={item?.id} item={item}/>)}
 
                             {/*<div className="pt-50 md-pt-20 text-center">*/}

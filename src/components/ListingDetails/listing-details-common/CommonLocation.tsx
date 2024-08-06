@@ -29,7 +29,7 @@ const CommonLocation = ({data}: any) => {
             <div id="" className="h-100">
 
                 <GoogleMap options={{
-                    streetViewControl: false,
+                    mapId: process?.env?.NEXT_PUBLIC_GOOGLEID || "",
                 }}
                            onLoad={handleOnLoad}
                            onClick={() => setActiveMarker(true)}
