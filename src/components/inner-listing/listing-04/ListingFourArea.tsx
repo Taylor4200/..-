@@ -40,7 +40,8 @@ const ListingFourArea = ({data}: any) => {
             position: {lat: item?.lat, lng: item?.lng},
             scale: item?.type === "pro" ? 0.6 : data?.type === "premium" ? 0.4 : 0.2,
             imageUrl: item?.imageUrl,
-            phone: item?.phone
+            phone: item?.phone,
+            type: item?.type
         }
     })
 
@@ -149,7 +150,7 @@ const ListingFourArea = ({data}: any) => {
                                                    onClick={() => setActiveMarker(null)}
                                                    mapContainerStyle={{height: "100vh"}}
                                         >
-                                            {markers.map(({id, name, position, scale, imageUrl, phone}) => (
+                                            {markers.map(({id, name, position, scale, imageUrl, phone, type}) => (
                                                 <Marker
                                                     icon={{
                                                         path: "M27.648-41.399q0-3.816-2.7-6.516t-6.516-2.7-6.516 2.7-2.7 6.516 2.7 6.516 6.516 2.7 6.516-2.7 2.7-6.516zm9.216 0q0 3.924-1.188 6.444l-13.104 27.864q-.576 1.188-1.71 1.872t-2.43.684-2.43-.684-1.674-1.872l-13.14-27.864q-1.188-2.52-1.188-6.444 0-7.632 5.4-13.032t13.032-5.4 13.032 5.4 5.4 13.032z",
@@ -164,18 +165,24 @@ const ListingFourArea = ({data}: any) => {
                                                 >
                                                     {activeMarker === id ? (
                                                         <InfoWindow onCloseClick={() => setActiveMarker(null)}>
-                                                            <>
+                                                            <div style={{
+                                                                width: 350,
+                                                                height: (imageUrl && type !== "standard") ? 360 : 100
+                                                            }}>
 
-                                                                <Image src={imageUrl || noImageIcon} width={0}
-                                                                       height={0}
-                                                                       sizes="100vw"
-                                                                       style={{
-                                                                           width: '100%',
-                                                                           height: '100%',
-                                                                           borderRadius: 25,
-                                                                           maxHeight: 265,
-                                                                           maxWidth: 240
-                                                                       }} alt="" className="lazy-img icon me-2"/>
+                                                                {
+                                                                    imageUrl && type !== "standard" &&
+                                                                    (<Image src={imageUrl} width={0}
+                                                                            height={0}
+                                                                            sizes="100vw"
+                                                                            style={{
+                                                                                width: '100%',
+                                                                                height: '67%',
+                                                                                borderRadius: 5,
+                                                                            }} alt="" className="lazy-img icon me-2"/>)
+                                                                }
+
+
                                                                 <h6 style={{marginTop: 20}}>{name}</h6>
 
                                                                 <div style={{
@@ -184,16 +191,18 @@ const ListingFourArea = ({data}: any) => {
                                                                     width: "100%",
                                                                     justifyContent: "space-between"
                                                                 }}>
-                                                                    <Link href={phone ? "tel:"+ data?.phone : "#"} onClick={() => handleUserCalled(phone)}
-                                                                         style={{
-                                                                             backgroundColor: "#F2F6F9",
-                                                                             width: "48%",
-                                                                             height: 60,
-                                                                             textAlign: "center",
-                                                                             display: "flex",
-                                                                             alignItems: "center",
-                                                                             justifyContent: "center", cursor: "pointer"
-                                                                         }}>
+                                                                    <Link href={phone ? "tel:" + data?.phone : "#"}
+                                                                          onClick={() => handleUserCalled(phone)}
+                                                                          style={{
+                                                                              backgroundColor: "#F2F6F9",
+                                                                              width: "48%",
+                                                                              height: 60,
+                                                                              textAlign: "center",
+                                                                              display: "flex",
+                                                                              alignItems: "center",
+                                                                              justifyContent: "center",
+                                                                              cursor: "pointer"
+                                                                          }}>
                                                                         <i className="fa-regular fa-phone-volume fa-2x"></i>
 
                                                                     </Link>
@@ -213,7 +222,7 @@ const ListingFourArea = ({data}: any) => {
                                                                     </Link>
                                                                 </div>
 
-                                                            </>
+                                                            </div>
                                                         </InfoWindow>
                                                     ) : null}
                                                 </Marker>
