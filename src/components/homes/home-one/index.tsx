@@ -15,7 +15,7 @@ import FancyBanner from "@/components/common/FancyBanner"
 import FancyBannerMob from "@/components/homes/home-four/FancyBanner"
 
 
-const HomeOne = () => {
+const HomeOne = ({data}: any) => {
   return (
     <>
       <HeaderOne style={false} />
@@ -24,7 +24,7 @@ const HomeOne = () => {
       {/*<BLockFeatureOne />*/}
       <BLockFeatureTwo />
       {/*<BLockFeatureThree />*/}
-      <Property />
+      <Property data={data}/>
       <FancyBannerOne style={false} />
       {/*<AgentArea style={false} />*/}
         <FancyBannerMob style={false} />

@@ -6,11 +6,23 @@ async function increaseVisitTotal() {
 
     const supabase = createClient()
 
-    const {error, data} = await supabase
-        .rpc('increment_totalvisit', {x: 1, row_id: 1})
+    try {
+        const {data, status} = await supabase
+            .from('Listing')
+            .select('*')
+            .range(0, 5)
+            .order('id', {ascending: false})
 
-    if (error) {
-        console.log(error)
+        const {error} = await supabase
+            .rpc('increment_totalvisit', {x: 1, row_id: 1})
+
+        if (error) {
+            console.log(error)
+        }
+
+        return data
+    }catch (e){
+        console.log(e)
     }
 }
 
@@ -19,11 +31,11 @@ export const metadata = {
 };
 const index = async () => {
 
-    await increaseVisitTotal()
+    const data = await increaseVisitTotal()
 
     return (
         <Wrapper>
-            <HomeOne/>
+            <HomeOne data={data}/>
         </Wrapper>
     )
 }
