@@ -40,7 +40,7 @@ const ListingFourArea = ({data}: any) => {
             position: {lat: item?.lat, lng: item?.lng},
             scale: item?.type === "pro" ? 0.6 : data?.type === "premium" ? 0.4 : 0.2,
             imageUrl: item?.imageUrl,
-            phone: data?.phone
+            phone: item?.phone
         }
     })
 
@@ -184,7 +184,7 @@ const ListingFourArea = ({data}: any) => {
                                                                     width: "100%",
                                                                     justifyContent: "space-between"
                                                                 }}>
-                                                                    <div onClick={() => handleUserCalled(phone)}
+                                                                    <Link href={phone ? "tel:"+ data?.phone : "#"} onClick={() => handleUserCalled(phone)}
                                                                          style={{
                                                                              backgroundColor: "#F2F6F9",
                                                                              width: "48%",
@@ -196,7 +196,7 @@ const ListingFourArea = ({data}: any) => {
                                                                          }}>
                                                                         <i className="fa-regular fa-phone-volume fa-2x"></i>
 
-                                                                    </div>
+                                                                    </Link>
                                                                     <Link
                                                                         href={`/listing_details_03?id=${id}&name=${name}&latitude=${position?.lat}&longitude=${position?.lng}`}
 
