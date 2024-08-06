@@ -55,11 +55,11 @@ const SidebarInfo = ({data}: any) => {
                     <li>Location: <span>{data?.address}</span></li>
                     <li>Website: <span><Link href={data?.website || ""}>{data?.website}</Link></span>
                     </li>
-                    <li>Phone: <span><Link onClick={handleUserCalled} href={data?.phone ? "tel:"+ data?.phone : "#"}>{data?.phone}</Link></span></li>
+                    <li>Phone: <span><a onClick={handleUserCalled} href={data?.phone ? "tel:"+ data?.phone : "#"}>{data?.phone}</a></span></li>
                 </ul>
             </div>
-            <Link onClick={handleUserCalled}  href={data?.phone ? "tel:"+ data?.phone : "#"} className="btn-nine text-uppercase rounded-3 w-100 mb-10">CONTACT
-                Business</Link>
+            <a onClick={handleUserCalled}  href={data?.phone ? "tel:"+ data?.phone : "#"} className="btn-nine text-uppercase rounded-3 w-100 mb-10">CONTACT
+                Business</a>
         </>
     )
 }

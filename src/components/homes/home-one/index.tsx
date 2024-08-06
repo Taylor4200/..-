@@ -27,7 +27,7 @@ const HomeOne = ({data}: any) => {
       <Property data={data}/>
       <FancyBannerOne style={false} />
       {/*<AgentArea style={false} />*/}
-        <FancyBannerMob style={false} />
+      {/*  <FancyBannerMob style={false} />*/}
       {/*<BLockFeatureFour />*/}
       {/*  <BLockFeatureFive style={false } />*/}
       {/*<FancyBanner style={false} />*/}

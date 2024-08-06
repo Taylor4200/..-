@@ -191,7 +191,7 @@ const ListingFourArea = ({data}: any) => {
                                                                     width: "100%",
                                                                     justifyContent: "space-between"
                                                                 }}>
-                                                                    <Link href={phone ? "tel:" + phone : "#"}
+                                                                    <a href={phone ? "tel:" + phone : "#"}
                                                                           onClick={() => handleUserCalled(phone)}
                                                                           style={{
                                                                               backgroundColor: "#F2F6F9",
@@ -205,7 +205,7 @@ const ListingFourArea = ({data}: any) => {
                                                                           }}>
                                                                         <i className="fa-regular fa-phone-volume fa-2x"></i>
 
-                                                                    </Link>
+                                                                    </a>
                                                                     <Link
                                                                         href={`/listing_details_03?id=${id}&name=${name}&latitude=${position?.lat}&longitude=${position?.lng}`}
 

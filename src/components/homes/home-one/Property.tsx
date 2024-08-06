@@ -68,17 +68,17 @@ const Property = ({data}: any) => {
                                         <Link href="/listing_details_01"
                                               className="title tran3s mt-4">{item.name}</Link>
                                         <div className="address">{item.address}</div>
-                                        <div
-                                            className="pl-footer top-border d-flex align-items-center justify-content-between">
-                                            <strong className="price fw-500 color-dark">
-                                                ${item?.price?.toLocaleString(undefined, {
-                                                minimumFractionDigits: item.price_text ? 0 : 2,
-                                                maximumFractionDigits: 2
-                                            })}{item.price_text && <>/<sub>m</sub></>}
-                                            </strong>
-                                            <Link href="/listing_details_01" className="btn-four rounded-circle"><i
-                                                className="bi bi-arrow-up-right"></i></Link>
-                                        </div>
+                                        {/*<div*/}
+                                        {/*    className="pl-footer top-border d-flex align-items-center justify-content-between">*/}
+                                        {/*    <strong className="price fw-500 color-dark">*/}
+                                        {/*        ${item?.price?.toLocaleString(undefined, {*/}
+                                        {/*        minimumFractionDigits: item.price_text ? 0 : 2,*/}
+                                        {/*        maximumFractionDigits: 2*/}
+                                        {/*    })}{item.price_text && <>/<sub>m</sub></>}*/}
+                                        {/*    </strong>*/}
+                                        {/*    <Link href="/listing_details_01" className="btn-four rounded-circle"><i*/}
+                                        {/*        className="bi bi-arrow-up-right"></i></Link>*/}
+                                        {/*</div>*/}
                                     </div>
                                 </div>
                             </div>

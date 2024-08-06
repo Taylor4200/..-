@@ -10,6 +10,7 @@ interface DataType {
    title: string;
    address_1: string;
    address_2?: string;
+   address_3?: string
 }
 
 const address_data: DataType[] = [
@@ -23,7 +24,8 @@ const address_data: DataType[] = [
       class_name: "skew-line",
       title: "Our hotline number",
       address_1: "+757 699 4478,",
-      address_2: "+991 377 9731",
+      address_2: "+991 377 9731,",
+      address_3: "+303-502-7179",
    }
    // {
    //    id: 3,
@@ -57,6 +59,8 @@ const ContactArea = () => {
                               <p className="fs-22">{item.title}</p>
                               <Link href="#" className="tran3s">{item.address_1}</Link>
                               {item.address_2 && <> { " " } <Link href="#" className="tran3s">{item.address_2}</Link></>}
+                              {item.address_3 && <> { " " } <Link href="#" className="tran3s">{item.address_3}</Link></>}
+
                            </div>
                         </div>
                      </div>
