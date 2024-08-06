@@ -36,9 +36,11 @@ const Banner = () => {
             <div className="container position-relative pt-35 pb-35">
                 <div className="row">
                     <div className="col-xxl-10 col-xl-9 col-lg-10 col-md-10 m-auto">
-                        <h1 className="hero-heading text-center wow fadeInUp" style={{color: "#fff", fontSize: 80}}>Search for Local Truck <span
-                            className="d-inline-block position-relative">Support <Image src={titleShape} alt=""
-                                                                                        className="lazy-img"/></span>
+                        <h1 className="hero-heading text-center wow fadeInUp" style={{color: "#fff", fontSize: 80}}>Search for Local Truck Support
+
+                            {/*<span*/}
+                            {/*className="d-inline-block position-relative">Support <Image src={titleShape} alt=""*/}
+                            {/*                                                            className="lazy-img"/></span>*/}
                         </h1>
                         {/*<p className="fs-24 color-dark text-center pt-35 pb-35 wow fadeInUp" data-wow-delay="0.1s">We’ve*/}
                         {/*    more than 745,000 Service Available.</p>*/}
