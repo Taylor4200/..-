@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 
 const tab_title: string[] = ["Monthly", "Yearly",];
-const list: string[] = ["All Operating Supported", "Multiple User", "Refund", "12 months duration", "Live Chat", "Send invite via Link"];
+const list: string[] = ["Vendor Information", "Services Provided", "First Page Gurantee", "Logo", "Analytics", "12 Month Duration"];
 
 const PricingOneArea = () => {
 
