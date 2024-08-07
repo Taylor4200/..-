@@ -35,32 +35,32 @@ const BLockFeatureTwo = () => {
                   <div className="col-xxl-5 col-md-6 wow fadeInRight">
                      <div className="block-two">
                         <div className="bg-wrapper">
-                           <h4>Who we are?</h4>
-                           <p className="fs-22 mt-20">Your premier partner in real estate. <br /> Transforming properties into dreams. Let us guide you home with expertise.</p>
+                           <h4>Our Mission</h4>
+                           <p className="fs-22 mt-20">Connecting truckers with reliable, verified services 24/7 to ensure seamless operations and minimal downtime on the road.</p>
                            <div className="counter-wrapper ps-xl-3 pb-30 mt-45 mb-50">
                               <div className="row">
                                  <div className="col-6">
                                     <div className="counter-block-one mt-20">
                                        <div className="main-count fw-500 color-dark"><span className="counter"><Count number={1.7} /></span>K+</div>
-                                       <span>Completed Project</span>
+                                       <span>Total Calls</span>
                                     </div>
                                  </div>
                                  <div className="col-6">
                                     <div className="counter-block-one mt-20">
                                        <div className="main-count fw-500 color-dark"><span className="counter"><Count number={1.3} /></span>mil+</div>
-                                       <span>Happy Customers</span>
+                                       <span>Total Impressions</span>
                                     </div>
                                  </div>
                               </div>
                            </div>
                            <ul className="list-style-one fs-22 color-dark style-none">
-                              <li>Loan & low Interest facility</li>
-                              <li>Over 100k+ property & update regularly</li>
-                              <li>Expert agent consultation</li>
+                              <li>Nationwide Services</li>
+                              <li>New listings added daily</li>
+                              <li>24/7 Support</li>
                            </ul>
                            <div className="d-inline-flex flex-wrap align-items-center mt-15 md-mt-10">
                               <Link href="/about_us_01" className="btn-two mt-20 me-4"><span>More Details</span></Link>
-                              <Link href="/contact" className="btn-three mt-20"><span>Request a Callback</span> <i className="fa-light fa-arrow-right-long"></i></Link>
+                              {/*<Link href="/contact" className="btn-three mt-20"><span>Request a Callback</span> <i className="fa-light fa-arrow-right-long"></i></Link>*/}
                            </div>
                         </div>
                      </div>
