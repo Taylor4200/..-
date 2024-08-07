@@ -30,7 +30,7 @@ const CommonLocation = ({data}: any) => {
 
                 <GoogleMap options={{
                     mapId: process?.env?.NEXT_PUBLIC_GOOGLEID || "",
-                    maxZoom: 8,
+                    maxZoom: 11,
                 }}
                            onLoad={handleOnLoad}
                            onClick={() => setActiveMarker(true)}
