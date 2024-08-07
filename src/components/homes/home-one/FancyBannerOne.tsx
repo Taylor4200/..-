@@ -18,14 +18,14 @@ const FancyBannerOne = ({ style }: any) => {
                </div>
 
                <div className={`col-lg-6 wow fadeInRight ${style ? "ms-auto" : ""}`}>
-                  <div className={`property-item md-mt-60 position-relative z-1 ${style ? "rounded-0" : ""}`}>
+                  <div className={`${style ? "rounded-0" : ""}`}>
                      <div className="row gx-0">
                         <div className="col-md-5 d-flex">
                            <div className="gutter border-right w-100 h-100">
                               {/*<div className="tag mb-20">FOR SELL</div>*/}
                               {/*<h4 className="mb-70 sm-mb-40">Luxury fisa orkit villa.</h4>*/}
                               <ul className="style-none d-flex action-icons">
-                                 <SocialIcon />
+                                 {/*<SocialIcon />*/}
                               </ul>
                            </div>
                         </div>

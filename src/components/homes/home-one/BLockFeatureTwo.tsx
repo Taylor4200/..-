@@ -23,11 +23,11 @@ const BLockFeatureTwo = () => {
                            <a onClick={() => setIsVideoOpen(true)} style={{ cursor: "pointer" }} className="fancybox video-icon d-flex align-items-center justify-content-center rounded-circle ms-3" data-fancybox="">
                               <i className="fa-solid fa-play"></i>
                            </a>
-                           <div className="card-box text-center" style={{ top: 240, right: 520 }}>
-                              <h3 className="main-count fw-500">0<span className="counter"><Count number={7} /></span>+</h3>
-                              <p className="fs-20">Years Experience <br />with proud.</p>
+                           <div className="" style={{ top: 240, right: 520 }}>
+                              {/*<h3 className="main-count fw-500">0<span className="counter"><Count number={7} /></span>+</h3>*/}
+                              {/*<p className="fs-20">Years Experience <br />with proud.</p>*/}
                            </div>
-                           <Image src={featureShape} alt="" className="lazy-img shapes screen_01" />
+                           {/*<Image src={featureShape} alt="" className="lazy-img shapes screen_01" />*/}
                         </div>
                      </div>
                   </div>
