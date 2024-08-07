@@ -14,8 +14,8 @@ const Property = ({data}: any) => {
             <div className="container">
                 <div className="position-relative">
                     <div className="title-one text-center text-lg-start mb-45 xl-mb-30 lg-mb-20 wow fadeInUp">
-                        <h3>New <span>Listings <Image src={titleShape} alt="" className="lazy-img"/></span></h3>
-                        <p className="fs-22 mt-xs">Explore latest & featured Listing.</p>
+                        <h3>New <span>Listings</span></h3>
+                        <p className="fs-22 mt-xs">Explore latest & featured Listings.</p>
                     </div>
 
                     <div className="row gx-xxl-5">
