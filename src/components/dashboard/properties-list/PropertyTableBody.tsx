@@ -8,8 +8,14 @@ import icon_4 from "@/assets/images/dashboard/icon/icon_21.svg";
 
 import moment from "moment";
 import noImageIcon from "@/assets/images/listing/noImage.svg"
+import {Dialog, DialogContent, DialogContentText, DialogTitle} from "@mui/material";
+import Box from "@mui/material/Box";
+import React, {useState} from "react";
 
 const PropertyTableBody = ({list, handleDeleteListing}: any) => {
+
+    const [contactModal, setContactModal] = useState<any>(undefined);
+    const handleContactModal = (list?: any) => setContactModal(list)
 
     const handleDelete = (id: number) => handleDeleteListing(id)
 
@@ -28,71 +34,93 @@ const PropertyTableBody = ({list, handleDeleteListing}: any) => {
         }/yH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==`;
 
     return (
-        <tbody className="border-0">
-        {list?.map((item) => (
-            <tr key={item.id}>
-                <td>
-                    <div className="d-lg-flex align-items-center position-relative">
-                        <Image src={item?.imageUrl || noImageIcon} placeholder="blur" priority
-                               blurDataURL={rgbDataURL(237, 181, 6)} alt="" className="p-img"
-                               style={{height: 140, width: 140}} width={105} height={10}/>
-                        <div className="ps-lg-4 md-pt-10">
-                            <Link style={{
-                                maxWidth: 700, display: '-webkit-box',
-                                overflow: 'hidden',
-                                WebkitBoxOrient: 'vertical',
-                                WebkitLineClamp: 2
-                            }} href="#"
-                                  className="property-name tran3s color-dark fw-500 fs-20 stretched-link">{item.name}</Link>
-                            <div style={{
-                                maxWidth: 500, display: '-webkit-box',
-                                overflow: 'hidden',
-                                WebkitBoxOrient: 'vertical',
-                                WebkitLineClamp: 2
-                            }} className="address">{item.address}</div>
-                            <strong className="price color-dark" style={{
-                                maxWidth: 500, display: '-webkit-box',
-                                overflow: 'hidden',
-                                WebkitBoxOrient: 'vertical', fontSize: 13,
-                                WebkitLineClamp: 2
-                            }}>{item?.website}</strong>
+        <>
+            <tbody className="border-0">
+            {list?.map((item) => (
+                <tr key={item.id}>
+                    <td>
+                        <div className="d-lg-flex align-items-center position-relative">
+                            <Image src={item?.imageUrl || noImageIcon} placeholder="blur" priority
+                                   blurDataURL={rgbDataURL(237, 181, 6)} alt="" className="p-img"
+                                   style={{height: 140, width: 140}} width={105} height={10}/>
+                            <div className="ps-lg-4 md-pt-10">
+                                <Link style={{
+                                    maxWidth: 700, display: '-webkit-box',
+                                    overflow: 'hidden',
+                                    WebkitBoxOrient: 'vertical',
+                                    WebkitLineClamp: 2
+                                }} href="#"
+                                      className="property-name tran3s color-dark fw-500 fs-20 stretched-link">{item.name}</Link>
+                                <div style={{
+                                    maxWidth: 500, display: '-webkit-box',
+                                    overflow: 'hidden',
+                                    WebkitBoxOrient: 'vertical',
+                                    WebkitLineClamp: 2
+                                }} className="address">{item.address}</div>
+                                <strong className="price color-dark" style={{
+                                    maxWidth: 500, display: '-webkit-box',
+                                    overflow: 'hidden',
+                                    WebkitBoxOrient: 'vertical', fontSize: 13,
+                                    WebkitLineClamp: 2
+                                }}>{item?.website}</strong>
+                            </div>
                         </div>
-                    </div>
-                </td>
-                <td>{item?.type?.toUpperCase()}</td>
-                <td>{moment(item?.created_at).startOf('minute').fromNow()}</td>
-                <td>{item?.phone}</td>
-                <td>
-                    <div className={`property-status ${item?.status_bg}`}>Active</div>
-                </td>
-                <td>
-                    <div className="action-dots float-end">
-                        <button className="action-btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                                aria-expanded="false">
-                            <span></span>
-                        </button>
-                        <ul className="dropdown-menu dropdown-menu-end">
-                            <li><Link className="dropdown-item" href="#"><Image src={icon_1} alt=""
-                                                                                className="lazy-img"/> View</Link></li>
-                            <li><Link className="dropdown-item" href="#"><Image src={icon_2} alt=""
-                                                                                className="lazy-img"/> Share</Link></li>
-                            <li><Link className="dropdown-item"
-                                      href={`/dashboard/add-property?edit=true&id=${item?.id}`}><Image src={icon_3}
-                                                                                                       alt=""
-                                                                                                       className="lazy-img"/> Edit</Link>
-                            </li>
-                            <li>
-                                <button onClick={() => handleDelete(item.id)} className="dropdown-item"><Image
-                                    src={icon_4} alt=""
-                                    className="lazy-img"/> Delete
-                                </button>
-                            </li>
-                        </ul>
-                    </div>
-                </td>
-            </tr>
-        ))}
-        </tbody>
+                    </td>
+                    <td>{item?.type?.toUpperCase()}</td>
+                    <td>{moment(item?.created_at).startOf('minute').fromNow()}</td>
+                    <td>{item?.phone}</td>
+                    <td>
+                        <div className={`property-status ${item?.status_bg}`}>Active</div>
+                    </td>
+                    <td>
+                        <div className="action-dots float-end">
+                            <button className="action-btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                <span></span>
+                            </button>
+                            <ul className="dropdown-menu dropdown-menu-end">
+                                <li><Link className="dropdown-item" href="#"><Image src={icon_1} alt=""
+                                                                                    className="lazy-img"/> View</Link>
+                                </li>
+                                <li><Link className="dropdown-item" href="#"><Image src={icon_2} alt=""
+                                                                                    className="lazy-img"/> Share</Link>
+                                </li>
+                                <li><Link onClick={() => setContactModal(item)} className="dropdown-item" href="#"><i
+                                    className="fa-regular fa-message" style={{paddingRight: 6}}></i> Note</Link>
+                                </li>
+                                <li><Link className="dropdown-item"
+                                          href={`/dashboard/add-property?edit=true&id=${item?.id}`}><Image src={icon_3}
+                                                                                                           alt=""
+                                                                                                           className="lazy-img"/> Edit</Link>
+                                </li>
+                                <li>
+                                    <button onClick={() => handleDelete(item.id)} className="dropdown-item"><Image
+                                        src={icon_4} alt=""
+                                        className="lazy-img"/> Delete
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+            ))}
+            </tbody>
+
+            <Dialog maxWidth={"md"} fullWidth
+                    open={!!contactModal}
+                    onClose={() => handleContactModal(undefined)}
+                    aria-labelledby="alert-dialog-title"
+                    aria-describedby="alert-dialog-description"
+            >
+                <DialogTitle id="alert-dialog-title">
+                    {"Private Note"}
+                </DialogTitle>
+                <DialogContent sx={{mt: 3}}>
+                    <div dangerouslySetInnerHTML={{__html: contactModal?.note}}></div>
+                </DialogContent>
+            </Dialog>
+
+        </>
     )
 }
 

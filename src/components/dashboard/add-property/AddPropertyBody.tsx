@@ -17,8 +17,6 @@ import {useRouter, useSearchParams} from "next/navigation";
 
 import 'react-quill/dist/quill.snow.css'; // Import Quill styles
 import dynamic from "next/dynamic"
-import ReactQuill from "react-quill";
-
 
 const QuillEditor = dynamic(() => import('react-quill'), {ssr: false});
 
@@ -68,7 +66,8 @@ interface FormDataField {
     state: state[],
     lat?: string,
     lang?: string
-    type: listType
+    type: listType,
+    note?: string
 }
 
 
@@ -95,6 +94,7 @@ const AddPropertyBody = () => {
             setValue("lang", data?.lng)
             setValue("googlePlaceID", data?.google_place_id)
             setValue("type", data?.type)
+            setValue("note", data?.note)
 
             data?.listingsubcategories?.map(items => {
                 const subID = items?.subcategoryid
@@ -202,7 +202,8 @@ const AddPropertyBody = () => {
                         lat: data?.lat ? parseFloat(data?.lat) : null,
                         lng: data?.lang ? parseFloat(data?.lang) : null,
                         google_place_id: data?.googlePlaceID || "",
-                        type: data?.type
+                        type: data?.type,
+                        note: data?.note
                     })
                     .eq('id', parseInt(listID))
 
@@ -241,7 +242,8 @@ const AddPropertyBody = () => {
                         lng: data?.lang ? parseFloat(data?.lang) : null,
                         google_place_id: data?.googlePlaceID || "",
                         imageUrl: url,
-                        type: data?.type
+                        type: data?.type,
+                        note: data?.note
                     })
                     .select()
                     .single()  // Retrieve the inserted listing data including the generated listing_id
@@ -550,6 +552,30 @@ const AddPropertyBody = () => {
                                placeholder=""/>
                     </div>
                     {/*<small>Upload file .jpg, .png, .mp4</small>*/}
+                </div>
+
+                <div className="bg-white card-box border-20 mt-40">
+                    <h4 className="dash-title-three">Private Note</h4>
+
+                    <Controller
+                        name="note"
+                        control={control}
+                        rules={{
+                            required: "Please enter List Note",
+                        }}
+                        render={({field}) => (
+                            <QuillEditor
+                                {...field}
+                                placeholder={"Write Note"}
+                                onChange={(text) => {
+                                    field.onChange(text);
+                                }} theme="snow"
+                                modules={quillModules}
+                                formats={quillFormats}
+                                style={{height: 300}}
+                            />
+                        )}
+                    />
                 </div>
                 {/*<SelectAmenities />*/}
                 {/*<AddressAndLocation/>*/}
