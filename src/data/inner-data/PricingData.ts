@@ -21,25 +21,25 @@ const pricing_data: DataType[] = [
          {
             id: 1,
             class_name: "active",
-            plan: "FREE PLAN",
-            price: "0",
-            desc: "Great for Individual Person",
+            plan: "Standard",
+            price: "$185",
+            desc: "Basic Listing",
             icon_details: [{ icon: "fa-sharp fa-regular fa-xmark" }, { icon: "fa-sharp fa-regular fa-xmark" }, { icon: "fa-sharp fa-regular fa-xmark" }, { icon_class: "available", icon: "fa-sharp fa-regular fa-check" }, { icon_class: "available", icon: "fa-sharp fa-regular fa-check" }, { icon_class: "available", icon: "fa-sharp fa-regular fa-check" },],
             btn: "active"
          },
          {
             id: 2,
-            plan: "Gold Plan",
-            price: "$89",
-            desc: "Great for Startup",
+            plan: "Premium",
+            price: "$325",
+            desc: "Enhanced Visibility",
             icon_details: [{ icon: "fa-sharp fa-regular fa-xmark" }, { icon: "fa-sharp fa-regular fa-xmark" }, { icon_class: "available", icon: "fa-sharp fa-regular fa-check" }, { icon_class: "available", icon: "fa-sharp fa-regular fa-check" }, { icon_class: "available", icon: "fa-sharp fa-regular fa-check" }, { icon_class: "available", icon: "fa-sharp fa-regular fa-check" },],
             btn: "Get Started"
          },
          {
             id: 3,
-            plan: "Business Plan",
-            price: "$147",
-            desc: "Great for Large Business",
+            plan: "Pro",
+            price: "$485",
+            desc: "Maximum Exposure",
             icon_details: [{ icon_class: "available", icon: "fa-sharp fa-regular fa-check" }, { icon_class: "available", icon: "fa-sharp fa-regular fa-check" }, { icon_class: "available", icon: "fa-sharp fa-regular fa-check" }, { icon_class: "available", icon: "fa-sharp fa-regular fa-check" }, { icon_class: "available", icon: "fa-sharp fa-regular fa-check" }, { icon_class: "available", icon: "fa-sharp fa-regular fa-check" },],
             btn: "Get Started"
          },
@@ -51,25 +51,25 @@ const pricing_data: DataType[] = [
          {
             id: 1,
             class_name: "active",
-            plan: "FREE PLAN",
-            price: "0",
-            desc: "Great for Individual Person",
+            plan: "Standard",
+            price: "$185",
+            desc: "Basic Listing",
             icon_details: [{ icon: "fa-sharp fa-regular fa-xmark" }, { icon: "fa-sharp fa-regular fa-xmark" }, { icon: "fa-sharp fa-regular fa-xmark" }, { icon_class: "available", icon: "fa-sharp fa-regular fa-check" }, { icon_class: "available", icon: "fa-sharp fa-regular fa-check" }, { icon_class: "available", icon: "fa-sharp fa-regular fa-check" },],
             btn: "active"
          },
          {
             id: 2,
-            plan: "Gold Plan",
-            price: "$189",
-            desc: "Great for Startup",
+            plan: "Premium",
+            price: "$325",
+            desc: "Enhanced Visibility",
             icon_details: [{ icon: "fa-sharp fa-regular fa-xmark" }, { icon: "fa-sharp fa-regular fa-xmark" }, { icon_class: "available", icon: "fa-sharp fa-regular fa-check" }, { icon_class: "available", icon: "fa-sharp fa-regular fa-check" }, { icon_class: "available", icon: "fa-sharp fa-regular fa-check" }, { icon_class: "available", icon: "fa-sharp fa-regular fa-check" },],
             btn: "Get Started"
          },
          {
             id: 3,
-            plan: "Business Plan",
-            price: "$347",
-            desc: "Great for Large Business",
+            plan: "Pro",
+            price: "$485",
+            desc: "Maximum Exposure",
             icon_details: [{ icon_class: "available", icon: "fa-sharp fa-regular fa-check" }, { icon_class: "available", icon: "fa-sharp fa-regular fa-check" }, { icon_class: "available", icon: "fa-sharp fa-regular fa-check" }, { icon_class: "available", icon: "fa-sharp fa-regular fa-check" }, { icon_class: "available", icon: "fa-sharp fa-regular fa-check" }, { icon_class: "available", icon: "fa-sharp fa-regular fa-check" },],
             btn: "Get Started"
          },
