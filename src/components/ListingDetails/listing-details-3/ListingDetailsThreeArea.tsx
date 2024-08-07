@@ -34,9 +34,9 @@ const ListingDetailsThreeArea = ({data}: any) => {
                     <div className="col-xl-12">
                         <div className="bg-white shadow4 border-20">
                             <PropertyOverview data={data}/>
-                            {/*<div className="property-amenities border-top p-40">*/}
-                            {/*   <CommonAmenities />*/}
-                            {/*</div>*/}
+                            <div className="property-amenities border-top p-40">
+                               <CommonAmenities data={data}/>
+                            </div>
                             {/*<div className="property-video-tour border-top p-40">*/}
                             {/*   <CommonPropertyVideoTour />*/}
                             {/*</div>*/}

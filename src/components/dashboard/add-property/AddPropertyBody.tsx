@@ -10,13 +10,15 @@ import {createClient} from "@/utils/supabase/client";
 import * as yup from "yup";
 import {Controller, useForm} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup";
-import {ChangeEvent, useEffect, useRef, useState} from "react";
+import React, {ChangeEvent, useEffect, useRef, useState} from "react";
 import {toast} from "react-toastify";
-import {Backdrop, CircularProgress, FormControlLabel, Radio, RadioGroup} from "@mui/material";
+import {Backdrop, Checkbox, Chip, CircularProgress, FormControlLabel, Radio, RadioGroup} from "@mui/material";
 import {useRouter, useSearchParams} from "next/navigation";
 
 import 'react-quill/dist/quill.snow.css'; // Import Quill styles
 import dynamic from "next/dynamic"
+import {UniqueServices} from "@/utils/utils";
+import Box from "@mui/material/Box";
 
 const QuillEditor = dynamic(() => import('react-quill'), {ssr: false});
 
@@ -77,6 +79,11 @@ const AddPropertyBody = () => {
 
     const searchParams = useSearchParams()
 
+    const [search, setSearch] = useState("")
+    const [selectedServiceItems, setSelectedServiceItems] = useState<string[]>([])
+
+    console.log(selectedServiceItems)
+
     const listID = searchParams.get('id')
     const router = useRouter()
 
@@ -95,6 +102,11 @@ const AddPropertyBody = () => {
             setValue("googlePlaceID", data?.google_place_id)
             setValue("type", data?.type)
             setValue("note", data?.note)
+
+            if(data?.services) {
+                const splittedStr = data?.services.split(',')
+                setSelectedServiceItems(splittedStr)
+            }
 
             data?.listingsubcategories?.map(items => {
                 const subID = items?.subcategoryid
@@ -203,7 +215,8 @@ const AddPropertyBody = () => {
                         lng: data?.lang ? parseFloat(data?.lang) : null,
                         google_place_id: data?.googlePlaceID || "",
                         type: data?.type,
-                        note: data?.note
+                        note: data?.note,
+                        services: selectedServiceItems.length > 0 ? selectedServiceItems.toString() : undefined
                     })
                     .eq('id', parseInt(listID))
 
@@ -243,7 +256,8 @@ const AddPropertyBody = () => {
                         google_place_id: data?.googlePlaceID || "",
                         imageUrl: url,
                         type: data?.type,
-                        note: data?.note
+                        note: data?.note,
+                        services: selectedServiceItems.length > 0 ? selectedServiceItems.toString() : undefined
                     })
                     .select()
                     .single()  // Retrieve the inserted listing data including the generated listing_id
@@ -520,6 +534,38 @@ const AddPropertyBody = () => {
                     </div>
                 </div>
 
+                <div className="bg-white card-box border-20 mt-40">
+                    <h4 className="dash-title-three">Services</h4>
+
+
+                    <div className="dash-input-wrapper mb-30" style={{maxWidth: 500}}>
+
+                        <input onChange={(e) => setSearch(e.target.value)} type="text" placeholder="Search Service"/>
+                    </div>
+                    <Box display="flex" flexWrap="wrap">
+                        {
+                            UniqueServices.map((item, index) => {
+                                if (search && !item.toLowerCase().trim().includes(search.toLowerCase().trim())) return
+                                return (
+                                    <Box key={index} m={1}>
+                                        <Chip deleteIcon={<Checkbox checked={!!selectedServiceItems.find(itemData => itemData === item)}/>}
+                                              label={item}
+                                              variant="outlined"
+                                              onDelete={() => {
+                                                  const isItemAvailable = selectedServiceItems.find(itemData => itemData === item)
+                                                  if(isItemAvailable) {
+                                                      setSelectedServiceItems(prevState => prevState?.filter(fil => fil !== item))
+                                                  }else {
+                                                      setSelectedServiceItems(prevState => ([...prevState, item]))
+                                                  }
+                                              }}
+                                        />
+                                    </Box>
+                                )
+                            })
+                        }
+                    </Box>
+                </div>
 
                 {/*<ListingDetails />*/}
 
@@ -531,7 +577,8 @@ const AddPropertyBody = () => {
                         uploadedFile ?
                             <div className="dash-input-wrapper mb-20">
                                 <label htmlFor="">File Attachment*</label>
-                                <div className="attached-file d-flex align-items-center justify-content-between mb-15">
+                                <div
+                                    className="attached-file d-flex align-items-center justify-content-between mb-15">
                                     <span>{uploadedFile?.name}</span>
                                     <button onClick={handleRemoveFile} className="remove-btn"><i
                                         className="bi bi-x"></i></button>
@@ -548,7 +595,8 @@ const AddPropertyBody = () => {
                     <div className="dash-btn-one d-inline-block position-relative me-3">
                         <i className="bi bi-plus"></i>
                         Upload File
-                        <input onChange={handleFileUpload} type="file" accept="image/*" id="uploadCV" name="uploadCV"
+                        <input onChange={handleFileUpload} type="file" accept="image/*" id="uploadCV"
+                               name="uploadCV"
                                placeholder=""/>
                     </div>
                     {/*<small>Upload file .jpg, .png, .mp4</small>*/}
