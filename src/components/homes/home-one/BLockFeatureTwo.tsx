@@ -7,7 +7,7 @@ import VideoPopup from "@/modals/VideoPopup";
 
 import featureShape from "@/assets/images/assets/screen_01.png";
 
-const BLockFeatureTwo = () => {
+const BLockFeatureTwo = ({settingData}: any) => {
 
    const [isVideoOpen, setIsVideoOpen] = useState(false);
 
@@ -41,13 +41,13 @@ const BLockFeatureTwo = () => {
                               <div className="row">
                                  <div className="col-6">
                                     <div className="counter-block-one mt-20">
-                                       <div className="main-count fw-500 color-dark"><span className="counter"><Count number={1.7} /></span>K+</div>
+                                       <div className="main-count fw-500 color-dark"><span className="counter"><Count number={settingData?.total_interect} /></span>+</div>
                                        <span>Total Calls</span>
                                     </div>
                                  </div>
                                  <div className="col-6">
                                     <div className="counter-block-one mt-20">
-                                       <div className="main-count fw-500 color-dark"><span className="counter"><Count number={1.3} /></span>mil+</div>
+                                       <div className="main-count fw-500 color-dark"><span className="counter"><Count number={settingData?.total_visit} /></span>+</div>
                                        <span>Total Impressions</span>
                                     </div>
                                  </div>

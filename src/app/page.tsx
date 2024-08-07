@@ -16,11 +16,17 @@ async function increaseVisitTotal() {
         const {error} = await supabase
             .rpc('increment_totalvisit', {x: 1, row_id: 1})
 
+        const {data: settingData} = await supabase
+            .from('settings')
+            .select('*')
+            .eq('id', 1)
+            .single()
+
         if (error) {
             console.log(error)
         }
 
-        return data
+        return {data, settingData}
     }catch (e){
         console.log(e)
     }
@@ -31,11 +37,11 @@ export const metadata = {
 };
 const index = async () => {
 
-    const data = await increaseVisitTotal()
+    const {data, settingData} = await increaseVisitTotal()
 
     return (
         <Wrapper>
-            <HomeOne data={data}/>
+            <HomeOne data={data} settingData={settingData}/>
         </Wrapper>
     )
 }

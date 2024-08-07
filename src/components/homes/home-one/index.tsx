@@ -15,14 +15,14 @@ import FancyBanner from "@/components/common/FancyBanner"
 import FancyBannerMob from "@/components/homes/home-four/FancyBanner"
 
 
-const HomeOne = ({data}: any) => {
+const HomeOne = ({data, settingData}: any) => {
   return (
     <>
       <HeaderOne style={false} />
       <Banner />
       {/*<Feedback />*/}
       {/*<BLockFeatureOne />*/}
-      <BLockFeatureTwo />
+      <BLockFeatureTwo settingData={settingData}/>
       {/*<BLockFeatureThree />*/}
       <Property data={data}/>
       <FancyBannerOne style={false} />
