@@ -23,9 +23,9 @@ const address_data: DataType[] = [
       id: 2,
       class_name: "skew-line",
       title: "Our hotline number",
-      address_1: "+757 699 4478,",
-      address_2: "+991 377 9731,",
-      address_3: "+303-502-7179",
+      // address_1: "+757 699 4478,",
+      // address_2: "+991 377 9731,",
+      address_1: "+303-502-7179",
    }
    // {
    //    id: 3,
