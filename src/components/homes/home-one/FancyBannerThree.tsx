@@ -11,9 +11,9 @@ const FancyBannerThree = () => {
             <div className="row">
                <div className="col-xl-7 col-md-8 m-auto">
                   <div className="title-one mb-45 md-mb-30">
-                     <h2 style={{ color: "#fff" }}>Any Inquiry? <span>Feel free<Image src={titleShape} alt="" className="lazy-img" /></span> To contact Us.</h2>
+                     <h2 style={{ color: "#fff" }}>Looking to increase customer acquisition? </h2>
                   </div>
-                  <Link href="/contact" className="btn-five text-uppercase">SEND MESSAGE</Link>
+                  <Link href="/contact" className="btn-five text-uppercase">CONTACT US</Link>
                </div>
             </div>
          </div>
