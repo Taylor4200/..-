@@ -72,7 +72,7 @@ const BLockFeatureTwo = ({settingData}: any) => {
          <VideoPopup
             isVideoOpen={isVideoOpen}
             setIsVideoOpen={setIsVideoOpen}
-            videoId={"tR8S_rDGqXM"}
+            videoId={"XJ7DCbkTrPI"}
          />
          {/* video modal end */}
       </>
