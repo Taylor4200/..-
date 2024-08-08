@@ -23,10 +23,7 @@ const feature_content: ContentType = {
    desc_2: (<>247TruckSupport.com offers 24/7 access to verified truck services. detailed listing, comprehensive support, all for free. Trusted, easy-to-use and always available.</>),
    desc_3: (<>Connecting truckers with reliable, verified services 24/7 to ensure seamless operations and minimal downtime on the road.
 
-      Check marks to
-      Nationwide Services
-      New listings added daily
-      24/7 Support </>),
+       </>),
 }
 
 const { sub_title, desc_1, title_1, title_2, desc_2, desc_3 } = feature_content;
