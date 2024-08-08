@@ -16,14 +16,14 @@ interface DataType {
 const address_data: DataType[] = [
    {
       id: 1,
-      title: "We’re always happy to help.",
+      title: "Reach the marketing team.",
       address_1: "mailto:marketing@247trucksupport.com"
    },
    {
       id: 2,
       class_name: "skew-line",
-      title: "Our hotline number",
-      address_1: "tel:3035027179"
+      title: "Contact us directly",
+      address_1: "tel:(303) 502-7179"
    }
 ];
 
@@ -34,7 +34,7 @@ const ContactArea = () => {
              <div className="row">
                 <div className="col-xxl-9 col-xl-8 col-lg-10 m-auto">
                    <div className="title-one text-center wow fadeInUp">
-                      <h3>Questions? Feel Free to Reach Out Via Message.</h3>
+                      <h3>Feel free to message us below if you have any questions.</h3>
                    </div>
                 </div>
              </div>
@@ -78,7 +78,7 @@ const ContactArea = () => {
              </div>
           </div>
 
-          <div className="bg-pink mt-150 xl-mt-120 md-mt-80">
+          <div className="">
              <div className="container">
                 <div className="">
                    <div className="form-style-one wow fadeInUp m-auto">
