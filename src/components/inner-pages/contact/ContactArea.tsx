@@ -23,7 +23,7 @@ const address_data: DataType[] = [
       id: 2,
       class_name: "skew-line",
       title: "Our hotline number",
-      address_1: "tel:+3035027179"
+      address_1: "tel:3035027179"
    }
 ];
 
