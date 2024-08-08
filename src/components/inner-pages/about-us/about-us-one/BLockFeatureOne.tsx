@@ -15,9 +15,9 @@ interface ContentType {
 
 const feature_content: ContentType = {
    sub_title: "About us",
-   desc_1: (<>Welcome to Truck Support, your ultimate destination for all your truck service needs! We are thrilled to have you here. At TruckSupport, we specialize in connecting truckers with top-notch service providers. Whether you are in need of maintenance, repair, or any other service, we have got you covered. Say goodbye to endless searches, and let us handle the legwork for you. Explore our directory of trusted truck service companies and get back on the road with confidence. Your journey just got a whole lot smoother with 247TruckSupport.com
+   desc_1: (<>Welcome to 247TruckSupport.com, your go-to for all truck service needs! We connect you with trusted service providers for maintenance, repairs, and more. Skip the endless searches and get back on the road confidently with our reliable directory. Your journey just got a whole lot smoother!
 
-      .</>),
+      </>),
    title_1: "Who we are?",
    title_2: "Our Mission",
    desc_2: (<>247TruckSupport.com offers 24/7 access to verified truck services. detailed listing, comprehensive support, all for free. Trusted, easy-to-use and always available.</>),
@@ -40,7 +40,7 @@ const BLockFeatureOne = () => {
                   <div className="me-xxl-4">
                      <div className="title-one mb-60 lg-mb-40">
                         <div className="upper-title">{sub_title}</div>
-                        <h3>Online <span>Truck<Image src={titleShape} alt="" className="lazy-img" /></span> Service directory.</h3>
+                        <h3>Online <span>Truck </span> Service directory.</h3>
                         <p className="fs-22">{desc_1}</p>
                      </div>
                      <Link href="/contact" className="btn-two">Contact Us</Link>
