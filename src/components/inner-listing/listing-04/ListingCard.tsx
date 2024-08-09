@@ -10,6 +10,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import {Dialog, DialogContent, DialogContentText, DialogTitle} from "@mui/material";
 import {createClient} from "@/utils/supabase/client";
+import {trackInteraction} from "@/utils/utilsServer";
 
 const ListingCard = ({item}: any) => {
 
@@ -25,12 +26,7 @@ const ListingCard = ({item}: any) => {
 
     const handleUserCalled = async () => {
         if (!item?.phone) return
-        const {error} = await supabase
-            .rpc('increment_interect')
-
-        if (error) {
-            console.log(error)
-        }
+        await trackInteraction(item.id, true)
     }
 
     return (

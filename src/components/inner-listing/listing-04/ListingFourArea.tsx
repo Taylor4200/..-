@@ -7,6 +7,7 @@ import {GoogleMap, InfoWindow, Marker, useLoadScript} from "@react-google-maps/a
 import noImageIcon from "@/assets/images/listing/NoImagePhoto.jpg";
 import Image from "next/image";
 import Link from "next/link";
+import {trackInteraction} from "@/utils/utilsServer";
 
 const ListingCard = dynamic(() => import('@/components/inner-listing/listing-04/ListingCard'), {ssr: false})
 const ListingFourArea = ({data}: any) => {
@@ -66,12 +67,7 @@ const ListingFourArea = ({data}: any) => {
 
     const handleUserCalled = async (id: number,phone: any) => {
         if (!phone) return
-        const {error} = await supabase
-            .rpc('increment_interect')
-
-        if (error) {
-            console.log(error)
-        }
+        await trackInteraction(id, true)
     }
 
     return (

@@ -4,6 +4,7 @@ import Link from "next/link"
 import infoAvatar from "@/assets/images/agent/img_06.jpg"
 import {useSearchParams} from "next/navigation";
 import {createClient} from "@/utils/supabase/client";
+import {trackInteraction} from "@/utils/utilsServer";
 
 const SidebarInfo = ({data}: any) => {
 
@@ -27,12 +28,7 @@ const SidebarInfo = ({data}: any) => {
 
     const handleUserCalled = async () => {
         if (!data?.phone) return
-        const {error} = await supabase
-            .rpc('increment_interect')
-
-        if (error) {
-            console.log(error)
-        }
+        await trackInteraction(data.id, true)
     }
 
     return (

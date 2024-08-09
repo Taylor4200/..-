@@ -1,6 +1,5 @@
 import ListingFour from "@/components/inner-listing/listing-04";
 import Wrapper from "@/layouts/Wrapper";
-import {createClient} from '@/utils/supabase/server'
 import {Get_Distance} from "@/utils/utils";
 import {GetDistanceConfig, ListItemResults} from "@/app/listing_04/actions";
 

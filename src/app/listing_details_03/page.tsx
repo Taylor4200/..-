@@ -2,7 +2,8 @@ import ListingDetailsThree from "@/components/ListingDetails/listing-details-3";
 import Wrapper from "@/layouts/Wrapper";
 import {Get_Distance} from "@/utils/utils";
 import {redirect} from "next/navigation";
-import {ListResults, trackInteraction} from "@/app/listing_details_03/actions";
+import {ListResults} from "@/app/listing_details_03/actions";
+import {trackInteraction} from "@/utils/utilsServer";
 
 export const metadata = {
     title: "Listing Details Three Homy - Real Estate React Next js Template",
@@ -13,7 +14,7 @@ async function serverAction(params: { id: number, name: string, latitude: number
     try {
         const data = await ListResults(params.id, params.name)
 
-        await trackInteraction(params.id, true)
+        await trackInteraction(params.id, false)
 
         if (data) return data?.map(item => {
             return {
