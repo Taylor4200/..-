@@ -21,6 +21,20 @@ async function getData(params: { [p: string]: string | string[] | undefined }) {
             .select('*')
             .match({id: params.id, name: params.name})
 
+        const trackInteraction = async (adId: number, isCall = false) => {
+            const {data, error} = await supabase.rpc('track_interaction', {
+                ad_id: adId,
+                is_call: isCall,
+            });
+
+            if (error) {
+                console.error('Error tracking interaction:', error);
+            } else {
+                console.log('Interaction tracked successfully:', data);
+            }
+        };
+
+        await trackInteraction(params.id, true)
 
         console.log({error})
 
@@ -47,26 +61,15 @@ const index = async ({
 }) => {
 
     const data = await getData(searchParams)
-    if(!data || data?.length === 0) redirect("/")
+    if (!data || data?.length === 0) redirect("/")
     console.log({data})
 
     return (
         <Wrapper>
-            <Suspense fallback={
-                <Backdrop
-                    sx={{color: '#fff'}}
-                    open={true}>
-                    <CircularProgress color="inherit"/>
-                </Backdrop>
-            }>
+            {
+                (data && data[0]) ? <ListingDetailsThree data={data[0]}/> : null
 
-                {
-
-                    (data && data[0]) ? <ListingDetailsThree data={data[0]}/> : null
-
-                }
-
-            </Suspense>
+            }
         </Wrapper>
     )
 }

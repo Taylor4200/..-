@@ -27,10 +27,26 @@ import dashboardIcon_10 from "@/assets/images/dashboard/icon/icon_10.svg";
 import dashboardIcon_11 from "@/assets/images/dashboard/icon/icon_41.svg";
 
 import truckSupportIcon from "@/assets/images/logo//trucksupportIcon.png"
+import {logout} from "@/app/login/actions";
+import {toast} from "react-toastify";
 
 
 const DashboardHeaderOne = ({ isActive, setIsActive }: any) => {
    const pathname = usePathname();
+
+   const handleLogout = async () => {
+
+      try {
+         const response = await logout()
+         if (response?.status === 500) {
+            return
+         }
+         const notify = () => toast('Logout successfully', {position: 'top-center'});
+         notify();
+      } catch (e) {
+         console.log(e);
+      }
+   }
 
    return (
       <aside className={`dash-aside-navbar ${isActive ? "show" : ""}`}>
@@ -69,11 +85,11 @@ const DashboardHeaderOne = ({ isActive, setIsActive }: any) => {
                   <li><div className="nav-title">Listing</div></li>
                   <li className="plr"><Link href="/dashboard/properties-list" className={`d-flex w-100 align-items-center ${pathname === '/dashboard/properties-list' ? 'active' : ''}`}>
                      <Image src={pathname === '/dashboard/properties-list' ? dashboardIconActive_6 : dashboardIcon_6} alt="" />
-                     <span>My Properties</span>
+                     <span>My Listing</span>
                   </Link></li>
                   <li className="plr"><Link href="/dashboard/add-property" className={`d-flex w-100 align-items-center ${pathname === '/dashboard/add-property' ? 'active' : ''}`}>
                      <Image src={pathname === '/dashboard/add-property' ? dashboardIconActive_7 : dashboardIcon_7} alt="" />
-                     <span>Add New Property</span>
+                     <span>Add New Listing</span>
                   </Link></li>
                   <li className="plr"><Link href="/dashboard/favourites" className={`d-flex w-100 align-items-center ${pathname === '/dashboard/favourites' ? 'active' : ''}`}>
                      <Image src={pathname === '/dashboard/favourites' ? dashboardIconActive_8 : dashboardIcon_8} alt="" />
@@ -98,7 +114,7 @@ const DashboardHeaderOne = ({ isActive, setIsActive }: any) => {
             </div>
 
             <div className="plr">
-               <Link href="#" className="d-flex w-100 align-items-center logout-btn">
+               <Link onClick={handleLogout} href="#" className="d-flex w-100 align-items-center logout-btn">
                   <div className="icon tran3s d-flex align-items-center justify-content-center rounded-circle"><Image src={dashboardIcon_11} alt="" /></div>
                   <span>Logout</span>
                </Link>

@@ -26,7 +26,7 @@ const ListingCard = ({item}: any) => {
     const handleUserCalled = async () => {
         if (!item?.phone) return
         const {error} = await supabase
-            .rpc('increment_totalinterect', {x: 1, row_id: 1})
+            .rpc('increment_interect')
 
         if (error) {
             console.log(error)

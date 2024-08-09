@@ -64,10 +64,10 @@ const ListingFourArea = ({data}: any) => {
         googleMapsApiKey: process?.env?.NEXT_PUBLIC_GOOGLEAPIKEY || "",
     });
 
-    const handleUserCalled = async (phone: any) => {
+    const handleUserCalled = async (id: number,phone: any) => {
         if (!phone) return
         const {error} = await supabase
-            .rpc('increment_totalinterect', {x: 1, row_id: 1})
+            .rpc('increment_interect')
 
         if (error) {
             console.log(error)
@@ -192,7 +192,7 @@ const ListingFourArea = ({data}: any) => {
                                                                     justifyContent: "space-between"
                                                                 }}>
                                                                     <a href={phone ? "tel:" + phone : "#"}
-                                                                          onClick={() => handleUserCalled(phone)}
+                                                                          onClick={() => handleUserCalled(id, phone)}
                                                                           style={{
                                                                               backgroundColor: "#F2F6F9",
                                                                               width: "48%",

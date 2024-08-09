@@ -41,6 +41,14 @@ export function Get_Distance(lat1: number, lat2: number, lon1: number, lon2: num
 
 }
 
+export function sleep(ms: number) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+// console.log('Taking a break...');
+// await sleep(10000);
+// console.log('Two second later');
+
 export const UniqueServices = [
     "24 Hour Service",
     "Roadside Service",

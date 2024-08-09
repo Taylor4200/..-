@@ -68,23 +68,12 @@ const index = async ({
     searchParams?: { [key: string]: string | string[] | undefined };
 }) => {
 
-    // console.log({searchParams:searchParams.category})
-
     const data = await getData(searchParams)
     console.log({data, lenghthss: data?.length})
 
     return (
         <Wrapper>
-            <Suspense fallback={
-                <Backdrop
-                    sx={{color: '#fff'}}
-                    open={true}>
-                    <CircularProgress color="inherit"/>
-                </Backdrop>
-            }>
-                <ListingFour data={data}/>
-            </Suspense>
-
+            <ListingFour data={data}/>
         </Wrapper>
     )
 }

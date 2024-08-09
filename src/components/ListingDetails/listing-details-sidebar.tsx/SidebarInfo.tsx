@@ -26,9 +26,9 @@ const SidebarInfo = ({data}: any) => {
     }
 
     const handleUserCalled = async () => {
-        if(!data?.phone) return
+        if (!data?.phone) return
         const {error} = await supabase
-            .rpc('increment_totalinterect', {x: 1, row_id: 1})
+            .rpc('increment_interect')
 
         if (error) {
             console.log(error)
@@ -55,10 +55,12 @@ const SidebarInfo = ({data}: any) => {
                     <li>Location: <span>{data?.address}</span></li>
                     <li>Website: <span><Link href={data?.website || ""}>{data?.website}</Link></span>
                     </li>
-                    <li>Phone: <span><a onClick={handleUserCalled} href={data?.phone ? "tel:"+ data?.phone : "#"}>{data?.phone}</a></span></li>
+                    <li>Phone: <span><a onClick={handleUserCalled}
+                                        href={data?.phone ? "tel:" + data?.phone : "#"}>{data?.phone}</a></span></li>
                 </ul>
             </div>
-            <a onClick={handleUserCalled}  href={data?.phone ? "tel:"+ data?.phone : "#"} className="btn-nine text-uppercase rounded-3 w-100 mb-10">CONTACT
+            <a onClick={handleUserCalled} href={data?.phone ? "tel:" + data?.phone : "#"}
+               className="btn-nine text-uppercase rounded-3 w-100 mb-10">CONTACT
                 Business</a>
         </>
     )

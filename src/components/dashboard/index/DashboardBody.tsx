@@ -138,62 +138,62 @@ const DashboardBody = ({data}: any) => {
                </div>
             </div>
 
-            <div className="row gx-xxl-5 d-flex pt-15 lg-pt-10">
-               <div className=" d-flex flex-column">
-                  <div className="user-activity-chart bg-white border-20 mt-30 h-100">
-                     <div className="d-flex align-items-center justify-content-between plr">
-                        <h5 className="dash-title-two">Recent Listing</h5>
-                        <div className="short-filter d-flex align-items-center">
-                           <button className="dash-btn-two tran3s me-3">Add Listing</button>
-                           {/*<div className="fs-16 me-2">Short by:</div>*/}
+            {/*<div className="row gx-xxl-5 d-flex pt-15 lg-pt-10">*/}
+            {/*   <div className=" d-flex flex-column">*/}
+            {/*      <div className="user-activity-chart bg-white border-20 mt-30 h-100">*/}
+            {/*         <div className="d-flex align-items-center justify-content-between plr">*/}
+            {/*            <h5 className="dash-title-two">Recent Listing</h5>*/}
+            {/*            <div className="short-filter d-flex align-items-center">*/}
+            {/*               <button className="dash-btn-two tran3s me-3">Add Listing</button>*/}
+            {/*               /!*<div className="fs-16 me-2">Short by:</div>*!/*/}
 
-                           {/*<NiceSelect className="nice-select fw-normal"*/}
-                           {/*            options={[*/}
-                           {/*               {value: "1", text: "Weekly"},*/}
-                           {/*               {value: "2", text: "Daily"},*/}
-                           {/*               {value: "3", text: "Monthly"},*/}
-                           {/*            ]}*/}
-                           {/*            defaultCurrent={0}*/}
-                           {/*            onChange={selectHandler}*/}
-                           {/*            name=""*/}
-                           {/*            placeholder=""/>*/}
-                        </div>
-                     </div>
+            {/*               /!*<NiceSelect className="nice-select fw-normal"*!/*/}
+            {/*               /!*            options={[*!/*/}
+            {/*               /!*               {value: "1", text: "Weekly"},*!/*/}
+            {/*               /!*               {value: "2", text: "Daily"},*!/*/}
+            {/*               /!*               {value: "3", text: "Monthly"},*!/*/}
+            {/*               /!*            ]}*!/*/}
+            {/*               /!*            defaultCurrent={0}*!/*/}
+            {/*               /!*            onChange={selectHandler}*!/*/}
+            {/*               /!*            name=""*!/*/}
+            {/*               /!*            placeholder=""/>*!/*/}
+            {/*            </div>*/}
+            {/*         </div>*/}
 
-                     <div className="bg-white card-box p0 border-20">
-                        <div className="table-responsive pt-25 pb-25 pe-4 ps-4">
-                           <table className="table property-list-table">
-                              <thead>
-                              <tr>
-                                 <th scope="col">Title</th>
-                                 <th scope="col">Date</th>
-                                 <th scope="col">View</th>
-                                 <th scope="col">Status</th>
-                                 <th scope="col">Action</th>
-                              </tr>
-                              </thead>
-                              <PropertyTableBody/>
-                           </table>
-                        </div>
-                     </div>
+            {/*         <div className="bg-white card-box p0 border-20">*/}
+            {/*            <div className="table-responsive pt-25 pb-25 pe-4 ps-4">*/}
+            {/*               <table className="table property-list-table">*/}
+            {/*                  <thead>*/}
+            {/*                  <tr>*/}
+            {/*                     <th scope="col">Title</th>*/}
+            {/*                     <th scope="col">Date</th>*/}
+            {/*                     <th scope="col">View</th>*/}
+            {/*                     <th scope="col">Status</th>*/}
+            {/*                     <th scope="col">Action</th>*/}
+            {/*                  </tr>*/}
+            {/*                  </thead>*/}
+            {/*                  <PropertyTableBody/>*/}
+            {/*               </table>*/}
+            {/*            </div>*/}
+            {/*         </div>*/}
 
-                     <ul className="pagination-one d-flex align-items-center justify-content-center style-none pt-40">
-                        <li className="me-3"><Link href="#">1</Link></li>
-                        <li className="selected"><Link href="#">2</Link></li>
-                        <li><Link href="#">3</Link></li>
-                        <li><Link href="#">4</Link></li>
-                        <li>....</li>
-                        <li className="ms-2"><Link href="#" className="d-flex align-items-center">
-                           Last <Image src={icon_1} alt="" className="ms-2"/></Link></li>
-                     </ul>
-                     {/*<div className="plr mt-50">*/}
-                     {/*   <div className="chart-wrapper">*/}
-                     {/*      <DashboardChart/>*/}
-                     {/*   </div>*/}
-                     {/*</div>*/}
-                  </div>
-               </div>
-            </div>
+            {/*         <ul className="pagination-one d-flex align-items-center justify-content-center style-none pt-40">*/}
+            {/*            <li className="me-3"><Link href="#">1</Link></li>*/}
+            {/*            <li className="selected"><Link href="#">2</Link></li>*/}
+            {/*            <li><Link href="#">3</Link></li>*/}
+            {/*            <li><Link href="#">4</Link></li>*/}
+            {/*            <li>....</li>*/}
+            {/*            <li className="ms-2"><Link href="#" className="d-flex align-items-center">*/}
+            {/*               Last <Image src={icon_1} alt="" className="ms-2"/></Link></li>*/}
+            {/*         </ul>*/}
+            {/*         /!*<div className="plr mt-50">*!/*/}
+            {/*         /!*   <div className="chart-wrapper">*!/*/}
+            {/*         /!*      <DashboardChart/>*!/*/}
+            {/*         /!*   </div>*!/*/}
+            {/*         /!*</div>*!/*/}
+            {/*      </div>*/}
+            {/*   </div>*/}
+            {/*</div>*/}
          </div>
       </div>
    )
