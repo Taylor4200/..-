@@ -1,9 +1,9 @@
 import DashboardBody from "./DashboardBody"
 
-const DashboardIndex = ({data}: any) => {
+const DashboardIndex = ({data, reports}: any) => {
   return (
     <>
-      <DashboardBody data={data}/>
+      <DashboardBody data={data} reports={reports}/>
     </>
   )
 }

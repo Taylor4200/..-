@@ -82,6 +82,13 @@ const PropertyTableBody = ({list, handleDeleteListing}: any) => {
                                 <li><Link className="dropdown-item" href="#"><Image src={icon_1} alt=""
                                                                                     className="lazy-img"/> View</Link>
                                 </li>
+
+                                <li><Link className="dropdown-item" href={`/dashboard/dashboard-index?listID=${item?.id}`}><i className="fa-solid fa-chart-line"
+                                                                                style={{paddingRight: 8}}></i>
+                                    Analyst</Link>
+
+
+                                </li>
                                 <li><Link className="dropdown-item" href="#"><Image src={icon_2} alt=""
                                                                                     className="lazy-img"/> Share</Link>
                                 </li>
