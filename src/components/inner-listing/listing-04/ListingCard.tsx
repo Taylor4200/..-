@@ -4,18 +4,15 @@ import React, {useMemo, useState} from 'react';
 import Fancybox from "@/components/common/Fancybox";
 import Link from "next/link";
 import {useSearchParams} from "next/navigation";
-import {Get_Distance} from "@/utils/utils";
 import Image from "next/image";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import {Dialog, DialogContent, DialogContentText, DialogTitle} from "@mui/material";
-import {createClient} from "@/utils/supabase/client";
 import {trackInteraction} from "@/utils/utilsServer";
 
 const ListingCard = ({item}: any) => {
 
     const [contactModal, setContactModal] = useState(false);
-    const supabase = createClient()
     const searchParams = useSearchParams()
 
     const latitude = searchParams.get('latitude')

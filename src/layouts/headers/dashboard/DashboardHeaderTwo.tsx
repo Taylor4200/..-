@@ -32,7 +32,9 @@ const DashboardHeaderTwo = ({title}: any) => {
     const handleSearch = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (!search) return
-        router.push(pathname + '?' + createQueryString('search', search))
+
+        const searchText = search.replace(/\s/g, '+')
+        router.push(pathname + '?' + createQueryString('search', searchText))
     }
 
     const handleRemoveSearch = (e: any) => {
@@ -55,7 +57,7 @@ const DashboardHeaderTwo = ({title}: any) => {
                             pathname === '/dashboard/properties-list' ?
 
                                 <>
-                                    <input value={search} onChange={e => setSearch(e.target.value.replace(/\s/g, '+'))} type="text"
+                                    <input value={search} onChange={e => setSearch(e.target.value)} type="text"
                                            placeholder="Search list here.."/>
                                     {
                                         searchPa ? <button onClick={handleRemoveSearch} style={{right: 35}}><i
