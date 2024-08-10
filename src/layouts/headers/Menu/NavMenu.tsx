@@ -1,45 +1,48 @@
 "use client";
 import menu_data from "@/data/home-data/MenuData";
-import Link from "next/link";
+import Link from "next/link.js";
 import { usePathname } from "next/navigation";
+import Image from "next/image";
 import { useState } from "react";
-import '@/assets/css/style.css'; // Adjust the path as needed
+
+import logo from "@/assets/images/logo/logo_01.svg";
+import truckSupportIcon from "@/assets/images/logo//trucksupportIcon.png"
 
 
 const NavMenu = () => {
     const pathname = usePathname();
+    const currentRoute = usePathname();
     const [navTitle, setNavTitle] = useState("");
 
-    const isMenuItemActive = (menuLink: string) => pathname === menuLink;
+    const isMenuItemActive = (menuLink: string) => {
+        return currentRoute === menuLink;
+    };
 
+    const isSubMenuItemActive = (subMenuLink: string) => {
+        return currentRoute === subMenuLink;
+    };
+
+    //openMobileMenu
     const openMobileMenu = (menu: any) => {
-        setNavTitle(navTitle === menu ? "" : menu);
+        if (navTitle === menu) {
+            setNavTitle("");
+        } else {
+            setNavTitle(menu);
+        }
     };
 
     return (
         <ul className="navbar-nav align-items-lg-center">
-            <li className="d-block d-lg-none">
-                <div className="logo">
-                    <Link href="/" className="d-block">
-                        <img src="/path-to-your-logo.svg" alt="Logo" width={100} />
-                    </Link>
-                </div>
-            </li>
-            <li className="nav-item">
-                <Link
-                    href="/"
-                    className={`nav-link ${pathname === '/' ? 'active' : ''}`}
-                >
-                    Home
-                </Link>
+            <li className="d-block d-lg-none"><div className="logo"><Link href="/" className="d-block"><Image width={100} src={truckSupportIcon} alt="" /></Link></div></li>
+            <li className="nav-item dashboard-menu">
+                {/*<Link className="nav-link" href="/dashboard/dashboard-index" target="_blank">Dashboard</Link>*/}
+                <Link className="nav-link" href="/">Home</Link>
+
             </li>
             {menu_data.map((menu: any) => (
-                <li key={menu.id} className={`nav-item ${menu.class_name}`}>
-                    <Link
-                        href={menu.link}
-                        className={`nav-link ${menu.has_dropdown ? 'dropdown-toggle' : ''} ${isMenuItemActive(menu.link) ? 'active' : ''}`}
-                        onClick={() => openMobileMenu(menu.title)}
-                    >
+                <li key={menu.id} className={`nav-item dropdown ${menu.class_name}`}>
+                    <Link href={menu.link} className={`nav-link ${menu?.sub_menus ? 'dropdown-toggle' : '' } ${pathname === menu.link ? 'active' : ''}
+                     ${navTitle === menu.title ? "show" : ""}`} onClick={() => openMobileMenu(menu.title)}>
                         {menu.title}
                     </Link>
                     {menu.has_dropdown && (
@@ -47,10 +50,7 @@ const NavMenu = () => {
                             <ul className={`dropdown-menu ${navTitle === menu.title ? "show" : ""}`}>
                                 {menu.sub_menus && menu.sub_menus.map((sub_m: any, i: any) => (
                                     <li key={i}>
-                                        <Link
-                                            href={sub_m.link}
-                                            className={`dropdown-item ${pathname === sub_m.link ? 'active' : ''}`}
-                                        >
+                                        <Link href={sub_m.link} className={`dropdown-item ${pathname === sub_m.link ? 'active' : ''}`}>
                                             <span>{sub_m.title}</span>
                                         </Link>
                                     </li>
@@ -63,15 +63,7 @@ const NavMenu = () => {
                                                     <h6 className="mega-menu-title">{item.mega_title}</h6>
                                                     <ul className="style-none mega-dropdown-list">
                                                         {item.mega_menus.map((mega_m: any, i: any) => (
-                                                            <li key={i}>
-                                                                <Link
-                                                                    href={mega_m.link}
-                                                                    className={`dropdown-item ${pathname === mega_m.link ? 'active' : ''}`}
-                                                                >
-                                                                    <span>{mega_m.title}</span>
-                                                                </Link>
-                                                            </li>
-                                                        ))}
+                                                            <li key={i}><Link href={mega_m.link} className={`dropdown-item ${pathname === mega_m.link ? 'active' : ''}`}><span>{mega_m.title}</span></Link></li>))}
                                                     </ul>
                                                 </div>
                                             </div>
@@ -88,3 +80,4 @@ const NavMenu = () => {
 };
 
 export default NavMenu;
+
