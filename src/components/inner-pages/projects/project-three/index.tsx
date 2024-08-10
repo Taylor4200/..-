@@ -2,7 +2,7 @@ import BreadcrumbThree from "@/components/common/breadcrumb/BreadcrumbThree"
 import HeaderFour from "@/layouts/headers/HeaderFour"
 import FooterFour from "@/layouts/footers/FooterFour"
 import ProjectArea from "./ProjectArea"
-import FancyBannerCommon from "@/components/common/FancyBanner"
+// import FancyBannerCommon from "@/components/common/FancyBanner"
 import FancyBanner from "../project-one/FancyBanner"
 
 const ProjectThree = () => {

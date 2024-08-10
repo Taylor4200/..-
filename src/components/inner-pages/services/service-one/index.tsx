@@ -7,7 +7,7 @@ import BlockFeatureTwo from "./BlockFeatureTwo"
 import Feedback from "@/components/homes/home-one/Feedback"
 import FancyBanner from "./FancyBanner"
 import BLockFeatureTwo from "@/components/homes/home-four/BLockFeatureTwo"
-import FancyBannerCommon from "@/components/common/FancyBanner"
+// import FancyBannerCommon from "@/components/common/FancyBanner"
 
 const ServiceOne = () => {
    return (

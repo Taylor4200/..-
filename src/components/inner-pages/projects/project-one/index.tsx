@@ -3,7 +3,7 @@ import HeaderOne from "@/layouts/headers/HeaderOne";
 import ProjectArea from "./ProjectArea";
 import FancyBanner from "./FancyBanner";
 import FooterFour from "@/layouts/footers/FooterFour";
-import FancyBannerCommon from "@/components/common/FancyBanner";
+// import FancyBannerCommon from "@/components/common/FancyBanner";
 
 const ProjectOne = () => {
    return (

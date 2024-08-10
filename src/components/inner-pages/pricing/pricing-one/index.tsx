@@ -13,7 +13,7 @@ const PricingOne = () => {
          {/*<BreadcrumbOne title="Pricing Plan" link="#" link_title="Pages" sub_title="Pricing" style={true} />*/}
          <PricingOneArea />
          <FancyBanner/>
-         <FancyBannerCommon style={false} />
+         {/*<FancyBannerCommon style={false} />*/}
          <FooterOne style={true} />
       </>
    )
