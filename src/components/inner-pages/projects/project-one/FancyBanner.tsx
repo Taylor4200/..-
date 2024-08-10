@@ -10,7 +10,7 @@ const FancyBanner = () => {
             <div className="row">
                <div className="col-xl-7 col-md-8 m-auto">
                   <div className="title-one mb-45 md-mb-30">
-                     <h2>Any Inquiry? <span>Feel free</span> To contact Us.</h2>
+                     <h2>Any Inquiries? <span> <br/> Feel Free</span> To Contact Us.</h2>
                   </div>
                   <Link href="/contact" className="btn-five text-uppercase">SEND MESSAGE</Link>
                </div>
