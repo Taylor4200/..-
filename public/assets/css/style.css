@@ -9762,7 +9762,7 @@ iframe {
   padding: 12px 0;
 }
 .dashboard-body .dashboard-header .user-data .user-name-data .dropdown-menu:before {
-  content: url(../dashboard/images/icon/icon_42.svg);
+  /*content: url(../dashboard/images/icon/icon_42.svg);*/
   position: absolute;
   right: 23px;
   top: -17px;
@@ -13939,3 +13939,30 @@ html.with-fancybox body.hide-scrollbar {
 .slick-arrow.slick-hidden {
   display: none;
 }/*# sourceMappingURL=style.css.map */
+
+/* Ensure you have these styles in your CSS file */
+
+.navbar-nav .nav-item .nav-link {
+  position: relative;
+  text-decoration: none; /* Remove default underline */
+  color: #000000; /* Default color for non-active items */
+  padding-bottom: 5px; /* Space for the underline */
+}
+
+.navbar-nav .nav-item .nav-link::after {
+  content: '';
+  display: block;
+  height: 2px;
+  background-color: black; /* Color of the underline */
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  transform: scaleX(0);
+  transform-origin: bottom left;
+  transition: transform 0.3s ease;
+}
+
+.navbar-nav .nav-item .nav-link.active::after {
+  transform: scaleX(1);
+}

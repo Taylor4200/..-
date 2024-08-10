@@ -5,7 +5,7 @@ import footer_data from "@/data/home-data/FooterData"
 import footerLogo_1 from "@/assets/images/logo/logo_01.svg"
 import footerLogo_2 from "@/assets/images/logo/logo_03.svg"
 import footerShape_1 from "@/assets/images/shape/shape_32.svg"
-import footerShape_2 from "@/assets/images/shape/shape_33.svg"
+// import footerShape_2 from "@/assets/images/shape/shape_33.svg"
 import truckSupportIcon from "@/assets/images/logo/truckWhiteLogo.png"
 
 
@@ -65,7 +65,7 @@ const FooterOne = ({style}: any) => {
                         </div>
                     </div>
                 </div>
-                {style && <Image src={footerShape_2} alt="" className="lazy-img shapes shape_02"/>}
+                {/*{style && <Image src={footerShape_2} alt="" className="lazy-img shapes shape_02"/>}*/}
             </div>
         </div>
     )
