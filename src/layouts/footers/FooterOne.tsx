@@ -12,9 +12,9 @@ import truckSupportIcon from "@/assets/images/logo/truckWhiteLogo.png"
 const icon_1 = [{
     icon: "facebook",
     link: "https://www.facebook.com/people/Truck-Support/61563590780030/"
-}, {icon: "instagram", link: "https://www.instagram.com/247trucksupport"}, {
+}, {icon: "instagram", link: "https://www.instagram.com/trucksupportdotcom"}, {
     icon: "youtube",
-    link: "https://www.youtube.com/@247TruckSupport"
+    link: "https://www.youtube.com/@TruckSupport1"
 }, {icon: "twitter", link: "https://x.com/Trucksupport247"}]
 
 const FooterOne = ({style}: any) => {
