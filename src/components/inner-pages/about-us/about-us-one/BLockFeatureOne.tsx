@@ -1,94 +1,67 @@
-import Image from "next/image";
-import Link from "next/link";
-
-import titleShape from "@/assets/images/shape/title_shape_06.svg";
-import Count from "@/components/common/Count";
-
-interface ContentType {
-   sub_title: string;
-   desc_1: JSX.Element;
-   title_1: string;
-   title_2: string;
-   desc_2: JSX.Element;
-   desc_3: JSX.Element;
-}
-
-const feature_content: ContentType = {
-   sub_title: "About us",
-   desc_1: (<>Welcome to Truck Support, your go-to for all truck service needs! We connect you with trusted service providers for maintenance, repairs, and more.<br/> Skip the endless searches and get back on the road confidently with our reliable directory. Your journey just got a whole lot smoother!</>),
-   title_1: "Who we are?",
-   title_2: "Our Mission",
-   desc_2: (<>TruckSupport.com offers 24/7 access to verified truck services, detailed listings, and comprehensive support, all for free! Trusted, easy-to-use and always available.</>),
-   desc_3: (<>Connecting drivers and fleets with reliable services 24/7 to ensure seamless operation and minimal downtime on the road.</>),
-}
-
-const { sub_title, desc_1, title_1, title_2, desc_2, desc_3 } = feature_content;
+"use client";
+import React, { useState } from 'react';
+import Link from 'next/link';
 
 const BLockFeatureOne = () => {
-   return (
-       <div className="block-feature-two mt-150 xl-mt-100">
-          <div className="container">
-             <div className="row gx-xl-5">
-                <div className="col-lg-6 wow fadeInLeft">
-                   <div className="me-xxl-4">
-                      <div className="title-one mb-60 lg-mb-40">
-                         <div className="upper-title">{sub_title}</div>
-                         <h3>Online <span>Truck </span> Service directory</h3>
-                         <p className="fs-22">{desc_1}</p>
-                      </div>
-                      <Link
-                          href="/contact"
-                          className="btn-two"
-                          style={{
-                             backgroundColor: '#000000', // Button background color
-                             color: '#fff', // Button text color
-                             textDecoration: 'none', // Remove underline
-                             fontWeight: '500', // Bold text
-                             borderRadius: '10px', // Rounded corners
-                             padding: '0 22px', // Adjust padding
-                             fontSize: '16px', // Inherit font size
-                             lineHeight: '48px', // Maintain normal line height
-                             border: '1px solid', // Border with the same color as the background
-                             display: 'inline-flex', // Ensure inline-block display
-                             boxSizing: 'inherit', // Include padding and border in total width and height
-                             margin: '0', // Ensure no margin issues
-                          }}
-                      >
-                         Contact Us
-                      </Link>
-                      {/*<div className="counter-wrapper border-top pt-40 md-pt-10 mt-65 md-mt-40">*/}
-                      {/*   <div className="row">*/}
-                      {/*      <div className="col-xxl-6 col-sm-5">*/}
-                      {/*         <div className="counter-block-one mt-20">*/}
-                      {/*            <div className="main-count fw-500 color-dark"><span className="counter"><Count number={1.2} /></span>%</div>*/}
-                      {/*            <span>Low interest rate</span>*/}
-                      {/*         </div>*/}
-                      {/*      </div>*/}
-                      {/*      <div className="col-xxl-6 col-sm-7">*/}
-                      {/*         <div className="counter-block-one mt-20">*/}
-                      {/*            <div className="main-count fw-500 color-dark">$<span className="counter"><Count number={1.3} /></span>b+</div>*/}
-                      {/*            <span>Cumulative trading volume</span>*/}
-                      {/*         </div>*/}
-                      {/*      </div>*/}
-                      {/*   </div>*/}
-                      {/*</div>*/}
-                   </div>
-                </div>
+    const [hover, setHover] = useState(false);
 
-                <div className="col-lg-6 wow fadeInRight">
-                   <div className="block-two md-mt-40">
-                      <div className="bg-wrapper">
-                         <h5>{title_1}</h5>
-                         <p className="fs-22 lh-lg mt-20">{desc_2}</p>
-                         <h5 className="top-line">{title_2} </h5>
-                         <p className="fs-22 lh-lg mt-20">{desc_3}</p>
-                      </div>
-                   </div>
+    return (
+        <div className="block-feature-two mt-150 xl-mt-100">
+            <div className="container">
+                <div className="row gx-xl-5">
+                    <div className="col-lg-6 wow fadeInLeft">
+                        <div className="me-xxl-4">
+                            <div className="title-one mb-60 lg-mb-40">
+                                <div className="upper-title">About us</div>
+                                <h3>Online <span>Truck </span> Service directory</h3>
+                                <p className="fs-22">
+                                    Welcome to Truck Support, your go-to for all truck service needs! We connect you with trusted service providers for maintenance, repairs, and more.<br/> Skip the endless searches and get back on the road confidently with our reliable directory. Your journey just got a whole lot smoother!
+                                </p>
+                            </div>
+                            <Link
+                                href="/contact"
+                                className="btn-two"
+                                style={{
+                                    backgroundColor: hover ? '#ff6600' : '#000000', // Orange on hover, black otherwise
+                                    color: '#fff', // Button text color
+                                    textDecoration: 'none', // Remove underline
+                                    fontWeight: '500', // Bold text
+                                    borderRadius: '10px', // Rounded corners
+                                    padding: '0 22px', // Adjust padding
+                                    fontSize: '16px', // Inherit font size
+                                    lineHeight: '48px', // Maintain normal line height
+                                    border: `1px solid ${hover ? '#ff6600' : '#000000'}`, // Orange border on hover, black otherwise
+                                    display: 'inline-flex', // Ensure inline-block display
+                                    boxSizing: 'border-box', // Include padding and border in total width and height
+                                    margin: '0', // Ensure no margin issues
+                                    transition: 'background-color 0.3s ease, border-color 0.3s ease', // Smooth transition for hover effect
+                                }}
+                                onMouseEnter={() => setHover(true)}
+                                onMouseLeave={() => setHover(false)}
+                            >
+                                Contact Us
+                            </Link>
+                        </div>
+                    </div>
+
+                    <div className="col-lg-6 wow fadeInRight">
+                        <div className="block-two md-mt-40">
+                            <div className="bg-wrapper">
+                                <h5>Who we are?</h5>
+                                <p className="fs-22 lh-lg mt-20">
+                                    TruckSupport.com offers 24/7 access to verified truck services, detailed listings, and comprehensive support, all for free! Trusted, easy-to-use and always available.
+                                </p>
+                                <h5 className="top-line">Our Mission</h5>
+                                <p className="fs-22 lh-lg mt-20">
+                                    Connecting drivers and fleets with reliable services 24/7 to ensure seamless operation and minimal downtime on the road.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-             </div>
-          </div>
-       </div>
-   );
+            </div>
+        </div>
+    );
 }
 
 export default BLockFeatureOne;

@@ -23,15 +23,14 @@ const schema = yup
     .required();
 
 const ContactForm = () => {
-
     const { register, handleSubmit, reset, formState: { errors }, } = useForm<FormData>({ resolver: yupResolver(schema), });
 
     const form = useRef<HTMLFormElement>(null);
     const supabase = createClient();
     const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [isHovered, setIsHovered] = useState<boolean>(false);
 
     const sendEmail = async (formDetails: FormData) => {
-
         if (form.current) {
             setIsLoading(true);
             const { data, error, status } = await supabase
@@ -52,7 +51,6 @@ const ContactForm = () => {
         } else {
             console.error("Form reference is null");
         }
-
         setIsLoading(false);
     };
 
@@ -94,12 +92,15 @@ const ContactForm = () => {
                         type='submit'
                         className="btn-nine text-uppercase rounded-3 fw-normal w-100"
                         style={{
-                            backgroundColor: '#000', // Black background
-                            color: '#fff',           // White text color
-                            border: 'none',          // Remove any border if present
+                            backgroundColor: isHovered ? '#ff6600' : '#000', // Orange on hover, black otherwise
+                            color: '#fff', // White text color
+                            border: 'none', // Remove any border if present
                             padding: '0.75em 1.5em', // Adjust padding as needed
-                            fontSize: '1rem',        // Ensure font size matches the rest
+                            fontSize: '1rem', // Ensure font size matches the rest
+                            transition: 'background-color 0.3s ease', // Smooth transition for hover effect
                         }}
+                        onMouseEnter={() => setIsHovered(true)}
+                        onMouseLeave={() => setIsHovered(false)}
                     >
                         Send Message
                     </button>
