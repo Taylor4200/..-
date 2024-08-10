@@ -33,7 +33,7 @@ async function increaseVisitTotal() {
 }
 
 export const metadata = {
-    title: "Homy - Real Estate React Next js Template",
+    title: "Home - Truck Support",
 };
 const index = async () => {
 
