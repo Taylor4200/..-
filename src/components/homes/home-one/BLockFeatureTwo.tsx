@@ -36,7 +36,7 @@ const BLockFeatureTwo = ({settingData}: any) => {
                      <div className="block-two">
                         <div className="bg-wrapper">
                            <h4>Our Mission</h4>
-                           <p className="fs-22 mt-20">Connecting truckers with reliable, verified services 24/7 to ensure seamless operations and minimal downtime on the road.</p>
+                           <p className="fs-22 mt-20">Connecting drivers and fleets with reliable, verified services 24/7 to ensure seamless operations and minimal downtime on the road.</p>
                            <div className="counter-wrapper ps-xl-3 pb-30 mt-45 mb-50">
                               <div className="row">
                                  <div className="col-6">

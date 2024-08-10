@@ -21,7 +21,7 @@ const feature_content: ContentType = {
    title_1: "Who we are?",
    title_2: "Our Mission",
    desc_2: (<>TruckSupport.com offers 24/7 access to verified truck services, detailed listings, and comprehensive support, all for free! Trusted, easy-to-use and always available.</>),
-   desc_3: (<>Connecting truckers with reliable services 24/7 to ensure seamless operation and minimal downtime on the road.
+   desc_3: (<>Connecting drivers and fleets with reliable services 24/7 to ensure seamless operation and minimal downtime on the road.
 
        </>),
 }
