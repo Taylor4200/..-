@@ -15,13 +15,13 @@ interface ContentType {
 
 const feature_content: ContentType = {
    sub_title: "About us",
-   desc_1: (<>Welcome to Truck Support, your go-to for all truck service needs! We connect you with trusted service providers for maintenance, repairs, and more. Skip the endless searches and get back on the road confidently with our reliable directory. Your journey just got a whole lot smoother!
+   desc_1: (<>Welcome to Truck Support, your go-to for all truck service needs! We connect you with trusted service providers for maintenance, repairs, and more.<br/> Skip the endless searches and get back on the road confidently with our reliable directory. Your journey just got a whole lot smoother!
 
       </>),
    title_1: "Who we are?",
    title_2: "Our Mission",
-   desc_2: (<>247TruckSupport.com offers 24/7 access to verified truck services. detailed listing, comprehensive support, all for free. Trusted, easy-to-use and always available.</>),
-   desc_3: (<>Connecting truckers with reliable, verified services 24/7 to ensure seamless operations and minimal downtime on the road.
+   desc_2: (<>TruckSupport.com offers 24/7 access to verified truck services, detailed listings, and comprehensive support, all for free! Trusted, easy-to-use and always available.</>),
+   desc_3: (<>Connecting truckers with reliable services 24/7 to ensure seamless operation and minimal downtime on the road.
 
        </>),
 }
