@@ -23,13 +23,13 @@ const menu_data: MenuItem[] = [
         id: 1,
         has_dropdown: false,
         title: "About",
-        link: "/about_us_01"
+        link: "/about"
     },
     {
         id: 2,
         has_dropdown: false,
         title: "Advertising",
-        link: "/pricing_01"
+        link: "/Advertising"
     },
     {
         id: 3,
@@ -114,7 +114,7 @@ const menu_data: MenuItem[] = [
     //             id: 1,
     //             mega_title: "Essential",
     //             mega_menus: [
-    //                 { link: "/about_us_01", title: "About us -1" },
+    //                 { link: "/about", title: "About us -1" },
     //                 { link: "/about_us_02", title: "About us -2" },
     //                 { link: "/agency", title: "Agency" },
     //                 { link: "/agency_details", title: "Agency Details" },
@@ -141,7 +141,7 @@ const menu_data: MenuItem[] = [
     //             mega_title: "Others",
     //             mega_menus: [
     //                 { link: "/compare", title: "Property Compare" },
-    //                 { link: "/pricing_01", title: "Pricing -1" },
+    //                 { link: "/Advertising", title: "Pricing -1" },
     //                 { link: "/pricing_02", title: "Pricing -2" },
     //                 { link: "/contact", title: "Contact Us" },
     //                 { link: "/faq", title: "FAQ's" },

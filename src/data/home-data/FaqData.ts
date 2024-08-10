@@ -39,7 +39,7 @@ const faq_data:DataType[] = [
           "\n" +
           " \n" +
           "\n" +
-          "For major issues or inquiries about advertising services from our company, please reach out to us at (720)-877-7184.",
+          "For major issues or inquiries about Advertising services from our company, please reach out to us at (720)-877-7184.",
       showAnswer: false,
    },
    {

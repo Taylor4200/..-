@@ -8,7 +8,7 @@ const ProjectFour = () => {
    return (
       <>
          <HeaderFour />
-         <BreadcrumbThree title="Single Projects" link="pricing_01" link_title="Project" sub_title="Vintage City" style={false} />
+         <BreadcrumbThree title="Single Projects" link="Advertising" link_title="Project" sub_title="Vintage City" style={false} />
          <ProjectDetailsArea />
          <FancyBanner />
          <FooterFour />
