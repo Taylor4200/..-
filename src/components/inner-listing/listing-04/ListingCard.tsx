@@ -55,7 +55,7 @@ const ListingCard = ({ item }: any) => {
     const getImageMarginTop = () => {
         switch (item?.type) {
             case 'premium':
-                return '90px'; // Adjust as needed for Y-axis
+                return '120px'; // Adjust as needed for Y-axis
             case 'pro':
                 return '90px'; // Adjust as needed for Y-axis
             case 'standard':
@@ -116,7 +116,7 @@ const ListingCard = ({ item }: any) => {
                             display: '-webkit-box',
                             overflow: 'hidden',
                             WebkitBoxOrient: 'vertical',
-                            WebkitLineClamp: 2,
+                            WebkitLineClamp: item?.type === "premium" ? 2 : 1, // Adjust the number of lines for the title in premium listings
                             marginLeft: getHeaderMarginLeft() // Apply conditional margin for header text (X-axis)
                         }}
                     >
@@ -144,17 +144,13 @@ const ListingCard = ({ item }: any) => {
                                     display: '-webkit-box',
                                     overflow: 'hidden',
                                     WebkitBoxOrient: 'vertical',
-                                    WebkitLineClamp: 9
+                                    WebkitLineClamp: item?.type === "premium" ? 5 : 9 // Adjust the number of lines for description in premium listings
                                 }}
                                 dangerouslySetInnerHTML={{ __html: item?.description }}
                             ></div>
                         </Box>
                     }
 
-                    <div className="mt-30 pt-30 pb-5 d-none d-lg-block"
-                         style={{ position: "absolute", width: "-webkit-fill-available", bottom: -30 }}>
-                        {/* Removed buttons */}
-                    </div>
                     <div className="pl-footer d-flex flex-wrap align-items-center justify-content-between">
                         <ul className="style-none d-flex action-icons on-top" style={{ alignItems: "center" }}>
                             <li>
