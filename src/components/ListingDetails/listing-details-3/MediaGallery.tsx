@@ -51,18 +51,18 @@ const MediaGallery = ({data}: any) => {
                         {/*</Fancybox>*/}
                         {/*  </div>*/}
                         <div className="theme-sidebar-one d-none d-xl-block">
-                            <div className="agent-info bg-white border-20 p-30">
+                            <div className="agent-info bg-white border-20 p-10">
                                 <SidebarInfo data={data}/>
                             </div>
                         </div>
                         <div className="carousel-inner">
                             {/*{big_carousel.map((carousel, index) => (*/}
-                            <div className="carousel-item active" style={{height: 700}}>
+                            <div className="carousel-item active" style={{height: 480}}>
                                 <Image priority={true} src={data?.imageUrl || noImageIcon} alt="" className="border-20"
                                        width={0}
                                        height={0}
                                        sizes="100vw"
-                                       style={{width: '100%', height: "auto"}}
+                                       style={{width: '35%', height: "auto"}}
                                 />
                             </div>
                             {/*))}*/}
