@@ -25,6 +25,32 @@ const ListingCard = ({ item }: any) => {
         await trackInteraction(item.id, true);
     };
 
+    // Handle the share button click
+    const handleShare = async () => {
+        const shareData = {
+            title: item?.name,
+            text: 'Check out this listing on 247TruckSupport!',
+            url: `${window.location.origin}/listing_details_03?id=${item.id}&name=${item.name}&latitude=${latitude}&longitude=${longitude}`
+        };
+
+        if (navigator.share) {
+            try {
+                await navigator.share(shareData);
+                console.log('Listing shared successfully');
+            } catch (err) {
+                console.error('Error sharing the listing:', err);
+            }
+        } else {
+            // Fallback for non-mobile or unsupported browsers
+            try {
+                await navigator.clipboard.writeText(shareData.url);
+                alert('Link copied to clipboard');
+            } catch (err) {
+                console.error('Error copying the link:', err);
+            }
+        }
+    };
+
     // Conditional styling functions
     const getImageMarginTop = () => {
         switch (item?.type) {
@@ -131,10 +157,14 @@ const ListingCard = ({ item }: any) => {
                     </div>
                     <div className="pl-footer d-flex flex-wrap align-items-center justify-content-between">
                         <ul className="style-none d-flex action-icons on-top" style={{ alignItems: "center" }}>
-                            {/* Removed icons */}
+                            <li>
+                                <button onClick={handleShare} className="btn-ten rounded-0">
+                                    <span>Share</span>
+                                </button>
+                            </li>
                             <li>
                                 <button onClick={handleContactModal} className="btn-ten rounded-0">
-                                    <span>Connect</span>
+                                    <span>Contact</span>
                                 </button>
                             </li>
                         </ul>
