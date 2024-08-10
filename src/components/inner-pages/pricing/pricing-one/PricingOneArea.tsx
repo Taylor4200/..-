@@ -84,7 +84,7 @@ const PricingOneArea = () => {
                                           ))}
                                        </ul>
                                        <div className="pr-footer text-center">
-                                          <Link href="#" className="btn-twelve sm">{item.btn}</Link>
+                                          <Link href="/contact" className="btn-twelve sm">{item.btn}</Link>
                                        </div>
                                     </div>
                                 ))}
