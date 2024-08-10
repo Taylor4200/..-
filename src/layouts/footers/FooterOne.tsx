@@ -35,7 +35,7 @@ const FooterOne = ({style}: any) => {
                                     <h6>CONTACT</h6>
                                     <Link href="#" style={{fontSize: 28}}
                                           className={`email tran3s mb-30 lg-mb-50 ${style ? "font-garamond" : "fs-24 text-decoration-underline"}`}>marketing@247trucksupport.com</Link>
-                                    <a href="tel:303-502-7179" style={{fontSize: 20}}
+                                    <a href="tel:303-502-7179" style={{fontSize: 25}}
                                           className={`email tran3s mb-70 lg-mb-50`}>+303-502-7179</a>
                                     <ul className="style-none d-flex align-items-center social-icon">
                                         {icon_1.map((icon, i) => (
