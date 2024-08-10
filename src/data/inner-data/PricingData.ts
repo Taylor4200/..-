@@ -1,26 +1,31 @@
-interface DataType {
-   page: string;
-   pricing_data: {
-      id: number,
-      class_name?: string;
-      plan: string;
-      price: string;
-      desc: string;
-      icon_details: {
-         icon: string;
-         icon_class?: string;
-      }[];
-      btn: string;
-   }[];
-}[];
+// Define the types for the pricing data
+interface IconDetail {
+   icon: string;
+   icon_class?: string;
+}
 
-const pricing_data: DataType[] = [
+interface PricingDetail {
+   id: number;
+   class_name?: string;
+   plan: string;
+   price: string;
+   desc: string;
+   icon_details: IconDetail[];
+   btn: string;
+}
+
+interface PricingData {
+   page: string;
+   pricing_data: PricingDetail[];
+}
+
+// Example data
+const pricing_data: PricingData[] = [
    {
       page: "pricing_1",
       pricing_data: [
          {
             id: 1,
-            // class_name: "active",
             plan: "Standard",
             price: "$185",
             desc: "Basic Listing",
@@ -71,7 +76,6 @@ const pricing_data: DataType[] = [
       pricing_data: [
          {
             id: 1,
-            // class_name: "active",
             plan: "Standard",
             price: "$185",
             desc: "Basic Listing",
