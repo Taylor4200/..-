@@ -8,6 +8,7 @@ import Box from '@mui/material/Box';
 
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
+import {useMediaQuery, useTheme} from "@mui/system";
 
 const DropdownOne = ({style, categories}: any) => {
 
@@ -19,6 +20,8 @@ const DropdownOne = ({style, categories}: any) => {
     const handleClose = () => setLocationShowError(false)
 
     const router = useRouter()
+    const theme = useTheme();
+    const matches = useMediaQuery(theme.breakpoints.up('md'));
 
     const searchParams = useSearchParams()
     const address = searchParams.get('address')
@@ -291,7 +294,7 @@ const DropdownOne = ({style, categories}: any) => {
                                         style={{
                                             position: "absolute",
                                             left: 55,
-                                            bottom: -40,
+                                            bottom: !matches ? 120 : -40,
                                             backgroundColor: "#fff",
                                             color: "#ff6725"
                                         }}>Use My Location</button> : null
