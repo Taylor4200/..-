@@ -10,11 +10,21 @@ import Typography from "@mui/material/Typography";
 import { Dialog, DialogContent, DialogContentText, DialogTitle } from "@mui/material";
 import { trackInteraction } from "@/utils/utilsServer";
 import {useMediaQuery, useTheme} from "@mui/system";
+import {useInView} from "react-intersection-observer";
 
 const ListingCard = ({ item }: any) => {
 
     const [contactModal, setContactModal] = useState(false);
     const searchParams = useSearchParams();
+
+    const { ref } = useInView({
+        triggerOnce: true,
+        onChange: (inView) => {
+            if (inView) {
+                trackInteraction(item.id, false)
+            }
+        },
+    });
 
     const latitude = searchParams.get('latitude');
     const longitude = searchParams.get('longitude');
@@ -94,7 +104,7 @@ const ListingCard = ({ item }: any) => {
 
     return (
         <div className="listing-card-seven border-20 p-20 mb-50 wow fadeInUp">
-            <div className="d-flex flex-wrap layout-one">
+            <div className="d-flex flex-wrap layout-one" ref={ref}>
                 <div
                     style={{
                         height: item?.type === "premium" ? 150 : "100%",
