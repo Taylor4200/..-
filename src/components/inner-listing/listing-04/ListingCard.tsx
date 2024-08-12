@@ -9,6 +9,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { Dialog, DialogContent, DialogContentText, DialogTitle } from "@mui/material";
 import { trackInteraction } from "@/utils/utilsServer";
+import {useMediaQuery, useTheme} from "@mui/system";
 
 const ListingCard = ({ item }: any) => {
 
@@ -88,6 +89,9 @@ const ListingCard = ({ item }: any) => {
         }
     };
 
+    const theme = useTheme();
+    const matches = useMediaQuery(theme.breakpoints.up('md'));
+
     return (
         <div className="listing-card-seven border-20 p-20 mb-50 wow fadeInUp">
             <div className="d-flex flex-wrap layout-one">
@@ -105,7 +109,7 @@ const ListingCard = ({ item }: any) => {
                 </div>
                 <div className="property-info position-relative"
                      style={{
-                         width: item?.type === "standard" ? "100%" : "calc(100% - 326px)",
+                         width: !matches ? "100%" : item?.type === "standard" ? "100%" : "calc(100% - 326px)",
                          paddingLeft: item?.type === "standard" ? "0" : "20px"
                      }}>
                     <Link
