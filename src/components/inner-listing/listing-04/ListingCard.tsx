@@ -1,23 +1,23 @@
 "use client"
 
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import Fancybox from "@/components/common/Fancybox";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
+import {useSearchParams} from "next/navigation";
 import Image from "next/image";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import { Dialog, DialogContent, DialogContentText, DialogTitle } from "@mui/material";
-import { trackInteraction } from "@/utils/utilsServer";
+import {Dialog, DialogContent, DialogContentText, DialogTitle, Grid} from "@mui/material";
+import {trackInteraction} from "@/utils/utilsServer";
 import {useMediaQuery, useTheme} from "@mui/system";
 import {useInView} from "react-intersection-observer";
 
-const ListingCard = ({ item }: any) => {
+const ListingCard = ({item}: any) => {
 
     const [contactModal, setContactModal] = useState(false);
     const searchParams = useSearchParams();
 
-    const { ref } = useInView({
+    const {ref} = useInView({
         triggerOnce: true,
         onChange: (inView) => {
             if (inView) {
@@ -62,125 +62,94 @@ const ListingCard = ({ item }: any) => {
         }
     };
 
-    // Conditional styling functions
-    const getImageMarginTop = () => {
-        switch (item?.type) {
-            case 'premium':
-                return '120px'; // Adjust as needed for Y-axis
-            case 'pro':
-                return '90px'; // Adjust as needed for Y-axis
-            case 'standard':
-            default:
-                return '90px'; // Adjust as needed for Y-axis
-        }
-    };
-
-    const getHeaderMarginLeft = () => {
-        switch (item?.type) {
-            case 'premium':
-                return "min(50px, -34%)" // Adjust as needed for X-axis
-            case 'pro':
-                return "min(50px, -34%)" // Adjust as needed for X-axis
-            case 'standard':
-            default:
-                return '5px'; // Adjust as needed for X-axis
-        }
-    };
-
-    const getDescriptionMarginTop = () => {
-        switch (item?.type) {
-            case 'premium':
-                return '20px'; // Adjust as needed for Y-axis
-            case 'pro':
-                return '10px'; // Adjust as needed for Y-axis
-            case 'standard':
-            default:
-                return '5px'; // Adjust as needed for Y-axis
-        }
-    };
+    const ContactDetails = () => (
+        <div className="pl-footer d-flex flex-wrap align-items-center justify-content-between">
+            <ul className="style-none d-flex action-icons">
+                <li>
+                    <button onClick={handleShare} className="btn-ten rounded-0">
+                        <span>Share</span>
+                    </button>
+                </li>
+                <li>
+                    <button onClick={handleContactModal} className="btn-ten rounded-0">
+                        <span>Contact</span>
+                    </button>
+                </li>
+            </ul>
+        </div>
+    )
 
     const theme = useTheme();
     const matches = useMediaQuery(theme.breakpoints.up('md'));
 
     return (
         <div className="listing-card-seven border-20 p-20 mb-50 wow fadeInUp">
-            <div className="d-flex flex-wrap layout-one" ref={ref}>
-                <div
-                    style={{
-                        height: item?.type === "premium" ? 150 : "100%",
-                        marginTop: getImageMarginTop() // Apply conditional margin for image (Y-axis)
-                    }}
-                    className={`position-relative z-1 border-20 overflow-hidden ${item?.type !== "standard" ? item?.bg_img + " " + "img-gallery" : ""}`}
-                >
-                    {item?.type !== "standard" && item?.imageUrl &&
-                        <Image src={item?.imageUrl} alt="img" width={0} height={0} sizes="100vw"
-                               style={{ width: '100%', height: '100%' }} />}
-                    <div className={`tag border-20 ${item?.tag_bg}`}>{item?.tag}</div>
-                </div>
-                <div className="property-info position-relative"
-                     style={{
-                         width: !matches ? "100%" : item?.type === "standard" ? "100%" : "calc(100% - 326px)",
-                         paddingLeft: item?.type === "standard" ? "0" : "20px"
-                     }}>
+            <Grid container spacing={2} p={2} ref={ref}>
+                <Box px={2} className="property-info position-relative" display="flex" alignItems="center" width="100%"
+                     justifyContent="space-between">
                     <Link
                         href={`/listing_details_03?id=${item.id}&name=${item.name}&latitude=${latitude}&longitude=${longitude}`}
                         className="title tran3s mb-15"
                         style={{
+                            width: "100%",
                             maxWidth: 550,
-                            display: '-webkit-box',
+                            display: !matches ? "block" : '-webkit-box',
                             overflow: 'hidden',
                             WebkitBoxOrient: 'vertical',
                             WebkitLineClamp: item?.type === "premium" ? 2 : 1, // Adjust the number of lines for the title in premium listings
-                            marginLeft: !matches ? 0 : getHeaderMarginLeft() // Apply conditional margin for header text (X-axis)
                         }}
                     >
                         {item?.name}
                     </Link>
-
-                    <Box display="flex" alignItems="baseline" mb={item?.type === "standard" ? 4 : 0}>
-                        <Typography variant="subtitle1">{item?.distance + " " + "Mi"}</Typography>
-                        <div style={{ display: "flex", alignItems: "center", paddingLeft: 16, marginTop: 6 }}>
-                            <i className="bi bi-geo-alt"></i>
-                            <Typography sx={{ pl: 1, pt: 0.5 }} variant="subtitle2">{item.address}</Typography>
-                        </div>
-                    </Box>
-
-                    {item?.type !== "standard" &&
-                        <Box
-                            sx={{
-                                minHeight: item?.type === "pro" ? 140 : "auto",
-                                my: 1.5,
-                                marginTop: getDescriptionMarginTop() // Apply conditional margin for description text (Y-axis)
-                            }}
-                        >
-                            <div
-                                style={{
-                                    display: '-webkit-box',
-                                    overflow: 'hidden',
-                                    WebkitBoxOrient: 'vertical',
-                                    WebkitLineClamp: item?.type === "premium" ? 5 : 9 // Adjust the number of lines for description in premium listings
-                                }}
-                                dangerouslySetInnerHTML={{ __html: item?.description }}
-                            ></div>
-                        </Box>
+                    {
+                        matches ?
+                            <ContactDetails/> : null
                     }
 
-                    <div className="pl-footer d-flex flex-wrap align-items-center justify-content-between">
-                        <ul className="style-none d-flex action-icons on-top" style={{ alignItems: "center" }}>
-                            <li>
-                                <button onClick={handleShare} className="btn-ten rounded-0">
-                                    <span>Share</span>
-                                </button>
-                            </li>
-                            <li>
-                                <button onClick={handleContactModal} className="btn-ten rounded-0">
-                                    <span>Contact</span>
-                                </button>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+                </Box>
+
+                {
+                    item?.type !== "standard" && item?.imageUrl &&
+                    <Grid item xs={12} md={3}>
+                        <Image src={item?.imageUrl} alt="img" width={0} height={0} sizes="100vw"
+                               style={{width: '100%', height: '100%'}}/>
+                    </Grid>
+                }
+
+
+                <Grid item sm={(item?.type !== "standard" && item?.imageUrl) ? 9 : 12} xs={12} pb={2}>
+                    <Box display="flex" justifyContent="center" flexDirection="column">
+                        <Box display="flex" alignItems="center">
+                            <Typography sx={{mr: 2, minWidth: 40}}
+                                        variant="subtitle1">{item?.distance + " " + "Mi"}</Typography>
+
+                            <i className="bi bi-geo-alt"></i>
+                            <Typography sx={{pl: 1, pt: 0.5}} variant="subtitle2">{item.address}</Typography>
+                        </Box>
+
+                        {
+                            item?.type !== "standard" ?
+                                <div
+                                    style={{
+                                        display: '-webkit-box',
+                                        overflow: 'hidden',
+                                        WebkitBoxOrient: 'vertical',
+                                        WebkitLineClamp: item?.type === "premium" ? 5 : 9 // Adjust the number of lines for description in premium listings
+                                    }}
+                                    dangerouslySetInnerHTML={{__html: item?.description}}
+                                ></div> : null
+                        }
+
+
+                    </Box>
+                </Grid>
+
+                {
+                    !matches ?
+                        <ContactDetails/> : null
+                }
+
+            </Grid>
 
             <Dialog
                 open={contactModal}
@@ -205,7 +174,8 @@ const ListingCard = ({ item }: any) => {
                             <DialogContentText variant="body1" fontWeight="bold">{item?.phone}</DialogContentText>
                         </Box>
 
-                        <a className="btn-ten rounded-0" onClick={handleUserCalled} href={item?.phone ? "tel:" + item?.phone : "#"}>
+                        <a className="btn-ten rounded-0" onClick={handleUserCalled}
+                           href={item?.phone ? "tel:" + item?.phone : "#"}>
                             <span>Call</span>
                         </a>
                     </Box>
