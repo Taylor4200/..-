@@ -101,8 +101,6 @@ const ListingCard = ({ item }: any) => {
 
     const theme = useTheme();
     const matches = useMediaQuery(theme.breakpoints.up('md'));
-    const matchesMob = useMediaQuery(theme.breakpoints.up('lg'));
-
 
     return (
         <div className="listing-card-seven border-20 p-20 mb-50 wow fadeInUp">

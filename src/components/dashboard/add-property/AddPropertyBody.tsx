@@ -69,7 +69,8 @@ interface FormDataField {
     lat?: string,
     lang?: string
     type: listType,
-    note?: string
+    note?: string,
+    featured: boolean
 }
 
 
@@ -81,8 +82,6 @@ const AddPropertyBody = () => {
 
     const [search, setSearch] = useState("")
     const [selectedServiceItems, setSelectedServiceItems] = useState<string[]>([])
-
-    console.log(selectedServiceItems)
 
     const listID = searchParams.get('id')
     const router = useRouter()
@@ -102,6 +101,7 @@ const AddPropertyBody = () => {
             setValue("googlePlaceID", data?.google_place_id)
             setValue("type", data?.type)
             setValue("note", data?.note)
+            setValue("featured", data?.featured)
 
             if (data?.services) {
                 const splittedStr = data?.services.split(',')
@@ -184,7 +184,8 @@ const AddPropertyBody = () => {
         resolver: yupResolver(schema), defaultValues: {
             lat: "",
             lang: "",
-            type: "standard" as listType
+            type: "standard" as listType,
+            featured: false,
         }
     });
 
@@ -216,7 +217,8 @@ const AddPropertyBody = () => {
                         google_place_id: data?.googlePlaceID || "",
                         type: data?.type,
                         note: data?.note,
-                        services: selectedServiceItems.length > 0 ? selectedServiceItems.toString() : undefined
+                        services: selectedServiceItems.length > 0 ? selectedServiceItems.toString() : undefined,
+                        featured: data.featured
                     })
                     .eq('id', parseInt(listID))
 
@@ -257,7 +259,8 @@ const AddPropertyBody = () => {
                         imageUrl: url,
                         type: data?.type,
                         note: data?.note,
-                        services: selectedServiceItems.length > 0 ? selectedServiceItems.toString() : undefined
+                        services: selectedServiceItems.length > 0 ? selectedServiceItems.toString() : undefined,
+                        featured: data.featured
                     })
                     .select()
                     .single()  // Retrieve the inserted listing data including the generated listing_id
@@ -539,6 +542,26 @@ const AddPropertyBody = () => {
                                 {/*<p className="form_error">{errors.name?.message}</p>*/}
                             </div>
                         </div>
+                    </div>
+
+
+                    <div className="row align-items-end">
+                        <div className="col-md-6">
+                            <div className="dash-input-wrapper mb-30 d-flex align-items-center">
+                                <label htmlFor="">Is this Feature list?</label>
+
+                                <Controller
+                                    name="featured"
+                                    control={control}
+                                    render={({field}) => (
+                                        <Checkbox {...field} checked={field.value} sx={{mb: 1}}/>
+                                    )}
+                                />
+                            </div>
+
+
+                        </div>
+
                     </div>
                 </div>
 
