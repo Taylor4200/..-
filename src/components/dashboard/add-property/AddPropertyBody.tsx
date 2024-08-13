@@ -103,7 +103,7 @@ const AddPropertyBody = () => {
             setValue("type", data?.type)
             setValue("note", data?.note)
 
-            if(data?.services) {
+            if (data?.services) {
                 const splittedStr = data?.services.split(',')
                 setSelectedServiceItems(splittedStr)
             }
@@ -531,6 +531,14 @@ const AddPropertyBody = () => {
 
 
                         </div>
+
+                        <div className="col-md-6">
+                            <div className="dash-input-wrapper mb-30">
+                                <label htmlFor="">Mobile Number</label>
+                                <input type="text" placeholder="Enter Phone number"/>
+                                {/*<p className="form_error">{errors.name?.message}</p>*/}
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -548,14 +556,15 @@ const AddPropertyBody = () => {
                                 if (search && !item.toLowerCase().trim().includes(search.toLowerCase().trim())) return
                                 return (
                                     <Box key={index} m={1}>
-                                        <Chip deleteIcon={<Checkbox checked={!!selectedServiceItems.find(itemData => itemData === item)}/>}
+                                        <Chip deleteIcon={<Checkbox
+                                            checked={!!selectedServiceItems.find(itemData => itemData === item)}/>}
                                               label={item}
                                               variant="outlined"
                                               onDelete={() => {
                                                   const isItemAvailable = selectedServiceItems.find(itemData => itemData === item)
-                                                  if(isItemAvailable) {
+                                                  if (isItemAvailable) {
                                                       setSelectedServiceItems(prevState => prevState?.filter(fil => fil !== item))
-                                                  }else {
+                                                  } else {
                                                       setSelectedServiceItems(prevState => ([...prevState, item]))
                                                   }
                                               }}
