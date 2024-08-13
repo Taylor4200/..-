@@ -6,7 +6,7 @@ import {ListResults} from "@/app/listing_details_03/actions";
 import {trackInteraction} from "@/utils/utilsServer";
 
 export const metadata = {
-    title: "Listing Details Three Homy - Real Estate React Next js Template",
+    title: "Truck Support - Listing Details",
 };
 
 async function serverAction(params: { id: number, name: string, latitude: number, longitude: number }) {

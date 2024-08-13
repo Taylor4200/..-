@@ -3,7 +3,7 @@ import Wrapper from "@/layouts/Wrapper";
 import {createClient} from "@/utils/supabase/server";
 
 export const metadata = {
-    title: "Dashboard Index Homy - Real Estate React Next js Template",
+    title: "Truck Support - Dashboard Index",
 };
 
 async function getVisitTotal(listID?: string ) {

@@ -2,7 +2,7 @@ import Error from "@/components/inner-pages/error";
 import Wrapper from "@/layouts/Wrapper";
 
 export const metadata = {
-   title: "404 error || Homy - Real Estate React Next js Template",
+   title: "Truck Support - 404 error",
 };
 const index = () => {
    return (

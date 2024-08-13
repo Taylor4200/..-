@@ -4,7 +4,7 @@ import {createClient} from "@/utils/supabase/server";
 import {Get_Distance} from "@/utils/utils";
 
 export const metadata = {
-   title: "Dashboard Message Homy - Real Estate React Next js Template",
+   title: "Truck Support - Dashboard Message",
 };
 
 async function getData() {

@@ -2,7 +2,7 @@ import DashboardAccountSetting from "@/components/dashboard/account-settings";
 import Wrapper from "@/layouts/Wrapper";
 
 export const metadata = {
-   title: "Dashboard Account Setting Homy - Real Estate React Next js Template",
+   title: "Truck Support - Dashboard account settings",
 };
 const index = () => {
    return (

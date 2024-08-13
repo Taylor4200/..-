@@ -4,7 +4,7 @@ import {Get_Distance} from "@/utils/utils";
 import {GetDistanceConfig, ListItemResults} from "@/app/listing_04/actions";
 
 export const metadata = {
-    title: "Listing Four Homy - Real Estate React Next js Template",
+    title: "Truck Support - Search",
 };
 
 async function serverAction(params: { category: string, subCategory: string, latitude: number, longitude: number }) {
