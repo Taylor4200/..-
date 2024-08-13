@@ -1,6 +1,6 @@
 "use client"
 import DropdownOne from "@/components/search-dropdown/home-dropdown/DropdownOne";
-import {useEffect, useState} from "react";
+import {useEffect, useMemo, useState} from "react";
 import dynamic from 'next/dynamic'
 import {createClient} from "@/utils/supabase/client";
 import {GoogleMap, InfoWindow, Marker, useLoadScript} from "@react-google-maps/api";
@@ -11,6 +11,10 @@ import {trackInteraction} from "@/utils/utilsServer";
 
 const ListingCard = dynamic(() => import('@/components/inner-listing/listing-04/ListingCard'), {ssr: false})
 const ListingFourArea = ({data}: any) => {
+
+    const featureList = useMemo(() => data?.filter(item => item?.featured), [data])
+    const nonFeatureList = useMemo(() => data?.filter(item => !item?.featured), [data])
+
 
     const supabase = createClient()
 
@@ -65,7 +69,7 @@ const ListingFourArea = ({data}: any) => {
         googleMapsApiKey: process?.env?.NEXT_PUBLIC_GOOGLEAPIKEY || "",
     });
 
-    const handleUserCalled = async (id: number,phone: any) => {
+    const handleUserCalled = async (id: number, phone: any) => {
         if (!phone) return
         await trackInteraction(id, true)
     }
@@ -99,7 +103,7 @@ const ListingFourArea = ({data}: any) => {
                 <div
                     className="listing-header-filter d-sm-flex justify-content-between align-items-center mb-40 lg-mb-30">
                     <div>
-                        {`Showing Results of ${data?.length}`}
+                        {/*{`Showing Results of ${data?.length}`}*/}
                         {/*Showing */}
                         {/*<span*/}
                         {/*    className="color-dark fw-500">{itemOffset + 1}–{itemOffset + currentItems.length}</span> of <span*/}
@@ -188,17 +192,17 @@ const ListingFourArea = ({data}: any) => {
                                                                     justifyContent: "space-between"
                                                                 }}>
                                                                     <a href={phone ? "tel:" + phone : "#"}
-                                                                          onClick={() => handleUserCalled(id, phone)}
-                                                                          style={{
-                                                                              backgroundColor: "#F2F6F9",
-                                                                              width: "48%",
-                                                                              height: 60,
-                                                                              textAlign: "center",
-                                                                              display: "flex",
-                                                                              alignItems: "center",
-                                                                              justifyContent: "center",
-                                                                              cursor: "pointer"
-                                                                          }}>
+                                                                       onClick={() => handleUserCalled(id, phone)}
+                                                                       style={{
+                                                                           backgroundColor: "#F2F6F9",
+                                                                           width: "48%",
+                                                                           height: 60,
+                                                                           textAlign: "center",
+                                                                           display: "flex",
+                                                                           alignItems: "center",
+                                                                           justifyContent: "center",
+                                                                           cursor: "pointer"
+                                                                       }}>
                                                                         <i className="fa-regular fa-phone-volume fa-2x"></i>
 
                                                                     </a>
@@ -226,21 +230,25 @@ const ListingFourArea = ({data}: any) => {
                                         </GoogleMap> : null
                                 }
                             </div>
-
-                            {/*<div id="" className="h-100">*/}
-                            {/*    <div className="google-map-home" id="contact-google-map" data-map-lat="40.925372"*/}
-                            {/*         data-map-lng="-74.276544" data-icon-path="/assetes/images/home2/map-icon.png"*/}
-                            {/*         data-map-title="Awesome Place" data-map-zoom="12"></div>*/}
-                            {/*    <iframe*/}
-                            {/*        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d83088.3595592641!2d-105.54557276330914!3d39.29302101722867!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x874014749b1856b7%3A0xc75483314990a7ff!2sColorado%2C%20USA!5e0!3m2!1sen!2sbd!4v1699764452737!5m2!1sen!2sbd"*/}
-                            {/*        width="600" height="450" style={{border: 0}} allowFullScreen={true} loading="lazy"*/}
-                            {/*        referrerPolicy="no-referrer-when-downgrade" className="w-100 h-100">*/}
-                            {/*    </iframe>*/}
-                            {/*</div>*/}
                         </div> :
                         <>
-                            {data?.sort((a: any, b: any) => (b?.distance != null) - (a?.distance != null) || a?.distance - b?.distance)?.map((item: any) =>
-                                <ListingCard key={item?.id} item={item}/>)}
+
+                            <div>
+                                <h5 className="my-3">Featured Results ({featureList?.length})</h5>
+                                <div>
+                                    {featureList?.sort((a: any, b: any) => (b?.distance != null) - (a?.distance != null) || a?.distance - b?.distance)?.map((item: any) =>
+                                        <ListingCard key={item?.id} item={item}/>)}
+                                </div>
+                            </div>
+
+                            <div>
+                                <h5 className="my-3">All Result ({nonFeatureList?.length})</h5>
+                                <div>
+                                    {nonFeatureList?.sort((a: any, b: any) => (b?.distance != null) - (a?.distance != null) || a?.distance - b?.distance)?.map((item: any) =>
+                                        <ListingCard key={item?.id} item={item}/>)}
+                                </div>
+                            </div>
+
 
                             {/*<div className="pt-50 md-pt-20 text-center">*/}
                             {/*    <ReactPaginate*/}
