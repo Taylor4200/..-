@@ -166,8 +166,9 @@ const ListingFourArea = ({data}: any) => {
                                                     {activeMarker === id ? (
                                                         <InfoWindow onCloseClick={() => setActiveMarker(null)}>
                                                             <div style={{
-                                                                width: 350,
-                                                                height: (imageUrl && type !== "standard") ? 360 : 100
+                                                                width: "100%",
+                                                                minWidth: 200,
+                                                                height: (imageUrl && type !== "standard") ? 420 : 160
                                                             }}>
 
                                                                 {
