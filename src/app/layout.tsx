@@ -37,10 +37,10 @@ export default function RootLayout({
     return (
         <html lang="en" suppressHydrationWarning={isDev}>
         <head>
-            <meta name="keywords" content="Real estate, Property sale, Property buy" />
-            <meta name="description" content="Homy is a beautiful website template designed for Real Estate Agency." />
-            <meta property="og:site_name" content="Homy" />
-            <meta property="og:url" content="https://creativegigstf.com" />
+            <meta name="keywords" content="Truck Serivce near me, Truck Directory, Semi Truck wash, Mobile truck service, Semi Truck Station, Truck Shop" />
+            <meta name="description" content="Truck Support is a nationwide truck service directory helping truckers find service with ease" />
+            <meta property="og:site_name" content="Truck Support" />
+            <meta property="og:url" content="https://trucksupport.com" />
             <meta property="og:type" content="website" />
             <meta property="og:title" content="Truck Support" />
             <meta name='og:image' content='images/assets/ogg.png' />
