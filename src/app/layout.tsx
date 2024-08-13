@@ -43,7 +43,7 @@ export default function RootLayout({
             <meta property="og:url" content="https://trucksupport.com" />
             <meta property="og:type" content="website" />
             <meta property="og:title" content="Truck Support" />
-            <meta name='og:image' content='images/assets/ogg.png' />
+            <meta name='og:image' content='/images/icon-dark.png' />
             {/* For IE */}
             <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
             {/* For Responsive Device */}
