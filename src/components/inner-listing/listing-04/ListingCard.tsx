@@ -78,9 +78,9 @@ const ListingCard = ({ item }: any) => {
     const getHeaderMarginLeft = () => {
         switch (item?.type) {
             case 'premium':
-                return '-350px'; // Adjust as needed for X-axis
+                return "min(50px, -34%)" // Adjust as needed for X-axis
             case 'pro':
-                return '-350px'; // Adjust as needed for X-axis
+                return "min(50px, -34%)" // Adjust as needed for X-axis
             case 'standard':
             default:
                 return '5px'; // Adjust as needed for X-axis
@@ -101,6 +101,8 @@ const ListingCard = ({ item }: any) => {
 
     const theme = useTheme();
     const matches = useMediaQuery(theme.breakpoints.up('md'));
+    const matchesMob = useMediaQuery(theme.breakpoints.up('lg'));
+
 
     return (
         <div className="listing-card-seven border-20 p-20 mb-50 wow fadeInUp">
@@ -131,7 +133,7 @@ const ListingCard = ({ item }: any) => {
                             overflow: 'hidden',
                             WebkitBoxOrient: 'vertical',
                             WebkitLineClamp: item?.type === "premium" ? 2 : 1, // Adjust the number of lines for the title in premium listings
-                            marginLeft: getHeaderMarginLeft() // Apply conditional margin for header text (X-axis)
+                            marginLeft: !matches ? 0 : getHeaderMarginLeft() // Apply conditional margin for header text (X-axis)
                         }}
                     >
                         {item?.name}
