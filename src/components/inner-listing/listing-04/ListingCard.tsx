@@ -32,7 +32,7 @@ const ListingCard = ({item}: any) => {
     const handleContactModal = () => setContactModal(prevState => !prevState);
 
     const handleUserCalled = async () => {
-        if (!item?.phone) return;
+        if (!item?.phone && !item?.secondary_Phone) return;
         await trackInteraction(item.id, true);
     };
 
@@ -172,10 +172,12 @@ const ListingCard = ({item}: any) => {
                                 Primary Phone
                             </DialogContentText>
                             <DialogContentText variant="body1" fontWeight="bold">{item?.phone}</DialogContentText>
+                            <DialogContentText variant="body1" fontWeight="bold">{item?.secondary_Phone}</DialogContentText>
+
                         </Box>
 
                         <a className="btn-ten rounded-0" onClick={handleUserCalled}
-                           href={item?.phone ? "tel:" + item?.phone : "#"}>
+                           href={(item?.phone || item?.secondary_Phone) ? "tel:" + (item?.phone || item?.secondary_Phone) : "#"}>
                             <span>Call</span>
                         </a>
                     </Box>

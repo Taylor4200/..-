@@ -70,7 +70,8 @@ interface FormDataField {
     lang?: string
     type: listType,
     note?: string,
-    featured: boolean
+    featured: boolean,
+    secondary_Phone?: string
 }
 
 
@@ -102,6 +103,7 @@ const AddPropertyBody = () => {
             setValue("type", data?.type)
             setValue("note", data?.note)
             setValue("featured", data?.featured)
+            setValue("secondary_Phone", data?.secondary_Phone)
 
             if (data?.services) {
                 const splittedStr = data?.services.split(',')
@@ -218,7 +220,8 @@ const AddPropertyBody = () => {
                         type: data?.type,
                         note: data?.note,
                         services: selectedServiceItems.length > 0 ? selectedServiceItems.toString() : undefined,
-                        featured: data.featured
+                        featured: data.featured,
+                        secondary_Phone: data?.secondary_Phone
                     })
                     .eq('id', parseInt(listID))
 
@@ -260,7 +263,8 @@ const AddPropertyBody = () => {
                         type: data?.type,
                         note: data?.note,
                         services: selectedServiceItems.length > 0 ? selectedServiceItems.toString() : undefined,
-                        featured: data.featured
+                        featured: data.featured,
+                        secondary_Phone: data?.secondary_Phone
                     })
                     .select()
                     .single()  // Retrieve the inserted listing data including the generated listing_id
@@ -538,8 +542,13 @@ const AddPropertyBody = () => {
                         <div className="col-md-6">
                             <div className="dash-input-wrapper mb-30">
                                 <label htmlFor="">Mobile Number</label>
-                                <input type="text" placeholder="Enter Phone number"/>
-                                {/*<p className="form_error">{errors.name?.message}</p>*/}
+                                <Controller
+                                    name="secondary_Phone"
+                                    control={control}
+                                    render={({field}) => (
+                                        <input {...field} type="number" placeholder="Enter Phone Number"/>
+                                    )}
+                                />
                             </div>
                         </div>
                     </div>

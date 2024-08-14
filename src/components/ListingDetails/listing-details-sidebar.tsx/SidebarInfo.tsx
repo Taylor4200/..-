@@ -22,8 +22,8 @@ const SidebarInfo = ({ data }: any) => {
         win?.focus();
     };
 
-    const handleUserCalled = async () => {
-        if (!data?.phone) return;
+    const handleUserCalled = async (phone?: string) => {
+        if (!phone) return;
         await trackInteraction(data.id, true);
     };
 
@@ -44,10 +44,15 @@ const SidebarInfo = ({ data }: any) => {
                 <ul className="style-none">
                     <li>Location: <span>{data?.address}</span></li>
                     <li>Website: <span><Link href={data?.website || ""}>{data?.website}</Link></span></li>
-                    <li>Phone: <span><a onClick={handleUserCalled} href={data?.phone ? "tel:" + data?.phone : "#"}>{data?.phone}</a></span></li>
+                    <li>Phone: <span><a onClick={()=>handleUserCalled(data?.phone)}
+                                        href={data?.phone ? "tel:" + data?.phone : "#"}>{data?.phone}</a></span></li>
+                    <li>Other Phone: <span><a onClick={() =>handleUserCalled(data?.secondary_Phone)}
+                                        href={data?.secondary_Phone ? "tel:" + data?.secondary_Phone : "#"}>{data?.secondary_Phone}</a></span></li>
+
                 </ul>
             </div>
-            <a onClick={handleUserCalled} href={data?.phone ? "tel:" + data?.phone : "#"} className="btn-nine text-uppercase rounded-3 w-100 mb-10">
+            <a onClick={() => handleUserCalled(data?.phone || data?.secondary_Phone)} href={(data?.phone || data?.secondary_Phone) ? "tel:" + (data?.phone || data?.secondary_Phone) : "#"}
+               className="btn-nine text-uppercase rounded-3 w-100 mb-10">
                 CONTACT Business
             </a>
         </>
