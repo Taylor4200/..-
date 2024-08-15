@@ -3,6 +3,8 @@ import Wrapper from "@/layouts/Wrapper";
 import {Get_Distance} from "@/utils/utils";
 import {GetDistanceConfig, ListItemResults} from "@/app/listing_04/actions";
 
+export const dynamic = 'force-dynamic'
+
 export const metadata = {
     title: "Truck Support - Search",
 };
