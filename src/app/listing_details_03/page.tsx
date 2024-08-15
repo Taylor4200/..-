@@ -33,7 +33,7 @@ const index = async ({
     searchParams: { id: number, name: string, latitude: number, longitude: number };
 }) => {
 
-    if (!searchParams?.id || !searchParams?.name || !searchParams?.latitude || !searchParams?.longitude) redirect("/")
+    // if (!searchParams?.id || !searchParams?.name || !searchParams?.latitude || !searchParams?.longitude) redirect("/")
 
     const data = await serverAction(searchParams)
     if (!data || data?.length === 0) redirect("/")

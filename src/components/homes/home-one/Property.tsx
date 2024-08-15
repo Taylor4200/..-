@@ -6,8 +6,57 @@ import property_data from "@/data/home-data/PropertyData";
 import noImageIcon from "@/assets/images/listing/NoImagePhoto.jpg"
 
 import titleShape from "@/assets/images/shape/title_shape_03.svg";
+import {useEffect, useState} from "react";
 
 const Property = ({data}: any) => {
+
+    const [locationState, setLocationState] = useState<{
+        latitude: number | null;
+        longitude: number | null;
+    }>({
+        latitude: null,
+        longitude: null,
+    })
+
+    async function success (pos: PositionCallback) {
+        var crd = pos.coords;
+        console.log("Your current position is:");
+        console.log(`Latitude : ${crd.latitude}`);
+        console.log(`Longitude: ${crd.longitude}`);
+        console.log(`More or less ${crd.accuracy} meters.`);
+
+        setLocationState({
+            latitude: crd?.latitude || null,
+            longitude: crd?.longitude || null,
+        })
+    }
+
+    const handleFindUserLocation = () => {
+
+        if (navigator.geolocation) {
+            navigator.permissions
+                .query({name: "geolocation"})
+                .then(function (result) {
+                    console.log(result);
+                    if (result.state === "granted") {
+                        //If granted then you can directly call your function here
+                        navigator.geolocation.getCurrentPosition(success);
+                    } else if (result.state === "prompt") {
+                        //If prompt then the user will be asked to give permission
+                        navigator.geolocation.getCurrentPosition(success);
+                    }
+                });
+        } else {
+            console.log("Geolocation is not supported by this browser.");
+        }
+
+
+    }
+
+    useEffect(() => {
+        handleFindUserLocation()
+    }, []);
+
     return (
         <div
             className="property-listing-one bg-pink-two mt-150 xl-mt-120 pt-140 xl-pt-120 lg-pt-80 pb-180 xl-pb-120 lg-pb-100">
@@ -65,7 +114,7 @@ const Property = ({data}: any) => {
                                             {/*</li>*/}
                                             {/*))}*/}
                                         </ul>
-                                        <Link href="/listing_details_01"
+                                        <Link href={`/listing_details_03?id=${item.id}&name=${item.name}&latitude=${locationState?.latitude}&longitude=${locationState?.longitude}`}
                                               className="title tran3s mt-4">{item.name}</Link>
                                         <div className="address">{item.address}</div>
                                         {/*<div*/}
