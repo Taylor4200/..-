@@ -33,7 +33,7 @@ async function increaseVisitTotal() {
 }
 
 export const metadata = {
-    title: "Home - Truck Support",
+    title: "Find Truck Service | Semi Towing, Truck Repair, Truck Tires, Truck Parts",
 };
 const index = async () => {
 

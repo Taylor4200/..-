@@ -4,20 +4,49 @@ import {Get_Distance} from "@/utils/utils";
 import {redirect} from "next/navigation";
 import {ListResults} from "@/app/listing_details_03/actions";
 import {trackInteraction} from "@/utils/utilsServer";
-import {NextApiRequest} from "next";
+import {Metadata, NextApiRequest, ResolvingMetadata} from "next";
+import { cache } from 'react';
 
 export const dynamic = 'force-dynamic'
 
+async function fetchData({id, name}: any) {
+    return await ListResults(id, name)
+}
 
-export const metadata = {
-    title: "Truck Support - Listing Details",
-};
+const getData = cache(fetchData);
+
+export async function generateMetadata(
+    { params, searchParams }: any,
+    parent: ResolvingMetadata
+): Promise<Metadata> {
+    // read route params
+    const id = params.id
+
+    // fetch data
+    const data = await getData(searchParams)
+    const imgUrl = data && data[0]?.imageUr;
+    const desc = data && data[0]?.description;
+    // const product = await fetch(`https://.../${id}`).then((res) => res.json())
+
+    // optionally access and extend (rather than replace) parent metadata
+    // const previousImages = (await parent).openGraph?.images || []
+
+    return {
+        title: searchParams.name,
+        description: desc,
+        openGraph: {
+            images: imgUrl ? [imgUrl] : []
+                //['/some-specific-page-image.jpg', ...previousImages],
+        },
+    }
+}
+
 
 async function serverAction(request: NextApiRequest) {
     const searchParams =  request?.searchParams
 
     try {
-        const data = await ListResults(searchParams.id, searchParams.name)
+        const data = await getData(request?.searchParams)
 
         await trackInteraction(searchParams.id, false)
 

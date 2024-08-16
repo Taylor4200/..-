@@ -2,7 +2,7 @@ import Contact from "@/components/inner-pages/contact";
 import Wrapper from "@/layouts/Wrapper";
 
 export const metadata = {
-   title: "Contact - Truck Support",
+   title: "Contact",
 };
 const index = () => {
    return (

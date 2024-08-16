@@ -6,7 +6,7 @@ import {GoogleAnalytics} from '@next/third-parties/google'
 export const metadata: Metadata = {
     title: {
         default: 'Find Truck Service | Semi Towing, Truck Repair, Truck Tires, Truck Parts',
-        template: `%s | Truck Support`
+        template: `%s | Find Truck Service | Semi Towing, Truck Repair, Truck Tires, Truck Parts`
     },
     description: '',
     keywords: ["Truck support", "Find Truck service", "Truck Parts", "Truck Directory", "Mobile truck service", "Truck Shop"],
@@ -86,7 +86,6 @@ export default function RootLayout({
             {/* Default favicon */}
             <link rel="stylesheet"
                   href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500&display=swap"/>
-            <title>Find Truck Service | Semi Towing, Truck Repair, Truck Tires, Truck Parts</title>
         </head>
         <body suppressHydrationWarning={true}>
         <GoogleAnalytics gaId="G-MNHKBP7E79"/>
