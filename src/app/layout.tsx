@@ -1,11 +1,15 @@
 import React from 'react';
 import "../styles/index.scss";
 import {Metadata} from "next";
-import { GoogleAnalytics } from '@next/third-parties/google'
+import {GoogleAnalytics} from '@next/third-parties/google'
 
 export const metadata: Metadata = {
-    title: 'Find Truck Service | Semi Towing, Truck Repair, Truck Tires, Truck Parts',
+    title: {
+        default: 'Find Truck Service | Semi Towing, Truck Repair, Truck Tires, Truck Parts',
+        template: `%s | Truck Support`
+    },
     description: '',
+    keywords: ["Truck support", "Find Truck service", "Truck Parts", "Truck Directory", "Mobile truck service", "Truck Shop"],
     metadataBase: new URL('https://trucksupport.com/'),
     icons: {
         icon: [
@@ -85,7 +89,7 @@ export default function RootLayout({
             <title>Find Truck Service | Semi Towing, Truck Repair, Truck Tires, Truck Parts</title>
         </head>
         <body suppressHydrationWarning={true}>
-        <GoogleAnalytics gaId="G-MNHKBP7E79" />
+        <GoogleAnalytics gaId="G-MNHKBP7E79"/>
         <div className="main-page-wrapper">
             {children}
         </div>
