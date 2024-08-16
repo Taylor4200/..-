@@ -1,6 +1,7 @@
 import React from 'react';
 import "../styles/index.scss";
 import {Metadata} from "next";
+import { GoogleAnalytics } from '@next/third-parties/google'
 
 export const metadata: Metadata = {
     title: 'Find Truck Service | Semi Towing, Truck Repair, Truck Tires, Truck Parts',
@@ -84,6 +85,7 @@ export default function RootLayout({
             <title>Find Truck Service | Semi Towing, Truck Repair, Truck Tires, Truck Parts</title>
         </head>
         <body suppressHydrationWarning={true}>
+        <GoogleAnalytics gaId="G-MNHKBP7E79" />
         <div className="main-page-wrapper">
             {children}
         </div>
