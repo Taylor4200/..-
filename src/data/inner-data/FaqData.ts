@@ -35,7 +35,7 @@ const inner_faq_data:DataType[] = [
          {
             id: 4,
             question: "HOW CAN I REPORT INACCURACIES OR SUGGEST ADDITIONS TO YOUR DIRECTORY?",
-            answer: "If you encounter any minor issues with either our directory or our website, please contact us at marketing@247trucksupport.com.\n" +
+            answer: "If you encounter any minor issues with either our directory or our website, please contact us at marketing@trucksupport.com.\n" +
                 "\n" +
                 " \n" +
                 "\n" +
