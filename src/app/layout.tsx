@@ -5,8 +5,8 @@ import {GoogleAnalytics} from '@next/third-parties/google'
 
 export const metadata: Metadata = {
     title: {
-        default: 'Find Truck Service | Semi Towing, Truck Repair, Truck Tires, Truck Parts',
-        template: `%s | Find Truck Service | Semi Towing, Truck Repair, Truck Tires, Truck Parts`
+        default: 'Truck Support | Your Trusted Source for Semi-Truck Towing, Repairs, Tires & Parts',
+        template: `%s | Truck Support | Your Trusted Source for Semi-Truck Towing, Repairs, Tires & Parts`
     },
     description: '',
     keywords: ["Truck support", "Find Truck service", "Truck Parts", "Truck Directory", "Mobile truck service", "Truck Shop"],
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
         ],
     },
     openGraph: {
-        title: 'Find Truck Service | Semi Towing, Truck Repair, Truck Tires, Truck Parts',
+        title: 'Truck Support | Semi Towing, Truck Repair, Truck Tires, Truck Parts',
         description: '',
         url: 'https://trucksupport.com/',
         siteName: 'Truck Support',

@@ -33,7 +33,7 @@ async function increaseVisitTotal() {
 }
 
 export const metadata = {
-    title: "Find Truck Service | Semi Towing, Truck Repair, Truck Tires, Truck Parts",
+    title: "Truck Support | Your Trusted Source for Semi-Truck Towing, Repairs, Tires & Parts",
 };
 const index = async () => {
 

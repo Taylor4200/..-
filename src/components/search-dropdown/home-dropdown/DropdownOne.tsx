@@ -325,7 +325,7 @@ const DropdownOne = ({style, categories}: any) => {
                         Share your location
                     </Typography>
                     <Typography id="modal-modal-description" sx={{mt: 2}}>
-                        To get the most out of Find Truck Service® locator, please fill in the location field by sharing
+                        To get the most out of TruckSupport®, please fill in the location field by sharing
                         your location or selecting one.
                     </Typography>
                 </Box>
