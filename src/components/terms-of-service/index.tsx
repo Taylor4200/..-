@@ -78,7 +78,7 @@ const TermsService = () => {
                         you.
                     </li>
                     <li>Website: Truck Supports site, which can be accessed via this URL:
-                        https://www.247trucksupport.com/
+                        https://www.trucksupport.com/
                     </li>
                     <li>You: a person or entity that is registered with Truck Support to use the Services.
                     </li>

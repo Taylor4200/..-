@@ -15,7 +15,7 @@ export const metadata: Metadata = {
         "Truck Parts", 
         "Truck Directory", 
         "Mobile truck service", 
-        "Truck Shop"
+        "Truck Stop"
     ],
     metadataBase: new URL('https://trucksupport.com/'),
     icons: {
@@ -61,7 +61,7 @@ export default function RootLayout({
         <html lang="en">
             <head>
                 {/* SEO Meta Tags */}
-                <meta name="keywords" content="Truck Service near me, Truck Directory, Semi Truck wash, Mobile truck service, Semi Truck Station, Truck Shop" />
+                <meta name="keywords" content="Truck Service near me, Truck Directory, Semi Truck wash, Mobile truck service, Semi Truck Station, Truck Stop" />
                 <meta name="description" content="Truck Support is a nationwide truck service directory helping truckers find service with ease" />
                 <meta property="og:site_name" content="Truck Support" />
                 <meta property="og:url" content="https://trucksupport.com" />
