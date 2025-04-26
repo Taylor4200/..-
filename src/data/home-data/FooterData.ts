@@ -31,7 +31,7 @@ const footer_data: DataType[] = [
       widget_class: "xs-mt-30",
       page: "home_1",
       widget_title: "Why choose us",
-      footer_link: [{ link: "https://trustpilot.com/review/247trucksupport.com", link_title: "Customer Testimonials" }]
+      footer_link: [{ link: "https://trustpilot.com/review/trucksupport.com", link_title: "Customer Testimonials" }]
    },
 
    // home two

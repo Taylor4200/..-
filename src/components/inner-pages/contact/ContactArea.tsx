@@ -16,14 +16,14 @@ interface DataType {
 const address_data: DataType[] = [
    {
       id: 1,
-      title: "Reach the marketing team.",
+      title: "Reach the marketing team",
       address_1: "mailto:marketing@trucksupport.com"
    },
    {
       id: 2,
       class_name: "skew-line",
       title: "Contact us directly",
-      address_1: "tel:(303) 502-7179"
+      address_1: "tel:(720) 792-0325"
    }
 ];
 

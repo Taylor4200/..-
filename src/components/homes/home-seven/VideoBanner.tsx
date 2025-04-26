@@ -21,7 +21,7 @@ const VideoBanner = () => {
          <VideoPopup
             isVideoOpen={isVideoOpen}
             setIsVideoOpen={setIsVideoOpen}
-            videoId={"XJ7DCbkTrPI"}
+            videoId={"l3RhuLHZ8FI"}
          />
          {/* video modal end */}
       </>
