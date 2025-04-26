@@ -3,7 +3,6 @@
 import Image from "next/image"
 import DropdownOne from "@/components/search-dropdown/home-dropdown/DropdownOne";
 
-import titleShape from "@/assets/images/shape/shape_01.svg"
 import bannerThumb from "@/assets/images/assets/truckHome2.png"
 import { useEffect, useState } from "react";
 import { createClient } from "@/utils/supabase/client";
@@ -43,7 +42,9 @@ const Banner = () => {
                 <div className="row">
                     <div className="col-xxl-10 col-xl-9 col-lg-10 col-md-10 m-auto">
                         <h1 className="hero-heading text-center wow fadeInUp" style={{ color: "#fff", fontSize: 80 }}>
-                            Find Local Truck Support Fast
+                            Search For Local Truck
+                            <br />
+                            Support
                         </h1>
                     </div>
                 </div>
