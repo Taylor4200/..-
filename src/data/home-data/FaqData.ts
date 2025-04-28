@@ -35,11 +35,11 @@ const faq_data:DataType[] = [
       id: 4,
       page: "home_2_faq_2",
       question: "How Can I Report Inaccuracies Or Suggest Additions To Your Directory?",
-      answer: "If you encounter any minor issues with either our directory or our website, please contact us at marketing@trucksupport.com.\n" +
+      answer: "If you encounter any minor issues with either our directory or our website, please contact us at marketing@trucksupport.net.\n" +
           "\n" +
           " \n" +
           "\n" +
-          "For major issues or inquiries about Advertising services from our company, please reach out to us at (720)-877-7184.",
+          "For major issues or inquiries about Advertising services from our company, please reach out to us at (720)-792-0325.",
       showAnswer: false,
    },
    {

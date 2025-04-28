@@ -34,7 +34,7 @@ const FooterOne = ({style}: any) => {
                                     {/*<p className="mb-60 lg-mb-40 md-mb-20">11910 Clyde Rapid Suite 70, Willyand, Virginia, United States</p>*/}
                                     <h6>CONTACT</h6>
                                     <Link href="#" style={{fontSize: 28}}
-                                          className={`email tran3s mb-30 lg-mb-50 ${style ? "font-garamond" : "fs-24 text-decoration-underline"}`}>marketing@trucksupport.com</Link>
+                                          className={`email tran3s mb-30 lg-mb-50 ${style ? "font-garamond" : "fs-24 text-decoration-underline"}`}>marketing@trucksupport.net</Link>
                                     <a href="tel:720-792-0325" style={{fontSize: 25}}
                                           className={`email tran3s mb-70 lg-mb-50`}>+720-792-0325</a>
                                     <ul className="style-none d-flex align-items-center social-icon">

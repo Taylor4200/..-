@@ -17,7 +17,7 @@ const address_data: DataType[] = [
    {
       id: 1,
       title: "Reach the marketing team",
-      address_1: "mailto:marketing@trucksupport.com"
+      address_1: "mailto:marketing@trucksupport.net"
    },
    {
       id: 2,
