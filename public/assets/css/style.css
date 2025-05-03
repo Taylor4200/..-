@@ -7339,31 +7339,36 @@ iframe {
   text-decoration: underline;
 }
 
-.pricing-nav-one .nav {
-  border: 2px solid #FF6725;
-  border-radius: 10px;
+.pricing-section-one .main-bg {
+  background: #fff;
   overflow: hidden;
+  /* Removed border and radius to clean up the outer edge */
 }
+
 .pricing-nav-one .nav .nav-link {
-  width: 160px;
-  height: 50px;
-  font-weight: 500;
-  font-size: 17px;
-  color: #FF6725;
-  background: transparent;
-  padding: 0;
-  margin: 0;
-  border: 0;
-  border-radius: 0;
+  width: 160px !important;
+  height: 50px !important;
+  font-weight: 500 !important;
+  font-size: 17px !important;
+  color: #000 !important;
+  background-color: #fff !important;
+  border: 1px solid #ccc !important;
+  border-radius: 4px 0 0 4px !important;
+  margin: 0 !important;
+  padding: 8px 16px !important;
+  transition: all 0.2s ease-in-out !important;
 }
+
 .pricing-nav-one .nav .nav-link.active {
-  background: #FF6725;
-  color: #fff;
+  background-color: #000 !important;
+  color: #fff !important;
+  border-color: #000 !important;
 }
+
 
 .pricing-section-one .discount-text {
   font-size: 16px;
-  color: #FF6725;
+  color: #000000;
 }
 .pricing-section-one .dot-bg-wrapper {
   background: url(../images/shape/shape_67.svg) no-repeat center;
@@ -13938,4 +13943,4 @@ html.with-fancybox body.hide-scrollbar {
 
 .slick-arrow.slick-hidden {
   display: none;
-}/*# sourceMappingURL=style.css.map */
+}
